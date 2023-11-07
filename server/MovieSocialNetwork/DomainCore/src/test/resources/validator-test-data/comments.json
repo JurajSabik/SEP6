@@ -1,0 +1,92 @@
+[
+  {
+    "commentId": "8b4c48f5-6703-4e99-ba3c-53c49b16b899",
+    "userId": "19a6a33f-1189-4e29-9b1a-3149f85f986e",
+    "reviewId": "6e1a4a13-fdab-4681-89ce-cd3b2b43a163",
+    "text": "This is a great product!",
+    "timestamp": "2023-10-31T12:30:00Z",
+    "upVotes": 15,
+    "downVotes": 3
+  },
+  {
+    "commentId": "a5d349c3-e481-49f8-89a4-cad9d61d87f1",
+    "userId": "5eb21c17-9a22-4a27-8e70-06b6a5b858f1",
+    "reviewId": "4b271d2a-95f7-439e-a5b5-1b4f8f800e8d",
+    "text": "I have some concerns about this product.",
+    "timestamp": "2023-10-30T15:45:00Z",
+    "upVotes": 5,
+    "downVotes": 8
+  },
+  {
+    "commentId": "3d0ecb6b-1f43-4055-9cf7-3cd9b2dd6665",
+    "userId": "ccbc3209-28c5-4296-9a16-4e40c2d872f8",
+    "reviewId": "dfaaeeec-5a09-4a5f-8a6e-4115ee6bcf09",
+    "text": "The service was excellent. Highly recommended!",
+    "timestamp": "2023-10-29T09:10:00Z",
+    "upVotes": 20,
+    "downVotes": 1
+  },
+  {
+    "commentId": "7d9a13e2-4b71-4b60-8e08-e8e3f4778a55",
+    "userId": "4a4a7e74-6494-4e86-bd19-7983b134a5ec",
+    "reviewId": "c889ccdd-4f3f-4eb0-b0bb-24d9a81cbb0a",
+    "text": "Could be better with some improvements.",
+    "timestamp": "2023-10-28T08:20:00Z",
+    "upVotes": 7,
+    "downVotes": 4
+  },
+  {
+    "commentId": "f7c918c2-ef1d-47b2-b16d-0fcf9d4690e4",
+    "userId": "0f66f4e1-54f6-4138-a7e3-731c96d14776",
+    "reviewId": "0cf1d983-74c6-46d7-9bf8-f9c7fda4870f",
+    "text": "Not satisfied with the quality. Disappointed.",
+    "timestamp": "2023-10-27T16:55:00Z",
+    "upVotes": 2,
+    "downVotes": 10
+  },
+  {
+    "commentId": "78d48e36-4c9d-4c71-bd7f-aeef0b8b8d87",
+    "userId": "b0d4ccaa-c1cf-4431-97cc-7ab4383f5ec8",
+    "reviewId": "3474ff69-d349-46a3-bdb1-5e66f365b7e5",
+    "text": "This is exactly what I was looking for!",
+    "timestamp": "2023-10-26T11:05:00Z",
+    "upVotes": 12,
+    "downVotes": 0
+  },
+  {
+    "commentId": "e9900a59-dde5-4c5a-94a5-bb78a53d9e0c",
+    "userId": "6a6a2b6e-647d-46c3-89c6-5eaa2becc3f8",
+    "reviewId": "33b8ce29-8c45-4a9e-9a6a-45e5455a5d43",
+    "text": "The customer support team was very helpful.",
+    "timestamp": "2023-10-25T14:15:00Z",
+    "upVotes": 18,
+    "downVotes": 2
+  },
+  {
+    "commentId": "fae059a7-13b0-4f4b-931b-35e0ff7a6f5f",
+    "userId": "b5e45c06-206e-4373-9a3a-40ac177af3f5",
+    "reviewId": "1e78c1e0-7e2a-4e08-aafc-9e72d4a19e15",
+    "text": "Not bad for the price. Fair enough.",
+    "timestamp": "2023-10-24T17:30:00Z",
+    "upVotes": 6,
+    "downVotes": 5
+  },
+  {
+    "commentId": "ebd9b2d7-91e3-4c67-8e58-4c06cc055029",
+    "userId": "982b493e-e063-4645-80ab-99e10ef80b14",
+    "reviewId": "cc0971b2-e98b-4c38-bc1c-7ce511133bf1",
+    "text": "This product exceeded my expectations!",
+    "timestamp": "2023-10-23T10:40:00Z",
+    "upVotes": 25,
+    "downVotes": 0
+  },
+  {
+    "commentId": "e3b3cd74-6bbd-4ba0-bb83-5f13a5a5fe87",
+    "userId": "b81f33f6-c2fc-4e26-9d7e-5e9f58f9e4d5",
+    "reviewId": "d4c5f794-078b-42d2-80e5-dbc944a160a1",
+    "text": "I wish it had more features",
+    "timestamp": "2023-10-22T13:20:00Z",
+    "upVotes": 0,
+    "downVotes": 0
+  }
+]

@@ -1,0 +1,2573 @@
+Index: ApplicationServices/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    kotlin(\"jvm\") version \"1.9.0\"\n}\n\ngroup = \"org.sep6\"\nversion = \"1.0-SNAPSHOT\"\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    testImplementation(kotlin(\"test\"))\n}\n\ntasks.test {\n    useJUnitPlatform()\n}\n\nkotlin {\n    jvmToolchain(8)\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ApplicationServices/build.gradle.kts b/ApplicationServices/build.gradle.kts
+--- a/ApplicationServices/build.gradle.kts	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/ApplicationServices/build.gradle.kts	(date 1698592579190)
+@@ -2,15 +2,10 @@
+     kotlin("jvm") version "1.9.0"
+ }
+ 
+-group = "org.sep6"
+-version = "1.0-SNAPSHOT"
+-
+-repositories {
+-    mavenCentral()
+-}
+-
+ dependencies {
+-    testImplementation(kotlin("test"))
++    implementation(project(mapOf("path" to ":DomainServices")))
++  implementation(project(mapOf("path" to ":DomainCore")))
++  testImplementation(kotlin("test"))
+ }
+ 
+ tasks.test {
+Index: DomainServices/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    kotlin(\"jvm\") version \"1.9.0\"\n}\n\ngroup = \"org.sep6\"\nversion = \"1.0-SNAPSHOT\"\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    testImplementation(kotlin(\"test\"))\n}\n\ntasks.test {\n    useJUnitPlatform()\n}\n\nkotlin {\n    jvmToolchain(8)\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/build.gradle.kts b/DomainServices/build.gradle.kts
+--- a/DomainServices/build.gradle.kts	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/build.gradle.kts	(date 1698782602433)
+@@ -1,22 +1,17 @@
+ plugins {
+-    kotlin("jvm") version "1.9.0"
++  kotlin("jvm") version "1.9.0"
+ }
+ 
+-group = "org.sep6"
+-version = "1.0-SNAPSHOT"
+-
+-repositories {
+-    mavenCentral()
+-}
+ 
+ dependencies {
+-    testImplementation(kotlin("test"))
++  implementation(project(mapOf("path" to ":DomainCore")))
++  testImplementation(kotlin("test"))
+ }
+ 
+ tasks.test {
+-    useJUnitPlatform()
++  useJUnitPlatform()
+ }
+ 
+ kotlin {
+-    jvmToolchain(8)
++  jvmToolchain(8)
+ }
+Index: build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    kotlin(\"jvm\") version \"1.9.0\"\n}\n\ngroup = \"org.sep6\"\nversion = \"1.0-SNAPSHOT\"\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    testImplementation(kotlin(\"test\"))\n}\n\ntasks.test {\n    useJUnitPlatform()\n}\n\nkotlin {\n    jvmToolchain(8)\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle.kts b/build.gradle.kts
+--- a/build.gradle.kts	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/build.gradle.kts	(date 1698503924542)
+@@ -1,22 +1,20 @@
+ plugins {
++    base
+     kotlin("jvm") version "1.9.0"
+ }
+ 
+-group = "org.sep6"
+-version = "1.0-SNAPSHOT"
++allprojects {
++
++    group = "org.sep6"
++
++    version = "1.0"
+ 
+-repositories {
+-    mavenCentral()
+-}
++    repositories {
++        mavenCentral()
++    }
+ 
+-dependencies {
+-    testImplementation(kotlin("test"))
+ }
+ 
+-tasks.test {
+-    useJUnitPlatform()
+-}
++
++
+ 
+-kotlin {
+-    jvmToolchain(8)
+-}
+\ No newline at end of file
+Index: settings.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>pluginManagement {\n    repositories {\n        mavenCentral()\n        gradlePluginPortal()\n    }\n}\n\nplugins {\n    id(\"org.gradle.toolchains.foojay-resolver-convention\") version \"0.5.0\"\n}\n\nrootProject.name = \"MovieSocialNetwork\"
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.gradle.kts b/settings.gradle.kts
+--- a/settings.gradle.kts	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/settings.gradle.kts	(date 1698498533290)
+@@ -9,4 +9,8 @@
+     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+ }
+ 
+-rootProject.name = "MovieSocialNetwork"
+\ No newline at end of file
++rootProject.name = "MovieSocialNetwork"
++include("DomainCore")
++include("DomainServices")
++include("ApplicationServices")
++include("InfrastructureServices")
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.gradle\nbuild/\n!gradle/wrapper/gradle-wrapper.jar\n!**/src/main/**/build/\n!**/src/test/**/build/\n\n### IntelliJ IDEA ###\n.idea/modules.xml\n.idea/jarRepositories.xml\n.idea/compiler.xml\n.idea/libraries/\n*.iws\n*.iml\n*.ipr\nout/\n!**/src/main/**/out/\n!**/src/test/**/out/\n\n### Eclipse ###\n.apt_generated\n.classpath\n.factorypath\n.project\n.settings\n.springBeans\n.sts4-cache\nbin/\n!**/src/main/**/bin/\n!**/src/test/**/bin/\n\n### NetBeans ###\n/nbproject/private/\n/nbbuild/\n/dist/\n/nbdist/\n/.nb-gradle/\n\n### VS Code ###\n.vscode/\n\n### Mac OS ###\n.DS_Store
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/.gitignore	(date 1698498964928)
+@@ -14,29 +14,4 @@
+ *.ipr
+ out/
+ !**/src/main/**/out/
+-!**/src/test/**/out/
+-
+-### Eclipse ###
+-.apt_generated
+-.classpath
+-.factorypath
+-.project
+-.settings
+-.springBeans
+-.sts4-cache
+-bin/
+-!**/src/main/**/bin/
+-!**/src/test/**/bin/
+-
+-### NetBeans ###
+-/nbproject/private/
+-/nbbuild/
+-/dist/
+-/nbdist/
+-/.nb-gradle/
+-
+-### VS Code ###
+-.vscode/
+-
+-### Mac OS ###
+-.DS_Store
+\ No newline at end of file
++!**/src/test/**/out/
+\ No newline at end of file
+Index: InfrastructureServices/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.jetbrains.kotlin.gradle.tasks.KotlinCompile\n\nplugins {\n    id(\"org.springframework.boot\") version \"3.1.5\"\n    id(\"io.spring.dependency-management\") version \"1.1.3\"\n    kotlin(\"jvm\") version \"1.9.0\"\n    kotlin(\"plugin.spring\") version \"1.8.22\"\n    kotlin(\"plugin.jpa\") version \"1.8.22\"\n}\n\ngroup = \"com.sep6\"\nversion = \"0.0.1-SNAPSHOT\"\n\njava {\n    sourceCompatibility = JavaVersion.VERSION_17\n}\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    implementation(\"org.springframework.boot:spring-boot-starter-data-jdbc\")\n    implementation(\"org.springframework.boot:spring-boot-starter-data-jpa\")\n    implementation(\"org.springframework.boot:spring-boot-starter-security\")\n    implementation(\"org.springframework.boot:spring-boot-starter-web\")\n    implementation(\"org.springframework.boot:spring-boot-starter-websocket\")\n    implementation(\"com.fasterxml.jackson.module:jackson-module-kotlin\")\n    implementation(\"org.jetbrains.kotlin:kotlin-reflect\")\n    runtimeOnly(\"org.postgresql:postgresql\")\n    testImplementation(\"org.springframework.boot:spring-boot-starter-test\")\n    testImplementation(\"org.springframework.security:spring-security-test\")\n}\n\ntasks.withType<KotlinCompile> {\n    kotlinOptions {\n        freeCompilerArgs += \"-Xjsr305=strict\"\n        jvmTarget = \"17\"\n    }\n}\n\ntasks.withType<Test> {\n    useJUnitPlatform()\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/build.gradle.kts b/InfrastructureServices/build.gradle.kts
+--- a/InfrastructureServices/build.gradle.kts	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/build.gradle.kts	(date 1698605904366)
+@@ -1,44 +1,50 @@
+ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+ 
+ plugins {
+-    id("org.springframework.boot") version "3.1.5"
+-    id("io.spring.dependency-management") version "1.1.3"
+-    kotlin("jvm") version "1.9.0"
+-    kotlin("plugin.spring") version "1.8.22"
+-    kotlin("plugin.jpa") version "1.8.22"
++  id("org.springframework.boot") version "3.1.5"
++  id("io.spring.dependency-management") version "1.1.3"
++  kotlin("jvm") version "1.9.0"
++  kotlin("plugin.spring") version "1.8.22"
++  kotlin("plugin.jpa") version "1.8.22"
++  kotlin("plugin.noarg") version "1.9.10"
+ }
+ 
+-group = "com.sep6"
+-version = "0.0.1-SNAPSHOT"
++noArg {
++  annotation("com.sep6.infrastructureservices.persistence.entities.NoArgConstructor")
++}
+ 
+ java {
+-    sourceCompatibility = JavaVersion.VERSION_17
++  sourceCompatibility = JavaVersion.VERSION_17
+ }
+ 
+ repositories {
+-    mavenCentral()
++  mavenCentral()
+ }
+ 
+ dependencies {
+-    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+-    implementation("org.springframework.boot:spring-boot-starter-security")
+-    implementation("org.springframework.boot:spring-boot-starter-web")
+-    implementation("org.springframework.boot:spring-boot-starter-websocket")
+-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+-    implementation("org.jetbrains.kotlin:kotlin-reflect")
+-    runtimeOnly("org.postgresql:postgresql")
+-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+-    testImplementation("org.springframework.security:spring-security-test")
++  implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
++  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
++  implementation("org.springframework.boot:spring-boot-starter-security")
++  implementation("org.springframework.boot:spring-boot-starter-web")
++  implementation("org.springframework.boot:spring-boot-starter-websocket")
++  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
++  implementation("org.jetbrains.kotlin:kotlin-reflect")
++  implementation(project(mapOf("path" to ":DomainServices")))
++  implementation(project(mapOf("path" to ":DomainCore")))
++  implementation(project(mapOf("path" to ":ApplicationServices")))
++  runtimeOnly("org.postgresql:postgresql")
++  runtimeOnly("com.h2database:h2")
++  testImplementation("org.springframework.boot:spring-boot-starter-test")
++  testImplementation("org.springframework.security:spring-security-test")
+ }
+ 
+ tasks.withType<KotlinCompile> {
+-    kotlinOptions {
+-        freeCompilerArgs += "-Xjsr305=strict"
+-        jvmTarget = "17"
+-    }
++  kotlinOptions {
++    freeCompilerArgs += "-Xjsr305=strict"
++    jvmTarget = "17"
++  }
+ }
+ 
+ tasks.withType<Test> {
+-    useJUnitPlatform()
++  useJUnitPlatform()
+ }
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/InfrastructureServicesApplication.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices\n\nimport org.springframework.boot.autoconfigure.SpringBootApplication\nimport org.springframework.boot.runApplication\n\n@SpringBootApplication\nclass InfrastructureServicesApplication\n\nfun main(args: Array<String>) {\n    runApplication<InfrastructureServicesApplication>(*args)\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/InfrastructureServicesApplication.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/InfrastructureServicesApplication.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/InfrastructureServicesApplication.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/InfrastructureServicesApplication.kt	(date 1698602170807)
+@@ -4,7 +4,7 @@
+ import org.springframework.boot.runApplication
+ 
+ @SpringBootApplication
+-class InfrastructureServicesApplication
++open class InfrastructureServicesApplication
+ 
+ fun main(args: Array<String>) {
+     runApplication<InfrastructureServicesApplication>(*args)
+Index: DomainCore/src/test/kotlin/TestDataHelper.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class TestDataHelper {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/kotlin/TestDataHelper.kt b/DomainCore/src/test/kotlin/TestDataHelper.kt
+--- a/DomainCore/src/test/kotlin/TestDataHelper.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/kotlin/TestDataHelper.kt	(date 1698794560421)
+@@ -1,2 +1,18 @@
+-class TestDataHelper {
++import com.google.gson.GsonBuilder
++import com.google.gson.reflect.TypeToken
++import java.io.File
++import java.time.LocalDate
++import java.util.stream.Stream
++
++inline fun <reified T> getStreamOfDomainModels(fileName: String): Stream<T> {
++  val rootDir = System.getProperty("user.dir")
++  val filePath = "$rootDir/src/test/resources/validator-test-data/$fileName"
++  val fileContents: String =
++    File(filePath).readText(
++      Charsets.UTF_8
++    )
++  val listType = object : TypeToken<List<T>>() {}.type
++  val gson = GsonBuilder().registerTypeAdapter(LocalDate::class.java, LocalDateDeserializer())
++    .create()
++  return gson.fromJson<List<T>>(fileContents, listType).stream()
+ }
+\ No newline at end of file
+Index: InfrastructureServices/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/InfrastructureServices/src/main/resources/application.properties b/InfrastructureServices/src/main/resources/application.properties
+--- a/InfrastructureServices/src/main/resources/application.properties	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/resources/application.properties	(date 1698609262751)
+@@ -1,1 +1,13 @@
++# DataSource settings
++spring.datasource.url=jdbc:postgresql://localhost:5432/socialnetwork
++spring.datasource.username=postgres
++spring.datasource.password=12345
+ 
++# Hibernate ddl auto (create, create-drop, validate, update)
++spring.jpa.hibernate.ddl-auto=update
++
++# Specify the driver class name for PostgreSQL
++spring.datasource.driver-class-name=org.postgresql.Driver
++spring.security.user.name = sep6
++spring.security.user.password = 12345
++spring.neo4j.security.trust-strategy=trust_all_certificates
+\ No newline at end of file
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/security/CsrfController.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.security\n\nclass CsrfController {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/security/CsrfController.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/security/CsrfController.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/security/CsrfController.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/security/CsrfController.kt	(date 1698794836047)
+@@ -1,4 +1,16 @@
+ package com.sep6.infrastructureservices.security
+ 
++import jakarta.servlet.http.HttpServletRequest
++import org.springframework.security.web.csrf.CsrfToken
++import org.springframework.web.bind.annotation.GetMapping
++import org.springframework.web.bind.annotation.RequestMapping
++import org.springframework.web.bind.annotation.RestController
++
++@RestController
++@RequestMapping("/api") // Define your base path here
+ class CsrfController {
++  @GetMapping("/csrf-token")
++  fun getCsrfToken(request: HttpServletRequest): CsrfToken? {
++    return request.getAttribute(CsrfToken::class.java.name) as CsrfToken?
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/test/kotlin/FavoriteItemListValidatorTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class FavoriteItemListTest {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/kotlin/FavoriteItemListValidatorTest.kt b/DomainCore/src/test/kotlin/FavoriteItemListValidatorTest.kt
+--- a/DomainCore/src/test/kotlin/FavoriteItemListValidatorTest.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/kotlin/FavoriteItemListValidatorTest.kt	(date 1698794836028)
+@@ -1,2 +1,53 @@
+-class FavoriteItemListTest {
++import models.Comment
++import models.FavoriteItemList
++import org.junit.jupiter.api.Assertions.*
++import org.junit.jupiter.api.BeforeEach
++import org.junit.jupiter.api.Test
++import org.junit.jupiter.params.ParameterizedTest
++import org.junit.jupiter.params.provider.MethodSource
++import validators.FavoriteItemListValidator
++import validators.exceptions.ValidationException
++import java.sql.Timestamp
++import java.time.LocalDateTime
++import java.util.*
++import java.util.stream.Stream
++
++class FavoriteItemListValidatorTest {
++  private lateinit var favoriteItemListValidator: FavoriteItemListValidator
++
++  @BeforeEach
++  fun setup() {
++    favoriteItemListValidator = FavoriteItemListValidator()
++  }
++
++  @ParameterizedTest
++  @MethodSource("getStreamOfFavoriteItemLists")
++  fun shouldValidateWithoutThrowing(favoriteItemList: FavoriteItemList) {
++    assertDoesNotThrow { favoriteItemListValidator.validate(favoriteItemList) }
++  }
++
++  companion object {
++    @JvmStatic
++    fun getStreamOfFavoriteItemLists(): Stream<FavoriteItemList> {
++      return getStreamOfDomainModels("favorite-item-lists.json")
++    }
++  }
++
++  @Test
++  fun testValidationExceptionMessage(): Unit {
++    val invalidList = FavoriteItemList(
++      name = "",
++      userId = UUID.randomUUID(),
++      items = listOf(),
++      timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1))
++    )
++    val exception = assertThrows(ValidationException::class.java) {
++      favoriteItemListValidator.validate(invalidList)
++    }
++
++    assertTrue(exception.message!!.contains("FavoriteItemListValidator"))
++    assertTrue(exception.message!!.contains("List name must not be blank."))
++    assertTrue(exception.message!!.contains("The list must contain at least one item."))
++    assertTrue(exception.message!!.contains("Timestamp cannot be in the future."))
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/test/kotlin/CommentValidatorTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class CommentValidatorTest {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/kotlin/CommentValidatorTest.kt b/DomainCore/src/test/kotlin/CommentValidatorTest.kt
+--- a/DomainCore/src/test/kotlin/CommentValidatorTest.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/kotlin/CommentValidatorTest.kt	(date 1698794835998)
+@@ -1,2 +1,58 @@
++import com.fasterxml.jackson.databind.ObjectMapper
++import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
++import models.Comment
++import org.apache.commons.lang3.RandomStringUtils
++import org.junit.jupiter.api.Assertions.*
++import org.junit.jupiter.api.BeforeEach
++import org.junit.jupiter.api.Test
++import org.junit.jupiter.params.ParameterizedTest
++import org.junit.jupiter.params.provider.MethodSource
++import validators.CommentValidator
++import validators.exceptions.ValidationException
++import java.sql.Timestamp
++import java.time.LocalDateTime
++import java.util.*
++import java.util.stream.Stream
++
+ class CommentValidatorTest {
++  private lateinit var commentValidator: CommentValidator
++  private lateinit var objectMapper: ObjectMapper
++
++  @BeforeEach
++  fun setup() {
++    commentValidator = CommentValidator()
++    objectMapper = jacksonObjectMapper()
++  }
++
++  @ParameterizedTest
++  @MethodSource("getStreamOfComments")
++  fun shouldValidateWithoutThrowing(comment: Comment) {
++    assertDoesNotThrow { commentValidator.validate(comment) }
++  }
++
++  companion object {
++    @JvmStatic
++    fun getStreamOfComments(): Stream<Comment> {
++      return getStreamOfDomainModels("comments.json")
++    }
++  }
++
++  @Test
++  fun testValidationExceptionMessage(): Unit {
++    val invalidTextLength = 251
++    val invalidComment = Comment(
++      userId = UUID.randomUUID(),
++      reviewId = UUID.randomUUID(),
++      text = RandomStringUtils.randomAlphanumeric(invalidTextLength),
++      timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1))
++    )
++    val validator = CommentValidator()
++    val exception = assertThrows(ValidationException::class.java) {
++      validator.validate(invalidComment)
++    }
++
++    assertTrue(exception.message!!.contains("CommentValidator"))
++    assertTrue(exception.message!!.contains("Text has 251 characters. Maximum is: 250."))
++    assertTrue(exception.message!!.contains("Timestamp cannot be in the future."))
++  }
+ }
+\ No newline at end of file
+Index: ApplicationServices/src/main/kotlin/dtos/FollowerDto.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dtos\n\nimport org.jetbrains.annotations.NotNull\nimport java.util.*\n\ndata class FollowerDto(\n  @NotNull val userId: UUID,\n  @NotNull val username: String\n)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ApplicationServices/src/main/kotlin/dtos/FollowerDto.kt b/ApplicationServices/src/main/kotlin/dtos/FollowerDto.kt
+--- a/ApplicationServices/src/main/kotlin/dtos/FollowerDto.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/ApplicationServices/src/main/kotlin/dtos/FollowerDto.kt	(date 1698794836031)
+@@ -6,4 +6,4 @@
+ data class FollowerDto(
+   @NotNull val userId: UUID,
+   @NotNull val username: String
+-)
++)
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/User.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Models\n\nimport java.time.LocalDate\nimport java.util.UUID\n\ndata class User(\n    val username: String,\n    val email: String,\n    val birthday: LocalDate,\n    val userId: UUID = UUID.randomUUID(), // Generate a UUID for the user during object creation\n    val role: UserRole\n) {\n    // Additional properties or methods can be added here\n}\n\nenum class UserRole {\n    ADMIN,\n    STANDARD_USER,\n    MODERATOR\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/User.kt b/DomainCore/src/main/kotlin/models/User.kt
+--- a/DomainCore/src/main/kotlin/models/User.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/User.kt	(date 1698616025637)
+@@ -1,22 +1,14 @@
+-package Models
++package models
+ 
++import models.enums.UserRole
++import org.jetbrains.annotations.NotNull
+ import java.time.LocalDate
+ import java.util.UUID
+ 
+ data class User(
+-    val username: String,
+-    val email: String,
+-    val birthday: LocalDate,
+-    val userId: UUID = UUID.randomUUID(), // Generate a UUID for the user during object creation
+-    val role: UserRole
+-) {
+-    // Additional properties or methods can be added here
+-}
+-
+-enum class UserRole {
+-    ADMIN,
+-    STANDARD_USER,
+-    MODERATOR
+-}
+-
+-
++    val userId: UUID = UUID.randomUUID(),
++    @NotNull val username: String,
++    @NotNull val email: String,
++    @NotNull val birthday: LocalDate,
++    @NotNull val role: UserRole
++)
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/validators/Validator.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Validators\n\ninterface Validator<T> {\n    fun validate(entity: T): List<String>\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/validators/Validator.kt b/DomainCore/src/main/kotlin/validators/Validator.kt
+--- a/DomainCore/src/main/kotlin/validators/Validator.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/validators/Validator.kt	(date 1698794836033)
+@@ -1,5 +1,5 @@
+-package Validators
++package validators
+ 
+ interface Validator<T> {
+-    fun validate(entity: T): List<String>
+-}
++    fun  validate(entity: T)
++}
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/validators/UserValidator.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Validators\n\nimport Models.User\n\nclass UserValidator : Validator<User> {\n    override fun validate(entity: User): List<String> {\n        val errors = mutableListOf<String>()\n        if (entity.username.isBlank()) {\n            errors.add(\"Username must not be blank.\")\n        }\n        if (!entity.email.contains('@')) {\n            errors.add(\"Invalid email format.\")\n        }\n        \n\n        return errors\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/validators/UserValidator.kt b/DomainCore/src/main/kotlin/validators/UserValidator.kt
+--- a/DomainCore/src/main/kotlin/validators/UserValidator.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/validators/UserValidator.kt	(date 1698794836001)
+@@ -1,18 +1,31 @@
+-package Validators
++package validators
+ 
+-import Models.User
++import models.User
++import validators.exceptions.ValidationException
++
++import java.time.LocalDate
+ 
+ class UserValidator : Validator<User> {
+-    override fun validate(entity: User): List<String> {
+-        val errors = mutableListOf<String>()
+-        if (entity.username.isBlank()) {
+-            errors.add("Username must not be blank.")
+-        }
+-        if (!entity.email.contains('@')) {
+-            errors.add("Invalid email format.")
+-        }
+-        
++  override fun validate(entity: User) {
++    val errors = mutableListOf<String>()
++    val emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$".toRegex()
++    val maxUsernameCharacters = 20
++
++    if (entity.username.isBlank()) errors.add("Username must not be blank.")
++    if (entity.username.length > maxUsernameCharacters) errors.add("Username cannot have more than $maxUsernameCharacters characters.")
++    if (!entity.email.matches(emailRegex)) errors.add("Invalid email format.")
++    if (entity.birthday.isAfter(LocalDate.now())) errors.add("Birthday cannot be in the future.")
++    if (entity.birthday.isBefore(
++        LocalDate.of(
++          1909,
++          1,
++          1
++        )
++      )
++    ) errors.add("Birthday cannot be before 1909. The user cannot physically be that old.")
+ 
+-        return errors
++    if (errors.isNotEmpty()) {
++      throw ValidationException(errors, "UserValidator")
+     }
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/test/kotlin/UserValidatorTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class UserValidatorTest {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/kotlin/UserValidatorTest.kt b/DomainCore/src/test/kotlin/UserValidatorTest.kt
+--- a/DomainCore/src/test/kotlin/UserValidatorTest.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/kotlin/UserValidatorTest.kt	(date 1698794836011)
+@@ -1,2 +1,67 @@
++import models.User
++import models.enums.UserRole
++import org.apache.commons.lang3.RandomStringUtils
++import org.junit.jupiter.api.Assertions
++import org.junit.jupiter.api.BeforeEach
++import org.junit.jupiter.api.Test
++import org.junit.jupiter.params.ParameterizedTest
++import org.junit.jupiter.params.provider.MethodSource
++import validators.UserValidator
++import validators.exceptions.ValidationException
++import java.time.LocalDate
++import java.util.stream.Stream
++
+ class UserValidatorTest {
++  private lateinit var userValidator: UserValidator
++
++  @BeforeEach
++  fun setup() {
++    userValidator = UserValidator()
++  }
++
++  @ParameterizedTest
++  @MethodSource("getStreamOfUsers")
++  fun shouldValidateWithoutThrowing(user: User) {
++    Assertions.assertDoesNotThrow { userValidator.validate(user) }
++  }
++
++  companion object {
++    @JvmStatic
++    fun getStreamOfUsers(): Stream<User> {
++      return getStreamOfDomainModels("users.json")
++    }
++  }
++
++  @Test
++  fun testValidationExceptionMessage(): Unit {
++    val invalidUserOne = User(
++      username = "",
++      email = "incorrect",
++      birthday = LocalDate.now().plusDays(1),
++      role = UserRole.STANDARD_USER
++    )
++    val exception = Assertions.assertThrows(ValidationException::class.java) {
++      userValidator.validate(invalidUserOne)
++    }
++
++    Assertions.assertTrue(exception.message!!.contains("UserValidator"))
++    Assertions.assertTrue(exception.message!!.contains("Username must not be blank."))
++    Assertions.assertTrue(exception.message!!.contains("Birthday cannot be in the future."))
++    Assertions.assertTrue(exception.message!!.contains("Invalid email format."))
++
++    val invalidUserTwo = User(
++      username = RandomStringUtils.randomAlphanumeric(21),
++      email = "someth92asd2.com",
++      birthday = LocalDate.of(1908, 1, 1),
++      role = UserRole.STANDARD_USER
++    )
++    val exceptionTwo = Assertions.assertThrows(ValidationException::class.java) {
++      userValidator.validate(invalidUserTwo)
++    }
++
++    Assertions.assertTrue(exceptionTwo.message!!.contains("UserValidator"))
++    Assertions.assertTrue(exceptionTwo.message!!.contains("Username cannot have more than 20 characters."))
++    Assertions.assertTrue(exceptionTwo.message!!.contains("Birthday cannot be before 1909. The user cannot physically be that old."))
++    Assertions.assertTrue(exceptionTwo.message!!.contains("Invalid email format."))
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/test/kotlin/LocalDateDeserializer.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class LocalDateDeserializer {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/kotlin/LocalDateDeserializer.kt b/DomainCore/src/test/kotlin/LocalDateDeserializer.kt
+--- a/DomainCore/src/test/kotlin/LocalDateDeserializer.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/kotlin/LocalDateDeserializer.kt	(date 1698794836025)
+@@ -1,2 +1,12 @@
+-class LocalDateDeserializer {
++import com.google.gson.*
++import java.lang.reflect.Type
++import java.time.LocalDate
++import java.time.format.DateTimeFormatter
++
++class LocalDateDeserializer : JsonDeserializer<LocalDate> {
++  private val formatter = DateTimeFormatter.ISO_LOCAL_DATE
++
++  override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): LocalDate {
++    return LocalDate.parse(json?.asJsonPrimitive?.asString, formatter)
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/test/kotlin/ReviewValidatorTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class ReviewValidatorTest {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/kotlin/ReviewValidatorTest.kt b/DomainCore/src/test/kotlin/ReviewValidatorTest.kt
+--- a/DomainCore/src/test/kotlin/ReviewValidatorTest.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/kotlin/ReviewValidatorTest.kt	(date 1698794835995)
+@@ -1,2 +1,54 @@
++import models.Review
++import org.apache.commons.lang3.RandomStringUtils
++import org.junit.jupiter.api.Assertions
++import org.junit.jupiter.api.BeforeEach
++import org.junit.jupiter.api.Test
++import org.junit.jupiter.params.ParameterizedTest
++import org.junit.jupiter.params.provider.MethodSource
++import validators.ReviewValidator
++import validators.exceptions.ValidationException
++import java.sql.Timestamp
++import java.time.LocalDateTime
++import java.util.*
++import java.util.stream.Stream
++
+ class ReviewValidatorTest {
++  private lateinit var reviewValidator: ReviewValidator
++
++  @BeforeEach
++  fun setup() {
++    reviewValidator = ReviewValidator()
++  }
++
++  @ParameterizedTest
++  @MethodSource("getStreamOfReviews")
++  fun shouldValidateWithoutThrowing(review: Review) {
++    Assertions.assertDoesNotThrow { reviewValidator.validate(review) }
++  }
++
++  companion object {
++    @JvmStatic
++    fun getStreamOfReviews(): Stream<Review> {
++      return getStreamOfDomainModels("reviews.json")
++    }
++  }
++
++  @Test
++  fun testValidationExceptionMessage(): Unit {
++    val invalidReview = Review(
++      userId = UUID.randomUUID(),
++      movieId = RandomStringUtils.randomAlphanumeric(20),
++      text = RandomStringUtils.randomAlphanumeric(3001),
++      rating = 7,
++      timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1))
++    )
++    val exception = Assertions.assertThrows(ValidationException::class.java) {
++      reviewValidator.validate(invalidReview)
++    }
++
++    Assertions.assertTrue(exception.message!!.contains("ReviewValidator"))
++    Assertions.assertTrue(exception.message!!.contains("Text has 3001 characters. Maximum is: 3000."))
++    Assertions.assertTrue(exception.message!!.contains("Rating cannot be higher than: 5."))
++    Assertions.assertTrue(exception.message!!.contains("Timestamp cannot be in the future."))
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/test/kotlin/ReplyValidatorTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class ReplyValidatorTest {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/kotlin/ReplyValidatorTest.kt b/DomainCore/src/test/kotlin/ReplyValidatorTest.kt
+--- a/DomainCore/src/test/kotlin/ReplyValidatorTest.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/kotlin/ReplyValidatorTest.kt	(date 1698794836042)
+@@ -1,2 +1,56 @@
++import models.Comment
++import models.FavoriteItemList
++import models.Reply
++import org.apache.commons.lang3.RandomStringUtils
++import org.junit.jupiter.api.Assertions.*
++import org.junit.jupiter.api.BeforeAll
++import org.junit.jupiter.api.BeforeEach
++import org.junit.jupiter.api.Test
++import org.junit.jupiter.params.ParameterizedTest
++import org.junit.jupiter.params.provider.MethodSource
++import validators.ReplyValidator
++import validators.exceptions.ValidationException
++import java.sql.Timestamp
++import java.time.LocalDateTime
++import java.util.*
++import java.util.stream.Stream
++
+ class ReplyValidatorTest {
++  private lateinit var replyValidator: ReplyValidator
++
++  @BeforeEach
++  fun setup() {
++    replyValidator = ReplyValidator()
++  }
++
++  @ParameterizedTest
++  @MethodSource("getStreamOfFavoriteItemLists")
++  fun shouldValidateWithoutThrowing(reply: Reply) {
++    assertDoesNotThrow { replyValidator.validate(reply) }
++  }
++
++  companion object {
++    @JvmStatic
++    fun getStreamOfFavoriteItemLists(): Stream<Reply> {
++      return getStreamOfDomainModels("replies.json")
++    }
++  }
++
++  @Test
++  fun testValidationExceptionMessage(): Unit {
++    val invalidReply = Reply(
++      text = RandomStringUtils.randomAlphanumeric(251),
++      userId = UUID.randomUUID(),
++      toUserId = UUID.randomUUID(),
++      commentId = UUID.randomUUID(),
++      timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1))
++    )
++    val exception = assertThrows(ValidationException::class.java) {
++      replyValidator.validate(invalidReply)
++    }
++
++    assertTrue(exception.message!!.contains("ReplyValidator"))
++    assertTrue(exception.message!!.contains("Text has 251 characters. Maximum is: 200."))
++    assertTrue(exception.message!!.contains("Timestamp cannot be in the future."))
++  }
+ }
+\ No newline at end of file
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/services/UserPersistenceService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence\n\nimport com.sep6.infrastructureservices.persistence.entities.UserEntity\nimport com.sep6.infrastructureservices.persistence.exceptions.ResourceNotFoundException\nimport com.sep6.infrastructureservices.persistence.repositories.UserPersistenceRepository\nimport models.User\nimport org.springframework.stereotype.Service\nimport repository_contracts.UserRepository\nimport java.util.*\n\n@Service\nclass UserPersistenceService(val jpaUserRepo: UserPersistenceRepository) : UserRepository {\n  override fun createUser(user: User): User {\n    val response = jpaUserRepo.save(UserEntity(user))\n    return response.mapToDomain();\n  }\n\n  override fun updateUser(user: User) {\n    when(jpaUserRepo.existsById(user.userId)){\n      true -> jpaUserRepo.save(UserEntity(user))\n      false -> throw ResourceNotFoundException(\"User with id ${user.userId} not found\")\n    }\n  }\n\n  override fun deleteUser(userId: UUID) {\n    when(jpaUserRepo.existsById(userId)){\n      true -> jpaUserRepo.deleteById(userId)\n      false -> throw ResourceNotFoundException(\"User with id $userId not found\")\n    }\n  }\n\n  override fun getUserById(userId: UUID): User? {\n    return if (jpaUserRepo.existsById(userId)) jpaUserRepo.findById(userId).get().mapToDomain() else throw ResourceNotFoundException(\"User with id $userId not found\")\n  }\n\n  override fun addFollower(userId: UUID, followerId: UUID) {\n    val user: UserEntity = jpaUserRepo.findById(userId).get()\n    val follower: UserEntity = jpaUserRepo.findById(userId).get()\n    user.following?.add(follower)\n    follower.followers?.add(user)\n    jpaUserRepo.save(user)\n    jpaUserRepo.save(follower)\n  }\n\n  override fun getFollowers(userId: UUID) {\n    TODO(\"Not yet implemented\")\n  }\n\n  override fun getFollowing(userId: UUID) {\n    TODO(\"Not yet implemented\")\n  }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/services/UserPersistenceService.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/services/UserPersistenceService.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/services/UserPersistenceService.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/services/UserPersistenceService.kt	(date 1698697397345)
+@@ -1,4 +1,4 @@
+-package com.sep6.infrastructureservices.persistence
++package com.sep6.infrastructureservices.persistence.services
+ 
+ import com.sep6.infrastructureservices.persistence.entities.UserEntity
+ import com.sep6.infrastructureservices.persistence.exceptions.ResourceNotFoundException
+@@ -7,6 +7,7 @@
+ import org.springframework.stereotype.Service
+ import repository_contracts.UserRepository
+ import java.util.*
++import kotlin.collections.HashSet
+ 
+ @Service
+ class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository) : UserRepository {
+@@ -16,37 +17,49 @@
+   }
+ 
+   override fun updateUser(user: User) {
+-    when(jpaUserRepo.existsById(user.userId)){
++    when (jpaUserRepo.existsById(user.userId)) {
+       true -> jpaUserRepo.save(UserEntity(user))
+       false -> throw ResourceNotFoundException("User with id ${user.userId} not found")
+     }
+   }
+ 
+   override fun deleteUser(userId: UUID) {
+-    when(jpaUserRepo.existsById(userId)){
++    when (jpaUserRepo.existsById(userId)) {
+       true -> jpaUserRepo.deleteById(userId)
+       false -> throw ResourceNotFoundException("User with id $userId not found")
+     }
+   }
+ 
+   override fun getUserById(userId: UUID): User? {
+-    return if (jpaUserRepo.existsById(userId)) jpaUserRepo.findById(userId).get().mapToDomain() else throw ResourceNotFoundException("User with id $userId not found")
++    return if (jpaUserRepo.existsById(userId)) jpaUserRepo.findById(userId).get()
++      .mapToDomain() else throw ResourceNotFoundException("User with id $userId not found")
+   }
+ 
+   override fun addFollower(userId: UUID, followerId: UUID) {
+-    val user: UserEntity = jpaUserRepo.findById(userId).get()
+-    val follower: UserEntity = jpaUserRepo.findById(userId).get()
+-    user.following?.add(follower)
+-    follower.followers?.add(user)
+-    jpaUserRepo.save(user)
+-    jpaUserRepo.save(follower)
++    var user: UserEntity? = null
++    var follower: UserEntity? = null
++    jpaUserRepo.findById(followerId).ifPresentOrElse({ follower = it }, { throw ResourceNotFoundException("User with id $userId not found") })
++    jpaUserRepo.findById(userId).ifPresentOrElse({ user = it }, { throw ResourceNotFoundException("User with id $userId not found") })
++    follower?.let { user?.following?.add(it) }
++    user?.let { follower?.followers?.add(it) }
++    user?.let { jpaUserRepo.save(it) }
++    follower?.let { jpaUserRepo.save(it) }
++  }
++
++  override fun getFollowers(userId: UUID): List<User>? {
++    val user: UserEntity? = getUser(userId)
++    return user?.followers?.map { userEntity -> userEntity.mapToDomain() }
+   }
+ 
+-  override fun getFollowers(userId: UUID) {
+-    TODO("Not yet implemented")
++  override fun getFollowing(userId: UUID): List<User>? {
++    val user: UserEntity? = getUser(userId)
++    return user?.following?.map { userEntity -> userEntity.mapToDomain() }
+   }
+ 
+-  override fun getFollowing(userId: UUID) {
+-    TODO("Not yet implemented")
++  private fun getUser(userId: UUID): UserEntity? {
++    var user: UserEntity? = null
++    jpaUserRepo.findById(userId)
++      .ifPresentOrElse({ user = it }, { throw ResourceNotFoundException("User with id $userId not found") })
++    return user
+   }
+ }
+\ No newline at end of file
+Index: DomainCore/src/test/resources/validator-test-data/reviews.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/resources/validator-test-data/reviews.json b/DomainCore/src/test/resources/validator-test-data/reviews.json
+--- a/DomainCore/src/test/resources/validator-test-data/reviews.json	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/resources/validator-test-data/reviews.json	(date 1698783194773)
+@@ -1,0 +1,82 @@
++[
++  {
++    "reviewId": "736f125c-0ec3-4f01-b60d-ec8f8b25d4a0",
++    "userId": "d9f7d998-7b5d-472a-b54d-8f79a76e4b17",
++    "movieId": "12345",
++    "text": "This movie was absolutely amazing!",
++    "rating": 5,
++    "timestamp": "2023-10-31T18:00:00Z"
++  },
++  {
++    "reviewId": "84c6d1b2-050c-4d85-865f-5f7d8f3d3d0b",
++    "userId": "6a109ca5-8e07-4cf5-b785-441d7d0d1a2e",
++    "movieId": "67890",
++    "text": "Not what I expected. Disappointing.",
++    "rating": 2,
++    "timestamp": "2023-10-30T14:30:00Z"
++  },
++  {
++    "reviewId": "9b8394c2-4e4e-4a5c-96a9-5a1b43ed01c4",
++    "userId": "0e3d31ac-6f18-4701-8a82-d482b503b05a",
++    "movieId": "54321",
++    "text": "Good storyline, but the acting could be better.",
++    "rating": 3,
++    "timestamp": "2023-10-29T11:45:00Z"
++  },
++  {
++    "reviewId": "8a89b7c6-7200-4f1d-9129-53a5ef16d6b2",
++    "userId": "d83e0b98-4db8-4b3f-8de6-7a2a4d175c02",
++    "movieId": "98765",
++    "text": "A masterpiece in every aspect!",
++    "rating": 5,
++    "timestamp": "2023-10-28T09:20:00Z"
++  },
++  {
++    "reviewId": "5e8a7e97-85b0-4868-8e10-3706b7a5a428",
++    "userId": "e4a6a375-4f34-41f1-a71f-75d936b8493e",
++    "movieId": "23456",
++    "text": "Not worth the hype. Disappointed.",
++    "rating": 2,
++    "timestamp": "2023-10-27T08:10:00Z"
++  },
++  {
++    "reviewId": "fe57327a-3f24-40f0-bf26-82ef71d7d3f1",
++    "userId": "c12d4b68-c3f6-45c6-9053-d024131a2413",
++    "movieId": "34567",
++    "text": "An average movie, nothing special.",
++    "rating": 3,
++    "timestamp": "2023-10-26T13:50:00Z"
++  },
++  {
++    "reviewId": "ef7f46c2-0497-4ad7-9a92-42f108a57d1f",
++    "userId": "3e7be2b9-6a46-44ed-b18f-20494d2e5c0b",
++    "movieId": "87654",
++    "text": "It was a decent watch, but forgettable.",
++    "rating": 3,
++    "timestamp": "2023-10-25T12:40:00Z"
++  },
++  {
++    "reviewId": "708fbb82-1cd2-4d97-9dd1-97b70762e9ab",
++    "userId": "ef71e1e7-9335-4f29-84d4-d99379d82832",
++    "movieId": "76543",
++    "text": "A must-watch for every movie enthusiast!",
++    "rating": 4,
++    "timestamp": "2023-10-24T15:15:00Z"
++  },
++  {
++    "reviewId": "1e1d2a02-c7b9-4844-a0f8-4f5ebf8ff6f4",
++    "userId": "f4d86b4e-f6c2-43ed-86d8-d7d5a30bf86d",
++    "movieId": "45678",
++    "text": "Great plot with unexpected twists.",
++    "rating": 4,
++    "timestamp": "2023-10-23T10:55:00Z"
++  },
++  {
++    "reviewId": "8c3a0a24-3f59-45c2-a05e-3cf1a5c590e2",
++    "userId": "b5b853eb-35d4-4ef1-aa92-2a51520169a3",
++    "movieId": "98765",
++    "text": "Disappointing. Not worth the time.",
++    "rating": 2,
++    "timestamp": "2023-10-22T17:30:00Z"
++  }
++]
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/enums/UserRole.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models.enums\n\nenum class UserRole {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/enums/UserRole.kt b/DomainCore/src/main/kotlin/models/enums/UserRole.kt
+--- a/DomainCore/src/main/kotlin/models/enums/UserRole.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/enums/UserRole.kt	(date 1698610528502)
+@@ -1,4 +1,6 @@
+ package models.enums
+ 
+ enum class UserRole {
++  STANDARD_USER,
++  MODERATOR
+ }
+\ No newline at end of file
+Index: ApplicationServices/src/main/kotlin/services/UserService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package services\n\nclass UserService {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ApplicationServices/src/main/kotlin/services/UserService.kt b/ApplicationServices/src/main/kotlin/services/UserService.kt
+--- a/ApplicationServices/src/main/kotlin/services/UserService.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/ApplicationServices/src/main/kotlin/services/UserService.kt	(date 1698699110750)
+@@ -1,4 +1,35 @@
+ package services
+ 
+-class UserService {
++import dtos.FollowerDto
++import models.User
++import org.jetbrains.annotations.NotNull
++import repository_contracts.UserRepository
++import validators.UserValidator
++import java.util.*
++
++class UserService(
++  @NotNull private val repository: UserRepository,
++  private val validator: UserValidator = UserValidator()
++) {
++  fun createUser(user: User): User {
++    validator.validate(user)
++    return repository.createUser(user)
++  }
++
++  fun updateUser(user: User) {
++    validator.validate(user)
++    repository.updateUser(user)
++  }
++
++  fun followOtherUser(userId: UUID, followingId: UUID) {
++    repository.addFollower(userId, followingId)
++  }
++
++  fun getFollowing(userId: UUID): List<FollowerDto> {
++    return repository.getFollowing(userId)!!.map { user -> FollowerDto(user.userId, user.username) }
++  }
++
++  fun getFollowers(userId: UUID): List<FollowerDto> {
++    return repository.getFollowers(userId)!!.map { user -> FollowerDto(user.userId, user.username) }
++  }
+ }
+\ No newline at end of file
+Index: ApplicationServices/src/main/kotlin/services/ReviewService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package services\n\nclass ReviewService {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ApplicationServices/src/main/kotlin/services/ReviewService.kt b/ApplicationServices/src/main/kotlin/services/ReviewService.kt
+--- a/ApplicationServices/src/main/kotlin/services/ReviewService.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/ApplicationServices/src/main/kotlin/services/ReviewService.kt	(date 1698794836004)
+@@ -1,4 +1,6 @@
+ package services
+ 
+-class ReviewService {
++import repository_contracts.ReviewRepository
++
++class ReviewService (val repository: ReviewRepository){
+ }
+\ No newline at end of file
+Index: ApplicationServices/src/main/kotlin/services/FavoriteListService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package services\n\nclass FavoriteListService {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ApplicationServices/src/main/kotlin/services/FavoriteListService.kt b/ApplicationServices/src/main/kotlin/services/FavoriteListService.kt
+--- a/ApplicationServices/src/main/kotlin/services/FavoriteListService.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/ApplicationServices/src/main/kotlin/services/FavoriteListService.kt	(date 1698791596321)
+@@ -1,4 +1,6 @@
+ package services
+ 
+-class FavoriteListService {
++import repository_contracts.FavoriteItemListRepository
++
++class FavoriteListService (val repository: FavoriteItemListRepository){
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/validators/ReviewValidator.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package validators\n\nclass ReviewValidator {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/validators/ReviewValidator.kt b/DomainCore/src/main/kotlin/validators/ReviewValidator.kt
+--- a/DomainCore/src/main/kotlin/validators/ReviewValidator.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/validators/ReviewValidator.kt	(date 1698793107816)
+@@ -1,4 +1,31 @@
+ package validators
+ 
+-class ReviewValidator {
++import models.Review
++import validators.exceptions.ValidationException
++import java.sql.Timestamp
++import java.time.LocalDateTime
++
++class ReviewValidator : Validator<Review> {
++  override fun validate(entity: Review) {
++    val errors = mutableListOf<String>()
++    val ratingMin = 0
++    val ratingMax = 5
++    val textLengthMax = 3000
++
++    if (entity.text.length > textLengthMax) errors.add(
++      String.format(
++        "Text has %s characters. Maximum is: %s.",
++        entity.text.length,
++        textLengthMax
++      )
++    )
++    if (entity.rating < ratingMin) errors.add(String.format("Rating cannot be lower than: %s.", ratingMin))
++    if (entity.rating > ratingMax) errors.add(String.format("Rating cannot be higher than: %s.", ratingMax))
++    if (entity.timestamp.after(Timestamp.valueOf(LocalDateTime.now()))) errors.add("Timestamp cannot be in the future.")
++
++
++    if (errors.isNotEmpty()) {
++      throw ValidationException(errors, "ReviewValidator")
++    }
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/validators/CommentValidator.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package validators\n\nclass CommentValidator {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/validators/CommentValidator.kt b/DomainCore/src/main/kotlin/validators/CommentValidator.kt
+--- a/DomainCore/src/main/kotlin/validators/CommentValidator.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/validators/CommentValidator.kt	(date 1698794836014)
+@@ -1,4 +1,28 @@
+ package validators
+ 
+-class CommentValidator {
++import models.Comment
++import validators.exceptions.ValidationException
++import java.sql.Timestamp
++import java.time.LocalDateTime
++
++class CommentValidator : Validator<Comment> {
++
++  override fun validate(entity: Comment) {
++    val errors = mutableListOf<String>()
++    val textLengthMax = 250
++
++    if (entity.text.length > textLengthMax) errors.add(
++      String.format(
++        "Text has %s characters. Maximum is: %s.",
++        entity.text.length,
++        textLengthMax
++      )
++    )
++
++    if (entity.timestamp.after(Timestamp.valueOf(LocalDateTime.now()))) errors.add("Timestamp cannot be in the future.")
++
++    if (errors.isNotEmpty()) {
++      throw ValidationException(errors, "CommentValidator")
++    }
++  }
+ }
+\ No newline at end of file
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/UserEntity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.entities\n\nimport jakarta.persistence.*\nimport java.time.LocalDate\nimport java.util.*\n\n@Entity\n@Table(name = \"users\")\ndata class User(\n  @Id\n  @Column(name = \"user_id\")\n  val userId: UUID? = null,\n\n  @Column(name = \"username\", nullable = false)\n  val username: String,\n\n  @Column(name = \"email\", nullable = false)\n  val email: String,\n\n  @Column(name = \"birthday\", nullable = false)\n  val birthday: LocalDate,\n\n  @Enumerated(EnumType.STRING)\n  @Column(name = \"role\", nullable = false)\n  val role: String\n) {\n  constructor(user: com.example.domain.core.User) : this(\n    user.userId,\n    user.username,\n    user.email,\n    user.birthday,\n    user.role.name\n  )\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/UserEntity.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/UserEntity.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/UserEntity.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/UserEntity.kt	(date 1698684871511)
+@@ -3,18 +3,22 @@
+ import jakarta.persistence.*
+ import java.time.LocalDate
+ import java.util.*
++import models.User
++import models.enums.UserRole
++import kotlin.collections.HashSet
+ 
+ @Entity
+-@Table(name = "users")
+-data class User(
++@NoArgConstructor
++@Table(name = "USERS")
++class UserEntity(
+   @Id
+-  @Column(name = "user_id")
+-  val userId: UUID? = null,
++  @Column(name = "userId")
++  val userId: UUID,
+ 
+-  @Column(name = "username", nullable = false)
++  @Column(name = "username", nullable = false, unique = true)
+   val username: String,
+ 
+-  @Column(name = "email", nullable = false)
++  @Column(name = "email", nullable = false, unique = true)
+   val email: String,
+ 
+   @Column(name = "birthday", nullable = false)
+@@ -22,13 +26,50 @@
+ 
+   @Enumerated(EnumType.STRING)
+   @Column(name = "role", nullable = false)
+-  val role: String
++  val role: UserRole,
++
++  @ManyToMany
++  @JoinTable(
++    name = "user_followers",
++    joinColumns = [JoinColumn(name = "user_id")],
++    inverseJoinColumns = [JoinColumn(name = "follower_id")]
++  )
++  var followers: MutableSet<UserEntity>? = HashSet(),
++
++  @ManyToMany(mappedBy = "followers")
++  var following: MutableSet<UserEntity>? = HashSet(),
++
++  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
++  val favoriteItemLists: MutableSet<FavoriteListEntity>? = HashSet(),
++
++  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
++  val reviewList: MutableSet<ReviewEntity>? = HashSet(),
++
++  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
++  val commentList: MutableSet<CommentEntity>? = HashSet(),
++
++  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
++  val replyList: MutableSet<CommentEntity>? = HashSet()
+ ) {
+-  constructor(user: com.example.domain.core.User) : this(
++  constructor(user: User) : this(
+     user.userId,
+     user.username,
+     user.email,
+     user.birthday,
+-    user.role.name
++    user.role
++  )
++
++  constructor(otherUserId: UUID) : this(
++    otherUserId, "", "", LocalDate.now(), UserRole.STANDARD_USER
+   )
++
++  fun mapToDomain(): User {
++    return User(
++      userId = userId,
++      username = username,
++      email = email,
++      birthday = birthday,
++      role = role
++    )
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/FavoriteItemList.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models\n\nimport org.jetbrains.annotations.NotNull\nimport java.time.LocalDateTime\nimport java.util.UUID\n\ndata class FavoriteList(\n  val listId: UUID = UUID.randomUUID(),\n  @NotNull val userId: UUID,\n  val name: String,\n  val itemIds: List<String> = listOf(),\n  val timestamp: LocalDateTime\n)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/FavoriteItemList.kt b/DomainCore/src/main/kotlin/models/FavoriteItemList.kt
+--- a/DomainCore/src/main/kotlin/models/FavoriteItemList.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/FavoriteItemList.kt	(date 1698791596335)
+@@ -1,13 +1,15 @@
+ package models
+ 
+ import org.jetbrains.annotations.NotNull
+-import java.time.LocalDateTime
++import java.sql.Timestamp
+ import java.util.UUID
+ 
+-data class FavoriteList(
++data class FavoriteItemList(
+   val listId: UUID = UUID.randomUUID(),
+   @NotNull val userId: UUID,
+-  val name: String,
+-  val itemIds: List<String> = listOf(),
+-  val timestamp: LocalDateTime
++  @NotNull val name: String,
++  val items: List<Item> = listOf(),
++  @NotNull val timestamp: Timestamp,
++  var upVotes: Int = 0,
++  var downVotes: Int = 0
+ )
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/validators/exceptions/ValidationException.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package validators.exceptions\n\nclass UserValidationException(errors: List<String>) : Exception(errors.joinToString(\"\\n\"))\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/validators/exceptions/ValidationException.kt b/DomainCore/src/main/kotlin/validators/exceptions/ValidationException.kt
+--- a/DomainCore/src/main/kotlin/validators/exceptions/ValidationException.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/validators/exceptions/ValidationException.kt	(date 1698794836036)
+@@ -1,3 +1,4 @@
+ package validators.exceptions
+ 
+-class UserValidationException(errors: List<String>) : Exception(errors.joinToString("\n"))
++class ValidationException(errors: List<String>, validatorName: String) :
++  Exception(String.format("Validation errors in %s: ", validatorName) + errors.joinToString("\n"))
+\ No newline at end of file
+Index: DomainCore/src/test/resources/validator-test-data/comments.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/resources/validator-test-data/comments.json b/DomainCore/src/test/resources/validator-test-data/comments.json
+--- a/DomainCore/src/test/resources/validator-test-data/comments.json	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/resources/validator-test-data/comments.json	(date 1698783016836)
+@@ -1,0 +1,92 @@
++[
++  {
++    "commentId": "8b4c48f5-6703-4e99-ba3c-53c49b16b899",
++    "userId": "19a6a33f-1189-4e29-9b1a-3149f85f986e",
++    "reviewId": "6e1a4a13-fdab-4681-89ce-cd3b2b43a163",
++    "text": "This is a great product!",
++    "timestamp": "2023-10-31T12:30:00Z",
++    "upVotes": 15,
++    "downVotes": 3
++  },
++  {
++    "commentId": "a5d349c3-e481-49f8-89a4-cad9d61d87f1",
++    "userId": "5eb21c17-9a22-4a27-8e70-06b6a5b858f1",
++    "reviewId": "4b271d2a-95f7-439e-a5b5-1b4f8f800e8d",
++    "text": "I have some concerns about this product.",
++    "timestamp": "2023-10-30T15:45:00Z",
++    "upVotes": 5,
++    "downVotes": 8
++  },
++  {
++    "commentId": "3d0ecb6b-1f43-4055-9cf7-3cd9b2dd6665",
++    "userId": "ccbc3209-28c5-4296-9a16-4e40c2d872f8",
++    "reviewId": "dfaaeeec-5a09-4a5f-8a6e-4115ee6bcf09",
++    "text": "The service was excellent. Highly recommended!",
++    "timestamp": "2023-10-29T09:10:00Z",
++    "upVotes": 20,
++    "downVotes": 1
++  },
++  {
++    "commentId": "7d9a13e2-4b71-4b60-8e08-e8e3f4778a55",
++    "userId": "4a4a7e74-6494-4e86-bd19-7983b134a5ec",
++    "reviewId": "c889ccdd-4f3f-4eb0-b0bb-24d9a81cbb0a",
++    "text": "Could be better with some improvements.",
++    "timestamp": "2023-10-28T08:20:00Z",
++    "upVotes": 7,
++    "downVotes": 4
++  },
++  {
++    "commentId": "f7c918c2-ef1d-47b2-b16d-0fcf9d4690e4",
++    "userId": "0f66f4e1-54f6-4138-a7e3-731c96d14776",
++    "reviewId": "0cf1d983-74c6-46d7-9bf8-f9c7fda4870f",
++    "text": "Not satisfied with the quality. Disappointed.",
++    "timestamp": "2023-10-27T16:55:00Z",
++    "upVotes": 2,
++    "downVotes": 10
++  },
++  {
++    "commentId": "78d48e36-4c9d-4c71-bd7f-aeef0b8b8d87",
++    "userId": "b0d4ccaa-c1cf-4431-97cc-7ab4383f5ec8",
++    "reviewId": "3474ff69-d349-46a3-bdb1-5e66f365b7e5",
++    "text": "This is exactly what I was looking for!",
++    "timestamp": "2023-10-26T11:05:00Z",
++    "upVotes": 12,
++    "downVotes": 0
++  },
++  {
++    "commentId": "e9900a59-dde5-4c5a-94a5-bb78a53d9e0c",
++    "userId": "6a6a2b6e-647d-46c3-89c6-5eaa2becc3f8",
++    "reviewId": "33b8ce29-8c45-4a9e-9a6a-45e5455a5d43",
++    "text": "The customer support team was very helpful.",
++    "timestamp": "2023-10-25T14:15:00Z",
++    "upVotes": 18,
++    "downVotes": 2
++  },
++  {
++    "commentId": "fae059a7-13b0-4f4b-931b-35e0ff7a6f5f",
++    "userId": "b5e45c06-206e-4373-9a3a-40ac177af3f5",
++    "reviewId": "1e78c1e0-7e2a-4e08-aafc-9e72d4a19e15",
++    "text": "Not bad for the price. Fair enough.",
++    "timestamp": "2023-10-24T17:30:00Z",
++    "upVotes": 6,
++    "downVotes": 5
++  },
++  {
++    "commentId": "ebd9b2d7-91e3-4c67-8e58-4c06cc055029",
++    "userId": "982b493e-e063-4645-80ab-99e10ef80b14",
++    "reviewId": "cc0971b2-e98b-4c38-bc1c-7ce511133bf1",
++    "text": "This product exceeded my expectations!",
++    "timestamp": "2023-10-23T10:40:00Z",
++    "upVotes": 25,
++    "downVotes": 0
++  },
++  {
++    "commentId": "e3b3cd74-6bbd-4ba0-bb83-5f13a5a5fe87",
++    "userId": "b81f33f6-c2fc-4e26-9d7e-5e9f58f9e4d5",
++    "reviewId": "d4c5f794-078b-42d2-80e5-dbc944a160a1",
++    "text": "I wish it had more features",
++    "timestamp": "2023-10-22T13:20:00Z",
++    "upVotes": 0,
++    "downVotes": 0
++  }
++]
+\ No newline at end of file
+Index: DomainCore/src/test/resources/validator-test-data/users.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/resources/validator-test-data/users.json b/DomainCore/src/test/resources/validator-test-data/users.json
+--- a/DomainCore/src/test/resources/validator-test-data/users.json	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/resources/validator-test-data/users.json	(date 1698794284560)
+@@ -1,0 +1,72 @@
++[
++  {
++    "userId": "2cde18c2-42fd-4f5a-a349-1efad4b13fe2",
++    "username": "user123",
++    "email": "user123@example.com",
++    "birthday": "1990-01-01",
++    "role": "REGULAR"
++  },
++  {
++    "userId": "3d9d5a5e-50a9-4d16-94e6-187de1b9f6d1",
++    "username": "john_doe",
++    "email": "john.doe@example.com",
++    "birthday": "1985-05-05",
++    "role": "PREMIUM"
++  },
++  {
++    "userId": "95f8c7c3-4a95-44e1-8a47-f5e7d32d6407",
++    "username": "jane_doe",
++    "email": "jane.doe@example.com",
++    "birthday": "1987-12-12",
++    "role": "ADMIN"
++  },
++  {
++    "userId": "78f8cd1f-c78e-43f5-9363-f23cda07ad3e",
++    "username": "user456",
++    "email": "user456@example.com",
++    "birthday": "1995-06-15",
++    "role": "REGULAR"
++  },
++  {
++    "userId": "03d5ea85-0a19-4726-9b6f-8f4c31ac4e7f",
++    "username": "mary_smith",
++    "email": "mary.smith@example.com",
++    "birthday": "1988-09-20",
++    "role": "PREMIUM"
++  },
++  {
++    "userId": "a9f70e0b-4f3f-47c2-94e5-90c7d40f9a7e",
++    "username": "user789",
++    "email": "user789@example.com",
++    "birthday": "1998-03-10",
++    "role": "REGULAR"
++  },
++  {
++    "userId": "7a4e8d6e-7e47-4e6e-a25f-d1ecf4f89f79",
++    "username": "admin_user",
++    "email": "admin.user@example.com",
++    "birthday": "1980-11-25",
++    "role": "ADMIN"
++  },
++  {
++    "userId": "e4e19676-d540-43c2-9f59-c4dbf03dcd92",
++    "username": "user101112",
++    "email": "user101112@example.com",
++    "birthday": "2000-02-28",
++    "role": "REGULAR"
++  },
++  {
++    "userId": "1d6a2e9a-f98c-493b-8412-af4b45bb6e70",
++    "username": "mark_johnson",
++    "email": "mark.johnson@example.com",
++    "birthday": "1975-07-08",
++    "role": "PREMIUM"
++  },
++  {
++    "userId": "ba2f0473-0d25-4b27-91a2-d0f94f2a1d5f",
++    "username": "user131415",
++    "email": "user131415@example.com",
++    "birthday": "1992-04-18",
++    "role": "REGULAR"
++  }
++]
+Index: DomainCore/src/test/resources/validator-test-data/replies.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/test/resources/validator-test-data/replies.json b/DomainCore/src/test/resources/validator-test-data/replies.json
+--- a/DomainCore/src/test/resources/validator-test-data/replies.json	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/test/resources/validator-test-data/replies.json	(date 1698783269349)
+@@ -1,0 +1,92 @@
++[
++  {
++    "replyId": "b496e146-431e-45f3-9e7c-3f4db3881f57",
++    "text": "Thank you for your feedback!",
++    "userId": "b956d3e5-8fe9-441f-9d33-c62b8f1e5b4d",
++    "toUserId": "19a6a33f-1189-4e29-9b1a-3149f85f986e",
++    "commentId": "8b4c48f5-6703-4e99-ba3c-53c49b16b899",
++    "timestamp": "2023-10-31T12:45:00Z",
++    "upVotes": 5,
++    "downVotes": 0
++  },
++  {
++    "replyId": "d6dcb4c5-f2fc-4e26-9989-6ad8f4d3cc70",
++    "text": "We apologize for any inconvenience caused.",
++    "userId": "5eb21c17-9a22-4a27-8e70-06b6a5b858f1",
++    "toUserId": "ccbc3209-28c5-4296-9a16-4e40c2d872f8",
++    "commentId": "3d0ecb6b-1f43-4055-9cf7-3cd9b2dd6665",
++    "timestamp": "2023-10-30T14:00:00Z",
++    "upVotes": 2,
++    "downVotes": 0
++  },
++  {
++    "replyId": "7157cde6-24f7-49f4-8c09-f2f47a4136ee",
++    "text": "We appreciate your valuable input!",
++    "userId": "4a4a7e74-6494-4e86-bd19-7983b134a5ec",
++    "toUserId": "0f66f4e1-54f6-4138-a7e3-731c96d14776",
++    "commentId": "f7c918c2-ef1d-47b2-b16d-0fcf9d4690e4",
++    "timestamp": "2023-10-29T10:15:00Z",
++    "upVotes": 3,
++    "downVotes": 0
++  },
++  {
++    "replyId": "0a24a0f1-d53c-47ec-a9b7-101ba2f6e63e",
++    "text": "We will work on improving our services.",
++    "userId": "b0d4ccaa-c1cf-4431-97cc-7ab4383f5ec8",
++    "toUserId": "6a6a2b6e-647d-46c3-89c6-5eaa2becc3f8",
++    "commentId": "e9900a59-dde5-4c5a-94a5-bb78a53d9e0c",
++    "timestamp": "2023-10-28T11:30:00Z",
++    "upVotes": 1,
++    "downVotes": 0
++  },
++  {
++    "replyId": "f4b5a9cc-5f29-4961-9573-50c4dab0d0b6",
++    "text": "Your satisfaction is our top priority!",
++    "userId": "b5e45c06-206e-4373-9a3a-40ac177af3f5",
++    "toUserId": "982b493e-e063-4645-80ab-99e10ef80b14",
++    "commentId": "ebd9b2d7-91e3-4c67-8e58-4c06cc055029",
++    "timestamp": "2023-10-27T13:20:00Z",
++    "upVotes": 0,
++    "downVotes": 0
++  },
++  {
++    "replyId": "8f3e1a60-4294-40c2-8f05-431477b80c8f",
++    "text": "We understand your concerns and are taking them seriously.",
++    "userId": "b81f33f6-c2fc-4e26-9d7e-5e9f58f9e4d5",
++    "toUserId": "d9f7d998-7b5d-472a-b54d-8f79a76e4b17",
++    "commentId": "84c6d1b2-050c-4d85-865f-5f7d8f3d3d0b",
++    "timestamp": "2023-10-26T09:50:00Z",
++    "upVotes": 0,
++    "downVotes": 0
++  },
++  {
++    "replyId": "d7da2895-7e19-409d-9fb2-7c34d9ff8ec2",
++    "text": "We appreciate your honest feedback.",
++    "userId": "6a109ca5-8e07-4cf5-b785-441d7d0d1a2e",
++    "toUserId": "0e3d31ac-6f18-4701-8a82-d482b503b05a",
++    "commentId": "9b8394c2-4e4e-4a5c-96a9-5a1b43ed01c4",
++    "timestamp": "2023-10-25T15:40:00Z",
++    "upVotes": 0,
++    "downVotes": 0
++  },
++  {
++    "replyId": "fe3a8536-4b09-4787-b279-6d047c1b0a5f",
++    "text": "We will take your suggestions into consideration for future improvements.",
++    "userId": "d83e0b98-4db8-4b3f-8de6-7a2a4d175c02",
++    "toUserId": "e4a6a375-4f34-41f1-a71f-75d936b8493e",
++    "commentId": "5e8a7e97-85b0-4868-8e10-3706b7a5a428",
++    "timestamp": "2023-10-24T12:15:00Z",
++    "upVotes": 0,
++    "downVotes": 0
++  },
++  {
++    "replyId": "f47ce7b4-07d3-4f83-a62d-3e9d6bb097d7",
++    "text": "We are sorry to hear about your experience. We will investigate the matter further.",
++    "userId": "c12d4b68-c3f6-45c6-9053-d024131a2413",
++    "toUserId": "3e7be2b9-6a46-44ed-b18f-20494d2e5c0b",
++    "commentId": "fe57327a-3f24-40f0-bf26-82ef71d7d3f1",
++    "timestamp": "2023-10-23T16:25:00Z",
++    "upVotes": 0,
++    "downVotes": 0
++  }
++]
+Index: DomainCore/src/main/kotlin/models/Comment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models\n\ndata class Comment()\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/Comment.kt b/DomainCore/src/main/kotlin/models/Comment.kt
+--- a/DomainCore/src/main/kotlin/models/Comment.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/Comment.kt	(date 1698782602410)
+@@ -1,3 +1,15 @@
+ package models
+ 
+-data class Comment()
++import org.jetbrains.annotations.NotNull
++import java.sql.Timestamp
++import java.util.UUID
++
++data class Comment(
++  val commentId: UUID = UUID.randomUUID(),
++  @NotNull val userId: UUID,
++  @NotNull val reviewId: UUID,
++  @NotNull val text: String,
++  @NotNull val timestamp: Timestamp,
++  val upVotes: Int = 0,
++  val downVotes: Int = 0
++)
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/statistics/MovieStats.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Statistics\n\nclass MovieStats {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/statistics/MovieStats.kt b/DomainServices/src/main/kotlin/statistics/MovieStats.kt
+--- a/DomainServices/src/main/kotlin/statistics/MovieStats.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/statistics/MovieStats.kt	(date 1698585555303)
+@@ -1,4 +1,4 @@
+-package Statistics
++package statistics
+ 
+ class MovieStats {
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/Movie.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models\n\nclass Movie {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/Movie.kt b/DomainCore/src/main/kotlin/models/Movie.kt
+--- a/DomainCore/src/main/kotlin/models/Movie.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/Movie.kt	(date 1698619316188)
+@@ -1,4 +1,15 @@
+ package models
+ 
+-class Movie {
+-}
+\ No newline at end of file
++import org.jetbrains.annotations.NotNull
++import java.time.Duration
++import java.time.LocalDate
++import java.util.*
++
++data class Movie (
++  @NotNull val movieId: UUID = UUID.randomUUID(),
++  @NotNull override val externalId: String,
++  val title: String,
++  val genre: String,
++  val releaseDate: LocalDate,
++  val duration: Duration
++) : Item(movieId, externalId)
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/statistics/ReplyStats.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Statistics\n\nclass ReplyStats {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/statistics/ReplyStats.kt b/DomainServices/src/main/kotlin/statistics/ReplyStats.kt
+--- a/DomainServices/src/main/kotlin/statistics/ReplyStats.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/statistics/ReplyStats.kt	(date 1698585555296)
+@@ -1,4 +1,4 @@
+-package Statistics
++package statistics
+ 
+ class ReplyStats {
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/Director.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models\n\nclass Director {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/Director.kt b/DomainCore/src/main/kotlin/models/Director.kt
+--- a/DomainCore/src/main/kotlin/models/Director.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/Director.kt	(date 1698782602425)
+@@ -1,4 +1,10 @@
+ package models
+ 
+-class Director {
+-}
+\ No newline at end of file
++import org.jetbrains.annotations.NotNull
++import java.time.LocalDate
++import java.util.UUID
++data class Director(
++  @NotNull val directorId: UUID = UUID.randomUUID(),
++  @NotNull override val externalId: String, val name: String?,
++  val birthday: LocalDate?
++) : Item(directorId, externalId)
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/statistics/CommentStats.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Statistics\n\nclass CommentStats {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/statistics/CommentStats.kt b/DomainServices/src/main/kotlin/statistics/CommentStats.kt
+--- a/DomainServices/src/main/kotlin/statistics/CommentStats.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/statistics/CommentStats.kt	(date 1698585555314)
+@@ -1,4 +1,4 @@
+-package Statistics
++package statistics
+ 
+ class CommentStats {
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/Actor.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models\n\nclass Actor {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/Actor.kt b/DomainCore/src/main/kotlin/models/Actor.kt
+--- a/DomainCore/src/main/kotlin/models/Actor.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/Actor.kt	(date 1698783846251)
+@@ -1,4 +1,11 @@
+ package models
+ 
+-class Actor {
+-}
+\ No newline at end of file
++import org.jetbrains.annotations.NotNull
++import java.time.LocalDate
++import java.util.*
++
++data class Actor(
++  @NotNull val actorId: UUID = UUID.randomUUID(),
++  @NotNull override val externalId: String, val name: String? = null,
++  val birthday: LocalDate? = null
++) : Item(actorId, externalId)
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/Reply.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models\n\nclass Reply {\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/Reply.kt b/DomainCore/src/main/kotlin/models/Reply.kt
+--- a/DomainCore/src/main/kotlin/models/Reply.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/Reply.kt	(date 1698794836008)
+@@ -1,5 +1,16 @@
+ package models
+ 
+-class Reply {
++import org.jetbrains.annotations.NotNull
++import java.sql.Timestamp
++import java.util.UUID
+ 
+-}
++data class Reply(
++  val replyId: UUID = UUID.randomUUID(),
++  @NotNull val text: String,
++  @NotNull val userId: UUID,
++  @NotNull val toUserId: UUID,
++  @NotNull val commentId: UUID,
++  @NotNull val timestamp: Timestamp,
++  val upVotes: Int = 0,
++  val downVotes: Int = 0
++)
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/statistics/ReviewStats.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Statistics\n\nclass ReviewStats {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/statistics/ReviewStats.kt b/DomainServices/src/main/kotlin/statistics/ReviewStats.kt
+--- a/DomainServices/src/main/kotlin/statistics/ReviewStats.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/statistics/ReviewStats.kt	(date 1698585555289)
+@@ -1,4 +1,4 @@
+-package Statistics
++package statistics
+ 
+ class ReviewStats {
+ }
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/repository_contracts/CommentRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package RepositoryContracts\n\ninterface CommentRepository {\n  fun createComment(comment: Comment)\n  fun updateComment(comment: Comment)\n  fun deleteComment(commentId: UUID)\n  fun getCommentById(commentId: UUID): Comment?\n  // Add more methods as needed for specific use cases\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/repository_contracts/CommentRepository.kt b/DomainServices/src/main/kotlin/repository_contracts/CommentRepository.kt
+--- a/DomainServices/src/main/kotlin/repository_contracts/CommentRepository.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/repository_contracts/CommentRepository.kt	(date 1698782602418)
+@@ -1,9 +1,11 @@
+-package RepositoryContracts
++package repository_contracts
++
++import models.Comment
++import java.util.*
+ 
+ interface CommentRepository {
+   fun createComment(comment: Comment)
+   fun updateComment(comment: Comment)
+   fun deleteComment(commentId: UUID)
+   fun getCommentById(commentId: UUID): Comment?
+-  // Add more methods as needed for specific use cases
+ }
+\ No newline at end of file
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/FavoriteListEntity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.entities\n\nclass FavoriteListEntity {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/FavoriteListEntity.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/FavoriteListEntity.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/FavoriteListEntity.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/FavoriteListEntity.kt	(date 1698793834787)
+@@ -1,4 +1,38 @@
+ package com.sep6.infrastructureservices.persistence.entities
+ 
+-class FavoriteListEntity {
++import jakarta.persistence.*
++import models.FavoriteItemList
++import models.Item
++import models.User
++import java.sql.Timestamp
++import java.util.*
++
++@Entity
++@NoArgConstructor
++@Table(name = "FAVORITE_ITEM_LISTS")
++class FavoriteListEntity(
++  @Id
++  @Column(name = "list_id")
++  val listId: UUID,
++
++  @ManyToOne(cascade = [CascadeType.REMOVE])
++  @JoinColumn(name = "user_id", nullable = false)
++  val user: UserEntity,
++
++  @Column(name = "name", nullable = false)
++  val name: String,
++
++  @OneToMany(cascade = [CascadeType.PERSIST], fetch = FetchType.LAZY)
++  val items: List<ItemEntity>,
++
++  @Column(name = "timestamp", nullable = false)
++  val timestamp: Timestamp
++) {
++  constructor(list: FavoriteItemList) : this(
++    listId = list.listId,
++    user = UserEntity(list.userId),
++    name = list.name,
++    items = list.items.map { item -> ItemEntity(item) },
++    timestamp = list.timestamp,
++  )
+ }
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/repository_contracts/ReviewRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package RepositoryContracts\n\nimport models.Review\nimport java.util.*\n\ninterface ReviewRepository {\n  fun createReview(review: Review)\n  fun updateReview(review: Review)\n  fun deleteReview(reviewId: UUID)\n  fun getReviewById(reviewId: UUID): Review?\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/repository_contracts/ReviewRepository.kt b/DomainServices/src/main/kotlin/repository_contracts/ReviewRepository.kt
+--- a/DomainServices/src/main/kotlin/repository_contracts/ReviewRepository.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/repository_contracts/ReviewRepository.kt	(date 1698584775463)
+@@ -1,4 +1,4 @@
+-package RepositoryContracts
++package repository_contracts
+ 
+ import models.Review
+ import java.util.*
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ItemEntity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.entities\n\ndata class ItemEntity()\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ItemEntity.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ItemEntity.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ItemEntity.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ItemEntity.kt	(date 1698794836022)
+@@ -1,3 +1,22 @@
+ package com.sep6.infrastructureservices.persistence.entities
+ 
+-data class ItemEntity()
++import jakarta.persistence.Column
++import jakarta.persistence.Entity
++import jakarta.persistence.Id
++import jakarta.persistence.Table
++import models.Item
++import java.util.UUID
++
++@Entity
++@NoArgConstructor
++@Table(name = "FAVORITE_ITEMS")
++class ItemEntity(
++  @Id
++  @Column(name = "itemId")
++  val itemId: UUID,
++
++  @Column(name = "externalId", unique = true, nullable = false)
++  val externalId: String
++) {
++  constructor(item: Item) : this(item.itemId, item.externalId)
++}
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/repository_contracts/UserRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package RepositoryContracts\n\nimport models.User\nimport java.util.*\n\ninterface UserRepository {\n  fun createUser(user: User)\n  fun updateUser(user: User)\n  fun deleteUser(userId: UUID)\n  fun getUserById(userId: UUID): User?\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/repository_contracts/UserRepository.kt b/DomainServices/src/main/kotlin/repository_contracts/UserRepository.kt
+--- a/DomainServices/src/main/kotlin/repository_contracts/UserRepository.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/repository_contracts/UserRepository.kt	(date 1698692922018)
+@@ -1,11 +1,15 @@
+-package RepositoryContracts
++package repository_contracts
+ 
+ import models.User
+ import java.util.*
++import kotlin.collections.HashSet
+ 
+ interface UserRepository {
+-  fun createUser(user: User)
++  fun createUser(user: User): User
+   fun updateUser(user: User)
+   fun deleteUser(userId: UUID)
+   fun getUserById(userId: UUID): User?
++  fun addFollower(userId: UUID, followerId: UUID)
++  fun getFollowers(userId: UUID): List<User>?
++  fun getFollowing(userId: UUID): List<User>?
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/validators/ReplyValidator.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package validators\n\nclass ReplyValidator {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/validators/ReplyValidator.kt b/DomainCore/src/main/kotlin/validators/ReplyValidator.kt
+--- a/DomainCore/src/main/kotlin/validators/ReplyValidator.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/validators/ReplyValidator.kt	(date 1698794836018)
+@@ -1,4 +1,25 @@
+ package validators
+ 
+-class ReplyValidator {
++import models.Reply
++import validators.exceptions.ValidationException
++import java.sql.Timestamp
++import java.time.LocalDateTime
++
++class ReplyValidator : Validator<Reply> {
++  override fun validate(entity: Reply) {
++    val errors = mutableListOf<String>()
++    val textLengthMax = 200
++
++    if (entity.text.length > textLengthMax) errors.add(
++      String.format(
++        "Text has %s characters. Maximum is: %s.",
++        entity.text.length, textLengthMax
++      )
++    )
++
++    if (entity.timestamp.after(Timestamp.valueOf(LocalDateTime.now()))) errors.add("Timestamp cannot be in the future.")
++    if (errors.isNotEmpty()) {
++      throw ValidationException(errors, "ReplyValidator")
++    }
++  }
+ }
+\ No newline at end of file
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/rest/UserController.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.rest\n\nclass UserController {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/rest/UserController.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/rest/UserController.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/rest/UserController.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/rest/UserController.kt	(date 1698699110754)
+@@ -1,4 +1,99 @@
+ package com.sep6.infrastructureservices.rest
+ 
+-class UserController {
++import com.sep6.infrastructureservices.persistence.exceptions.ResourceNotFoundException
++import com.sep6.infrastructureservices.persistence.services.UserPersistenceService
++import dtos.FollowerDto
++import models.User
++import org.springframework.http.HttpStatus
++import org.springframework.http.ResponseEntity
++import org.springframework.web.bind.annotation.*
++import org.springframework.web.server.ResponseStatusException
++import services.UserService
++import validators.exceptions.ValidationException
++import java.util.*
++
++@RestController
++@RequestMapping("api/users")
++class UserController(private val userRepo: UserPersistenceService) {
++  private val userService: UserService = UserService(userRepo)
++
++  @GetMapping("/{userId}")
++  fun getUserById(@PathVariable userId: UUID): ResponseEntity<User> {
++    try {
++      val user = userRepo.getUserById(userId)
++      return ResponseEntity.ok(user)
++    } catch (e: ResourceNotFoundException) {
++      throw ResponseStatusException(
++        HttpStatus.NOT_FOUND, e.message
++      )
++    }
++  }
++
++  @PostMapping()
++  fun createUser(@RequestBody user: User): ResponseEntity<User> {
++    val createdUser = userService.createUser(user)
++    return ResponseEntity(createdUser, HttpStatus.CREATED)
++  }
++
++  @PutMapping()
++  fun updateUser(@RequestBody user: User): ResponseEntity<String> {
++    try {
++      userService.updateUser(user)
++    } catch (e: ValidationException) {
++      throw ResponseStatusException(
++        HttpStatus.BAD_REQUEST, e.message
++      )
++    } catch (e: ResourceNotFoundException) {
++      throw ResponseStatusException(
++        HttpStatus.NOT_FOUND, e.message
++      )
++    }
++
++    return ResponseEntity.ok().build()
++  }
++
++  @DeleteMapping("/{userId}")
++  fun deleteUser(@PathVariable userId: UUID): ResponseEntity<Void> {
++    try {
++      userRepo.deleteUser(userId)
++      return ResponseEntity.ok().build()
++    } catch (e: ResourceNotFoundException) {
++      throw ResponseStatusException(
++        HttpStatus.NOT_FOUND, e.message
++      )
++    }
++  }
++
++  @PutMapping("follow/{userId}/{followerId}")
++  fun addFollowerForUser(@PathVariable userId: UUID, @PathVariable followerId: UUID) {
++    try {
++      userService.followOtherUser(userId, followerId)
++    } catch (e: ResourceNotFoundException) {
++      throw ResponseStatusException(
++        HttpStatus.NOT_FOUND, e.message
++      )
++    }
++  }
++
++  @GetMapping("followers/{userId}")
++  fun getFollowers(@PathVariable userId: UUID): ResponseEntity<List<FollowerDto>> {
++    try {
++      return ResponseEntity(userService.getFollowers(userId), HttpStatus.OK)
++    } catch (e: ResourceNotFoundException) {
++      throw ResponseStatusException(
++        HttpStatus.NOT_FOUND, e.message
++      )
++    }
++  }
++
++  @GetMapping("following/{userId}")
++  fun getFollowing(@PathVariable userId: UUID): ResponseEntity<List<FollowerDto>> {
++    try {
++      return ResponseEntity(userService.getFollowing(userId), HttpStatus.OK)
++    } catch (e: ResourceNotFoundException) {
++      throw ResponseStatusException(
++        HttpStatus.NOT_FOUND, e.message
++      )
++    }
++  }
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/validators/FavoriteItemListValidator.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package validators\n\nimport models.FavoriteItemList\nimport validators.exceptions.ValidationException\nimport java.sql.Timestamp\nimport java.time.LocalDateTime\n\nclass FavoriteMovieListValidator : Validator<FavoriteItemList> {\n  override fun validate(entity: FavoriteItemList) {\n    val errors = mutableListOf<String>()\n    when {\n      entity.name.isBlank() -> errors.add(\"List name must not be blank.\")\n      entity.itemIds.isEmpty() -> errors.add(\"The list must contain at least one item ID.\")\n      entity.timestamp.after(Timestamp.valueOf(LocalDateTime.now())) -> errors.add(\"Timestamp cannot be in the future.\")\n    }\n\n    if (errors.isNotEmpty()) {\n      throw ValidationException(errors)\n    }\n  }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/validators/FavoriteItemListValidator.kt b/DomainCore/src/main/kotlin/validators/FavoriteItemListValidator.kt
+--- a/DomainCore/src/main/kotlin/validators/FavoriteItemListValidator.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/validators/FavoriteItemListValidator.kt	(date 1698792177879)
+@@ -5,17 +5,14 @@
+ import java.sql.Timestamp
+ import java.time.LocalDateTime
+ 
+-class FavoriteMovieListValidator : Validator<FavoriteItemList> {
++class FavoriteItemListValidator : Validator<FavoriteItemList> {
+   override fun validate(entity: FavoriteItemList) {
+     val errors = mutableListOf<String>()
+-    when {
+-      entity.name.isBlank() -> errors.add("List name must not be blank.")
+-      entity.itemIds.isEmpty() -> errors.add("The list must contain at least one item ID.")
+-      entity.timestamp.after(Timestamp.valueOf(LocalDateTime.now())) -> errors.add("Timestamp cannot be in the future.")
+-    }
+-
++    if (entity.name.isBlank()) errors.add("List name must not be blank.")
++    if (entity.items.isEmpty()) errors.add("The list must contain at least one item.")
++    if (entity.timestamp.after(Timestamp.valueOf(LocalDateTime.now()))) errors.add("Timestamp cannot be in the future.")
+     if (errors.isNotEmpty()) {
+-      throw ValidationException(errors)
++      throw ValidationException(errors, "FavoriteItemListValidator")
+     }
+   }
+ }
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/repository_contracts/FavoriteItemListRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package repository_contracts\n\ninterface FavoriteItemList {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/repository_contracts/FavoriteItemListRepository.kt b/DomainServices/src/main/kotlin/repository_contracts/FavoriteItemListRepository.kt
+--- a/DomainServices/src/main/kotlin/repository_contracts/FavoriteItemListRepository.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/repository_contracts/FavoriteItemListRepository.kt	(date 1698791596324)
+@@ -1,4 +1,12 @@
+ package repository_contracts
+ 
+-interface FavoriteItemList {
+-}
+\ No newline at end of file
++import models.FavoriteItemList
++import models.Movie
++import java.util.UUID
++
++interface FavoriteItemListRepository{
++  fun createFavoriteMovieList(favoriteItemList: FavoriteItemList)
++  fun updateFavoriteItemList(favoriteItemList: FavoriteItemList)
++  fun deleteFavoriteItemList(listId: UUID)
++  fun getFavoriteItemListById(listId: UUID): FavoriteItemList?
++}
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/NoArgConstructor.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.entities\n\nannotation class NoArgConstructor()\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/NoArgConstructor.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/NoArgConstructor.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/NoArgConstructor.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/NoArgConstructor.kt	(date 1698605295013)
+@@ -1,3 +1,3 @@
+ package com.sep6.infrastructureservices.persistence.entities
+ 
+-annotation class NoArgConstructor()
++annotation class NoArgConstructor
+Index: DomainServices/src/main/kotlin/repository_contracts/ReplyRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package repository_contracts\n\ninterface ReplyRepository {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/repository_contracts/ReplyRepository.kt b/DomainServices/src/main/kotlin/repository_contracts/ReplyRepository.kt
+--- a/DomainServices/src/main/kotlin/repository_contracts/ReplyRepository.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/repository_contracts/ReplyRepository.kt	(date 1698584916138)
+@@ -1,4 +1,11 @@
+ package repository_contracts
+ 
++import models.Reply
++import java.util.UUID
++
+ interface ReplyRepository {
+-}
+\ No newline at end of file
++  fun createReply(reply: Reply)
++  fun updateReply(reply: Reply)
++  fun deleteReply(replyId: UUID)
++  fun getReplyById(replyId: UUID): Reply?
++}
+Index: DomainServices/src/main/kotlin/statistics/DirectorStats.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Statistics\n\nclass DirectorStats {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/statistics/DirectorStats.kt b/DomainServices/src/main/kotlin/statistics/DirectorStats.kt
+--- a/DomainServices/src/main/kotlin/statistics/DirectorStats.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/statistics/DirectorStats.kt	(date 1698585555299)
+@@ -1,4 +1,4 @@
+-package Statistics
++package statistics
+ 
+ class DirectorStats {
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/Review.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models\n\ndata class Review()\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/Review.kt b/DomainCore/src/main/kotlin/models/Review.kt
+--- a/DomainCore/src/main/kotlin/models/Review.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/Review.kt	(date 1698782602414)
+@@ -1,3 +1,14 @@
+ package models
+ 
+-data class Review()
++import org.jetbrains.annotations.NotNull
++import java.sql.Timestamp
++import java.util.UUID
++
++data class Review(
++  val reviewId: UUID = UUID.randomUUID(),
++  @NotNull val userId: UUID,
++  @NotNull val movieId: String,
++  @NotNull val text: String,
++  @NotNull val rating: Int,
++  @NotNull val timestamp: Timestamp
++)
+\ No newline at end of file
+Index: DomainServices/src/main/kotlin/statistics/ActorStats.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Statistics\n\nclass ActorStats {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainServices/src/main/kotlin/statistics/ActorStats.kt b/DomainServices/src/main/kotlin/statistics/ActorStats.kt
+--- a/DomainServices/src/main/kotlin/statistics/ActorStats.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainServices/src/main/kotlin/statistics/ActorStats.kt	(date 1698585555293)
+@@ -1,4 +1,4 @@
+-package Statistics
++package statistics
+ 
+ class ActorStats {
+ }
+\ No newline at end of file
+Index: DomainCore/src/main/kotlin/models/Item.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package models\n\nclass Item {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/src/main/kotlin/models/Item.kt b/DomainCore/src/main/kotlin/models/Item.kt
+--- a/DomainCore/src/main/kotlin/models/Item.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/src/main/kotlin/models/Item.kt	(date 1698619316181)
+@@ -1,4 +1,9 @@
+ package models
+ 
+-class Item {
+-}
+\ No newline at end of file
++import org.jetbrains.annotations.NotNull
++import java.util.UUID
++
++open class Item (
++  @NotNull val itemId: UUID,
++  @NotNull open val externalId: String
++)
+\ No newline at end of file
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReviewEntity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.entities\n\nclass ReviewEntity {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReviewEntity.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReviewEntity.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReviewEntity.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReviewEntity.kt	(date 1698620437499)
+@@ -1,4 +1,29 @@
+ package com.sep6.infrastructureservices.persistence.entities
+ 
+-class ReviewEntity {
+-}
+\ No newline at end of file
++import jakarta.persistence.*
++import java.sql.Timestamp
++import java.util.*
++
++@Entity
++@Table(name = "REVIEWS")
++class ReviewEntity(
++  @Id
++  @Column(name = "review_id")
++  val reviewId: UUID,
++
++  @ManyToOne(cascade = [CascadeType.REMOVE])
++  @JoinColumn(name = "user_id", nullable = false)
++  val user: UserEntity,
++
++  @Column(name = "movie_id", nullable = false)
++  val movieId: String,
++
++  @Column(name = "text", nullable = false)
++  val text: String,
++
++  @Column(name = "rating", nullable = false)
++  val rating: Int,
++
++  @Column(name = "timestamp", nullable = false)
++  val timestamp: Timestamp
++)
+\ No newline at end of file
+Index: DomainCore/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    kotlin(\"jvm\") version \"1.9.0\"\n}\n\ngroup = \"org.sep6\"\nversion = \"1.0-SNAPSHOT\"\n\nrepositories {\n    mavenCentral()\n}\n\ndependencies {\n    testImplementation(kotlin(\"test\"))\n}\n\ntasks.test {\n    useJUnitPlatform()\n}\n\nkotlin {\n    jvmToolchain(8)\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DomainCore/build.gradle.kts b/DomainCore/build.gradle.kts
+--- a/DomainCore/build.gradle.kts	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/DomainCore/build.gradle.kts	(date 1698788448790)
+@@ -2,15 +2,13 @@
+     kotlin("jvm") version "1.9.0"
+ }
+ 
+-group = "org.sep6"
+-version = "1.0-SNAPSHOT"
+-
+-repositories {
+-    mavenCentral()
+-}
+-
+ dependencies {
++    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0-rc1")
++    testImplementation("com.google.code.gson:gson:2.10.1")
++    testImplementation("org.apache.commons:commons-text:1.11.0")
+     testImplementation(kotlin("test"))
++    testImplementation ("org.junit.jupiter:junit-jupiter-params:5.9.3")
++
+ }
+ 
+ tasks.test {
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/repositories/AllRepositories.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.repositories\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/repositories/AllRepositories.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/repositories/AllRepositories.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/repositories/AllRepositories.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/repositories/AllRepositories.kt	(date 1698688832883)
+@@ -1,2 +1,11 @@
+ package com.sep6.infrastructureservices.persistence.repositories
+ 
++import com.sep6.infrastructureservices.persistence.entities.*
++import org.springframework.data.repository.CrudRepository
++import java.util.*
++
++interface UserPersistenceRepository : CrudRepository<UserEntity, UUID>
++interface FavoriteListPersistenceRepository : CrudRepository<FavoriteListEntity, UUID>
++interface ReviewPersistenceRepository : CrudRepository<ReviewEntity, UUID>
++interface ReplyPersistenceRepository : CrudRepository<ReplyEntity, UUID>
++interface CommentPersistenceRepository : CrudRepository<CommentEntity, UUID>
+\ No newline at end of file
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/CommentEntity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.entities\n\nimport jakarta.persistence.Entity\nimport jakarta.persistence.Id\nimport jakarta.persistence.Table\n\n\n@Entity\n@Table(name = \"comments\")\ndata class CommentEntity(\n  @Id\n  @Column(name = \"comment_id\")\n  val commentId: UUID = UUID.randomUUID(),\n\n  @ManyToOne\n  @JoinColumn(name = \"user_id\", nullable = false)\n  val user: UserEntity,\n\n  @ManyToOne\n  @JoinColumn(name = \"review_id\", nullable = false)\n  val review: ReviewEntity,\n\n  @Column(name = \"text\", nullable = false)\n  val text: String,\n\n  @Column(name = \"timestamp\", nullable = false)\n  val timestamp: Timestamp,\n\n  @Column(name = \"up_votes\")\n  val upVotes: Int = 0,\n\n  @Column(name = \"down_votes\")\n  val downVotes: Int = 0\n)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/CommentEntity.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/CommentEntity.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/CommentEntity.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/CommentEntity.kt	(date 1698794836044)
+@@ -1,22 +1,21 @@
+ package com.sep6.infrastructureservices.persistence.entities
+ 
+-import jakarta.persistence.Entity
+-import jakarta.persistence.Id
+-import jakarta.persistence.Table
+-
++import jakarta.persistence.*
++import java.sql.Timestamp
++import java.util.*
+ 
+ @Entity
+-@Table(name = "comments")
+-data class CommentEntity(
++@Table(name = "COMMENTS")
++class CommentEntity(
+   @Id
+   @Column(name = "comment_id")
+   val commentId: UUID = UUID.randomUUID(),
+ 
+-  @ManyToOne
++  @ManyToOne(cascade = [CascadeType.ALL])
+   @JoinColumn(name = "user_id", nullable = false)
+   val user: UserEntity,
+ 
+-  @ManyToOne
++  @ManyToOne(cascade = [CascadeType.ALL])
+   @JoinColumn(name = "review_id", nullable = false)
+   val review: ReviewEntity,
+ 
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReplyEntity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.entities\n\nclass ReplyEntity {\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReplyEntity.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReplyEntity.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReplyEntity.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/entities/ReplyEntity.kt	(date 1698794836039)
+@@ -1,4 +1,37 @@
+ package com.sep6.infrastructureservices.persistence.entities
+ 
+-class ReplyEntity {
+-}
+\ No newline at end of file
++import jakarta.persistence.*
++import java.sql.Timestamp
++import java.util.*
++
++@Entity
++@Table(name = "REPLIES")
++class ReplyEntity(
++  @Id
++  @Column(name = "reply_id")
++  val commentId: UUID ,
++
++  @ManyToOne(cascade = [CascadeType.ALL])
++  @JoinColumn(name = "user_id", nullable = false)
++  val user: UserEntity,
++
++  @ManyToOne(cascade = [CascadeType.ALL])
++  @JoinColumn(name = "to_user_id", nullable = false)
++  val toUser: UserEntity,
++
++  @ManyToOne(cascade = [CascadeType.ALL])
++  @JoinColumn(name = "comment_id", nullable = false)
++  val comment: CommentEntity,
++
++  @Column(name = "text", nullable = false)
++  val text: String,
++
++  @Column(name = "timestamp", nullable = false)
++  val timestamp: Timestamp,
++
++  @Column(name = "up_votes")
++  val upVotes: Int,
++
++  @Column(name = "down_votes")
++  val downVotes: Int
++)
+\ No newline at end of file
+Index: InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/exceptions/ResourceNotFoundException.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.sep6.infrastructureservices.persistence.exceptions\n\nclass UserPersistenceException(message: String) : Exception(message)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/exceptions/ResourceNotFoundException.kt b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/exceptions/ResourceNotFoundException.kt
+--- a/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/exceptions/ResourceNotFoundException.kt	(revision 313acbab9931bbf2e2f2001782e1f46f45a43bf5)
++++ b/InfrastructureServices/src/main/kotlin/com/sep6/infrastructureservices/persistence/exceptions/ResourceNotFoundException.kt	(date 1698661788815)
+@@ -1,3 +1,3 @@
+ package com.sep6.infrastructureservices.persistence.exceptions
+ 
+-class UserPersistenceException(message: String) : Exception(message)
+\ No newline at end of file
++class ResourceNotFoundException(message: String) : Exception(message)
+\ No newline at end of file

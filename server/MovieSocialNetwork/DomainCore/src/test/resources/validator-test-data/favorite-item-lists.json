@@ -1,0 +1,126 @@
+[
+  {
+    "listId": "e70b52a0-60a5-41a5-86d1-5e6c27074a4b",
+    "userId": "2cde18c2-42fd-4f5a-a349-1efad4b13fe2",
+    "name": "Favorite Movies List",
+    "items": [
+      {
+        "itemId": "1d2aa09a-60c7-40d3-9c04-33c8d5d76f86",
+        "externalId": "movie-1"
+      },
+      {
+        "itemId": "e159e7a5-b0df-49e4-aa8e-b06c6e1062a3",
+        "externalId": "movie-2"
+      },
+      {
+        "itemId": "a1d5b872-d2ea-4a94-8d49-09c3ce2b5e61",
+        "externalId": "movie-3"
+      }
+    ],
+    "timestamp": "2023-10-31T16:30:00Z",
+    "upVotes": 10,
+    "downVotes": 2
+  },
+  {
+    "listId": "fd007a23-cc39-4433-9a45-e5f05cf9a1f5",
+    "userId": "3d9d5a5e-50a9-4d16-94e6-187de1b9f6d1",
+    "name": "Favorite Directors List",
+    "items": [
+      {
+        "itemId": "45037eb2-73be-4ec7-8e10-b1ff2b5b33ac",
+        "externalId": "director-1"
+      },
+      {
+        "itemId": "d02ff883-3e6d-4a27-9b8d-574c61e438ef",
+        "externalId": "director-2"
+      },
+      {
+        "itemId": "5da36a5c-9a1d-4c14-81b5-78e11820e929",
+        "externalId": "director-3"
+      }
+    ],
+    "timestamp": "2023-10-30T14:45:00Z",
+    "upVotes": 15,
+    "downVotes": 3
+  },
+  {
+    "listId": "f26e39b6-12e6-4ff1-9809-2d5b29f4874c",
+    "userId": "95f8c7c3-4a95-44e1-8a47-f5e7d32d6407",
+    "name": "Wishlist",
+    "items": [
+      {
+        "itemId": "f92a7bfc-1016-4475-9b8e-3e349e91bce3",
+        "externalId": "item-1"
+      },
+      {
+        "itemId": "b1289ba1-aa0e-4df3-9eab-56c25fb640d1",
+        "externalId": "item-2"
+      }
+    ],
+    "timestamp": "2023-10-29T11:15:00Z",
+    "upVotes": 5,
+    "downVotes": 1
+  },
+  {
+    "listId": "af1d4ab5-c84a-4137-b20b-5b5bece61b07",
+    "userId": "78f8cd1f-c78e-43f5-9363-f23cda07ad3e",
+    "name": "Favorite Actors List",
+    "items": [
+      {
+        "itemId": "deea17a9-36e6-4a2b-bc58-87b3a7ad0515",
+        "externalId": "actor-1"
+      },
+      {
+        "itemId": "4e0ed0e0-0623-4750-af19-0ad4e9a7c4e3",
+        "externalId": "actor-2"
+      },
+      {
+        "itemId": "44e4707a-9a05-42d7-8f5b-48197585c743",
+        "externalId": "actor-3"
+      }
+    ],
+    "timestamp": "2023-10-28T09:40:00Z",
+    "upVotes": 12,
+    "downVotes": 0
+  },
+  {
+    "listId": "4f2ac1a5-5b18-4cc2-a8c7-2714f3507777",
+    "userId": "03d5ea85-0a19-4726-9b6f-8f4c31ac4e7f",
+    "name": "Travel Wishlist",
+    "items": [
+      {
+        "itemId": "25dbdd8a-58d3-4740-b3d1-6726dd88f253",
+        "externalId": "location-1"
+      },
+      {
+        "itemId": "a8336c32-1e7c-4d62-af92-6558c188fbf1",
+        "externalId": "location-2"
+      },
+      {
+        "itemId": "d4607b2a-dcc5-4e18-bcc3-27e15b0114b9",
+        "externalId": "location-3"
+      }
+    ],
+    "timestamp": "2023-10-27T08:30:00Z",
+    "upVotes": 8,
+    "downVotes": 1
+  },
+  {
+    "listId": "5a5a5da0-58f2-4e89-9d15-2c2c6224be8b",
+    "userId": "a9f70e0b-4f3f-47c2-94e5-90c7d40f9a7e",
+    "name": "Gift Ideas List",
+    "items": [
+      {
+        "itemId": "545d6cc2-ffdf-4dbf-a860-ec88a872052e",
+        "externalId": "gift-1"
+      },
+      {
+        "itemId": "a54a206f-2679-41f1-b63a-3996ef24ebf4",
+        "externalId": "gift-2"
+      }
+    ],
+    "timestamp": "2023-10-26T13:00:00Z",
+    "upVotes": 6,
+    "downVotes": 2
+  }
+]

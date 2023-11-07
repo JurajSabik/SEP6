@@ -1,0 +1,8 @@
+<div class="search-container" [class.expanded]="isExpanded">
+  <input type="text" placeholder="Search for a movie title..."
+         *ngIf="isExpanded"
+         [(ngModel)]="searchText"
+         (keyup.enter)="search()"
+         #searchInput>
+  <mat-icon (click)="toggleSearch()" class="search-icon">search</mat-icon>
+</div>

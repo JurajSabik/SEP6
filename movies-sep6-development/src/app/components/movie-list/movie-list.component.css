@@ -1,0 +1,226 @@
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #141414;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.movie-list {
+  padding: 0;
+  margin: 0;
+  background-color: #141414;
+  height: 100%;
+  width: 100%;
+}
+
+.movie-row {
+  display: grid;
+  background-color: #141414;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust this for desired poster width */
+  gap: 20px;
+  padding: 20px;
+}
+
+.movie-details-container {
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 240px; /* Adjust the height as required */
+}
+
+.movie-details-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.main-details img {
+  width: 100%;
+  height: 100%; /* The image will now occupy the full height and width of the container */
+  display: block;
+  object-fit: cover; /* Ensures the aspect ratio is maintained */
+  transition: transform 0.3s ease;
+}
+
+.text-details {
+  display: none; /* Hiding text details initially, you can remove this if you want it shown */
+  padding: 10px;
+}
+
+.text-details h1 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.text-details p {
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+.actors-grid {
+  display: none; /* Hiding the actor's details */
+}
+
+
+
+.movie-details-container {
+  position: relative; /* Needed for absolute positioning of the title inside */
+  background-color: #141414;
+
+  /* ... Other styles ... */
+}
+
+.text-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%); /* Translucent background */
+  padding: 10px;
+  text-align: center;
+}
+
+.text-details h1 {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.featured-movie-container {
+
+  position: relative; /* This ensures the absolute positioning is relative to this container */
+  width: 100%; /* The container will take the full width */
+  height: 80vh; /* This will make the height of the container equal to the height of the viewport */
+  overflow: hidden; /* This will prevent any overflow from the container */
+}
+
+.featured-movie {
+  display: block; /* This will allow you to set width and height */
+  width: 100%; /* The link will take the full width */
+  height: 100%; /* The link will take the full height */
+  text-decoration: none; /* This removes the underline from the link */
+}
+
+.featured-movie-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover; /* This will make sure the background covers the full area */
+  background-position: center; /* This will center the background image */
+  display: flex; /* Using flex to align the title */
+  align-items: flex-end; /* This aligns the title at the bottom */
+  justify-content: center; /* This centers the title horizontally */
+}
+
+.featured-movie-title {
+  color: white; /* Assuming you want the title in white */
+  text-align: center; /* This will center the title text */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the title */
+  padding: 20px; /* Padding around the text */
+  width: 100%; /* Full width to ensure the background spans across */
+  box-sizing: border-box; /* This ensures the padding is included in the width */
+}
+
+.featured-movie-title h1 {
+  text-align: justify-all;
+  color: white; /* Assuming you want the title in white */
+  margin: 0; /* Removes the default margin from the h1 */
+  font-size: 3rem; /* Adjust the font size to your preference */
+}
+
+featured-title {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.featured-ranking {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.featured-description {
+  text-align: justify;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.featured-buttons {
+  /* Additional styling for buttons */
+}
+
+.btn {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-play {
+  background-color: #e50914;
+  color: white;
+}
+
+.btn-info {
+  background-color: rgba(109, 109, 110, 0.7);
+  color: white;
+}
+
+.rating-stars {
+  display: inline-block;
+  color: #ffc107; /* Star color */
+  white-space: nowrap; /* Prevent stars from wrapping in a new line */
+}
+
+.fa-star,
+.fa-star-half-o,
+.fa-star-o {
+  font-size: 1.2rem; /* Adjust the size of the stars */
+  margin-right: 2px; /* Spacing between stars */
+}
+
+/* ... existing CSS ... */
+
+/* Section title and separator styling */
+.section-title {
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.separator {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/* Actors grid */
+.actors-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Distribute space evenly */
+  gap: 10px; /* Keep a small gap between cards */
+}
+
+.actors-grid .actor-card {
+  flex: 0 1 calc(10% - 10px); /* Adjust the width minus the gap */
+  cursor: pointer; /* Hand pointer on hover */
+  /* ... existing styles ... */
+}
+
+/* Related movies grid */
+.related-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Distribute space evenly */
+  gap: 10px; /* Keep a small gap between cards */
+}
+
+.related-movies .related-movie-card {
+  flex: 0 1 calc(20% - 10px); /* Adjust the width minus the gap */
+  /* ... existing styles ... */
+}
+

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "The Ocean's Call",
+    "imageUrl": "https://via.placeholder.com/200x300?text=The+Ocean's+Call",
+    "rating": 4.8,
+    "actors": ["Leo DiCaprio", "Marion Cotillard"],
+    "director": "Christopher Nolan"
+  },
+  {
+    "name": "Desert Mirage",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Desert+Mirage",
+    "rating": 3.9,
+    "actors": ["Brad Pitt", "Natalie Portman"],
+    "director": "Ridley Scott"
+  },
+  {
+    "name": "Urban Chronicles",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Urban+Chronicles",
+    "rating": 4.3,
+    "actors": ["Tom Hardy", "Charlize Theron"],
+    "director": "George Miller"
+  },
+  {
+    "name": "Frozen Tundra",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Frozen+Tundra",
+    "rating": 4.1,
+    "actors": ["Christian Bale", "Emily Blunt"],
+    "director": "Denis Villeneuve"
+  },
+  {
+    "name": "Mystic Lands",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Mystic+Lands",
+    "rating": 4.7,
+    "actors": ["Ryan Gosling", "Emma Stone"],
+    "director": "Damien Chazelle"
+  },
+  {
+    "name": "Galactic Odyssey",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Galactic+Odyssey",
+    "rating": 4.6,
+    "actors": ["Harrison Ford", "Daisy Ridley"],
+    "director": "J.J. Abrams"
+  },
+  {
+    "name": "Eternal Spring",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Eternal+Spring",
+    "rating": 4.5,
+    "actors": ["Hugh Jackman", "Keira Knightley"],
+    "director": "Baz Luhrmann"
+  },
+  {
+    "name": "Shadow's Edge",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Shadow's+Edge",
+    "rating": 4.2,
+    "actors": ["Johnny Depp", "Penelope Cruz"],
+    "director": "Tim Burton"
+  },
+  {
+    "name": "Solar Flare",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Solar+Flare",
+    "rating": 4.9,
+    "actors": ["Robert Downey Jr.", "Scarlett Johansson"],
+    "director": "Jon Favreau"
+  },
+  {
+    "name": "Moonlit Sonata",
+    "imageUrl": "https://via.placeholder.com/200x300?text=Moonlit+Sonata",
+    "rating": 3.8,
+    "actors": ["Benedict Cumberbatch", "Rachel McAdams"],
+    "director": "Scott Derrickson"
+  }
+]

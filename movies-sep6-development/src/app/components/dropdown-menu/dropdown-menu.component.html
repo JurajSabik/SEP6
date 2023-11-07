@@ -1,0 +1,26 @@
+<button mat-icon-button class="main-button" [matMenuTriggerFor]="menu" aria-label="User menu">
+  <img *ngIf="userPhoto; else userInitialsTemplate" [src]="userPhoto" class="avatar user-photo" alt="User Photo">
+  <ng-template #userInitialsTemplate>
+    <div class="avatar user-initials">{{ userInitials }}</div>
+  </ng-template>
+</button>
+<!-- ... rest of your menu ... -->
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>settings</mat-icon>
+    <span>Settings</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>people</mat-icon>
+    <span>Friends</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>dashboards</mat-icon>
+    <span>Dashboard</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="signOut()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

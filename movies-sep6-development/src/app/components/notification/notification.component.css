@@ -1,0 +1,10 @@
+/* If you need additional custom styles */
+.new-notification {
+  font-weight: bold;
+}
+
+/* Style the badge further if needed */
+.mat-badge-content {
+  background-color: red; /* Example color */
+  color: white; /* Color of the text in the badge */
+}

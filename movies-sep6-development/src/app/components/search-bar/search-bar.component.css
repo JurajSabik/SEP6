@@ -1,0 +1,63 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1; /* Allows the container to grow */
+  padding-right: 1em; /* Give some space on the right */
+}
+
+.search-container .search-icon {
+  color: white; /* Set the magnifying glass to white */
+  cursor: pointer;
+  z-index: 2; /* Ensures the icon stays on top during the animation */
+}
+
+.search-container input {
+  background-color: #fff; /* Set the background color of the input */
+  border: 1px solid #ccc; /* Adds a border to the input */
+  border-radius: 2px; /* Rounds the corners of the input */
+  width: 0;
+  opacity: 0;
+  transition: width 1s ease, opacity 1s ease 0s;
+  white-space: nowrap; /* Prevent the input from wrapping */
+  overflow: hidden; /* Hide the overflow when the width is 0 */
+  height: 0; /* Start with no height */
+  padding: 0; /* No padding initially */
+}
+
+.search-container.expanded input {
+  width: 40vw; /* Example for 50% of the viewport width */
+  max-width: 80%; /* Maximum width you want to allow */
+  height: auto; /* Automatically adjust height */
+  opacity: 1;
+  padding: 10px 15px; /* Adjust padding for bigger height */
+  margin: 15px 30px;
+}
+
+/* Login and Signup Button Styling */
+.nav-item {
+  background-color: transparent; /* Set the background color to transparent or any color */
+  border: 1px solid #fff; /* Add border to make it look like a button */
+  font-weight: bold; /* Make the text bold */
+}
+
+.nav-item:hover {
+  background-color: #fff; /* Change background color on hover */
+  color: #333; /* Change text color on hover for contrast */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+  }
+  .nav-items {
+    justify-content: center;
+  }
+  /* Add more styles for mobile view */
+}
+
+/* Consistent Iconography */
+.login-icon, .signup-icon {
+  margin-right: 5px; /* Space before the text */
+}

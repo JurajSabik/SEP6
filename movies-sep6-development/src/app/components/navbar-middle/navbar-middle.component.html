@@ -1,0 +1,23 @@
+<div class="nav-categories">
+  <div class="nav-category-group">
+    <!-- Bind the value to the selectedMediaType property in the component -->
+    <mat-button-toggle-group [value]="selectedMediaType" name="mediaToggle" aria-label="Media Toggle">
+      <mat-button-toggle value="movie" routerLink="/movie">Movies</mat-button-toggle>
+      <mat-button-toggle value="tv" routerLink="/tv">Series</mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="nav-divider"></div> <!-- Divider between toggle buttons and other nav items -->
+    <a class="nav-category" routerLink="/{{selectedMediaType}},'popular'">Popular</a>
+    <a class="nav-category" routerLink="/my-list">My Lists</a>
+  </div>
+  <div class="nav-category-dropdown">
+    <!-- Assign the button a class for styling and add matMenuTriggerFor directive -->
+    <mat-button [matMenuTriggerFor]="genreMenu" class="genre-dropdown-button">Explore by Genre</mat-button>
+    <!-- Add a class to the mat-menu to control its size through CSS if necessary -->
+    <mat-menu #genreMenu="matMenu" class="genre-dropdown-menu">
+      <!-- Use selectedMediaType for dynamic routing -->
+      <button class="genre-dropdown-button-selected" *ngFor="let genre of genres" mat-menu-item [routerLink]="['/' + selectedMediaType]" [queryParams]="{genre: genre.id}" class="genre-menu-item">
+        {{ genre.name }}
+      </button>
+    </mat-menu>
+  </div>
+</div>

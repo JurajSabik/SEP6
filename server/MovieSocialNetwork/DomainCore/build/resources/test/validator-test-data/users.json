@@ -1,0 +1,72 @@
+[
+  {
+    "userId": "2cde18c2-42fd-4f5a-a349-1efad4b13fe2",
+    "username": "user123",
+    "email": "user123@example.com",
+    "birthday": "1990-01-01",
+    "role": "REGULAR"
+  },
+  {
+    "userId": "3d9d5a5e-50a9-4d16-94e6-187de1b9f6d1",
+    "username": "john_doe",
+    "email": "john.doe@example.com",
+    "birthday": "1985-05-05",
+    "role": "PREMIUM"
+  },
+  {
+    "userId": "95f8c7c3-4a95-44e1-8a47-f5e7d32d6407",
+    "username": "jane_doe",
+    "email": "jane.doe@example.com",
+    "birthday": "1987-12-12",
+    "role": "ADMIN"
+  },
+  {
+    "userId": "78f8cd1f-c78e-43f5-9363-f23cda07ad3e",
+    "username": "user456",
+    "email": "user456@example.com",
+    "birthday": "1995-06-15",
+    "role": "REGULAR"
+  },
+  {
+    "userId": "03d5ea85-0a19-4726-9b6f-8f4c31ac4e7f",
+    "username": "mary_smith",
+    "email": "mary.smith@example.com",
+    "birthday": "1988-09-20",
+    "role": "PREMIUM"
+  },
+  {
+    "userId": "a9f70e0b-4f3f-47c2-94e5-90c7d40f9a7e",
+    "username": "user789",
+    "email": "user789@example.com",
+    "birthday": "1998-03-10",
+    "role": "REGULAR"
+  },
+  {
+    "userId": "7a4e8d6e-7e47-4e6e-a25f-d1ecf4f89f79",
+    "username": "admin_user",
+    "email": "admin.user@example.com",
+    "birthday": "1980-11-25",
+    "role": "ADMIN"
+  },
+  {
+    "userId": "e4e19676-d540-43c2-9f59-c4dbf03dcd92",
+    "username": "user101112",
+    "email": "user101112@example.com",
+    "birthday": "2000-02-28",
+    "role": "REGULAR"
+  },
+  {
+    "userId": "1d6a2e9a-f98c-493b-8412-af4b45bb6e70",
+    "username": "mark_johnson",
+    "email": "mark.johnson@example.com",
+    "birthday": "1975-07-08",
+    "role": "PREMIUM"
+  },
+  {
+    "userId": "ba2f0473-0d25-4b27-91a2-d0f94f2a1d5f",
+    "username": "user131415",
+    "email": "user131415@example.com",
+    "birthday": "1992-04-18",
+    "role": "REGULAR"
+  }
+]

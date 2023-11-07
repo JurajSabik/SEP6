@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="#">
+      <img class="logo-app" src="./assets/images/logos/blockbuster-video-logo-black-and-white.png" alt="Company Logo" >
+    </a>
+    <div *ngIf="showMiddleNav">
+      <app-navbar-middle></app-navbar-middle>
+    </div>
+    <div class="nav-items">
+      <!-- Nav Bar Middle -->
+
+      <!-- Search Bar -->
+      <app-search-bar></app-search-bar>
+
+      <!-- Notifications -->
+      <app-notification *ngIf="isLoggedIn"></app-notification>
+
+      <!-- User Dropdown Menu -->
+      <app-dropdown-menu *ngIf="isLoggedIn" [userPhoto]="userPhoto" [userInitials]="userInitials"></app-dropdown-menu>
+
+      <div *ngIf="!isLoggedIn">
+        <a class="nav-item" routerLink="/login">
+          <i class="login-icon fas fa-sign-in-alt"></i> Login
+        </a>
+        <a class="nav-item" routerLink="/signup">
+          <i class="signup-icon fas fa-user-plus"></i> Signup
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>

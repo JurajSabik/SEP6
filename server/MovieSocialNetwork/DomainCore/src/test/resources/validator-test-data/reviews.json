@@ -1,0 +1,82 @@
+[
+  {
+    "reviewId": "736f125c-0ec3-4f01-b60d-ec8f8b25d4a0",
+    "userId": "d9f7d998-7b5d-472a-b54d-8f79a76e4b17",
+    "movieId": "12345",
+    "text": "This movie was absolutely amazing!",
+    "rating": 5,
+    "timestamp": "2023-10-31T18:00:00Z"
+  },
+  {
+    "reviewId": "84c6d1b2-050c-4d85-865f-5f7d8f3d3d0b",
+    "userId": "6a109ca5-8e07-4cf5-b785-441d7d0d1a2e",
+    "movieId": "67890",
+    "text": "Not what I expected. Disappointing.",
+    "rating": 2,
+    "timestamp": "2023-10-30T14:30:00Z"
+  },
+  {
+    "reviewId": "9b8394c2-4e4e-4a5c-96a9-5a1b43ed01c4",
+    "userId": "0e3d31ac-6f18-4701-8a82-d482b503b05a",
+    "movieId": "54321",
+    "text": "Good storyline, but the acting could be better.",
+    "rating": 3,
+    "timestamp": "2023-10-29T11:45:00Z"
+  },
+  {
+    "reviewId": "8a89b7c6-7200-4f1d-9129-53a5ef16d6b2",
+    "userId": "d83e0b98-4db8-4b3f-8de6-7a2a4d175c02",
+    "movieId": "98765",
+    "text": "A masterpiece in every aspect!",
+    "rating": 5,
+    "timestamp": "2023-10-28T09:20:00Z"
+  },
+  {
+    "reviewId": "5e8a7e97-85b0-4868-8e10-3706b7a5a428",
+    "userId": "e4a6a375-4f34-41f1-a71f-75d936b8493e",
+    "movieId": "23456",
+    "text": "Not worth the hype. Disappointed.",
+    "rating": 2,
+    "timestamp": "2023-10-27T08:10:00Z"
+  },
+  {
+    "reviewId": "fe57327a-3f24-40f0-bf26-82ef71d7d3f1",
+    "userId": "c12d4b68-c3f6-45c6-9053-d024131a2413",
+    "movieId": "34567",
+    "text": "An average movie, nothing special.",
+    "rating": 3,
+    "timestamp": "2023-10-26T13:50:00Z"
+  },
+  {
+    "reviewId": "ef7f46c2-0497-4ad7-9a92-42f108a57d1f",
+    "userId": "3e7be2b9-6a46-44ed-b18f-20494d2e5c0b",
+    "movieId": "87654",
+    "text": "It was a decent watch, but forgettable.",
+    "rating": 3,
+    "timestamp": "2023-10-25T12:40:00Z"
+  },
+  {
+    "reviewId": "708fbb82-1cd2-4d97-9dd1-97b70762e9ab",
+    "userId": "ef71e1e7-9335-4f29-84d4-d99379d82832",
+    "movieId": "76543",
+    "text": "A must-watch for every movie enthusiast!",
+    "rating": 4,
+    "timestamp": "2023-10-24T15:15:00Z"
+  },
+  {
+    "reviewId": "1e1d2a02-c7b9-4844-a0f8-4f5ebf8ff6f4",
+    "userId": "f4d86b4e-f6c2-43ed-86d8-d7d5a30bf86d",
+    "movieId": "45678",
+    "text": "Great plot with unexpected twists.",
+    "rating": 4,
+    "timestamp": "2023-10-23T10:55:00Z"
+  },
+  {
+    "reviewId": "8c3a0a24-3f59-45c2-a05e-3cf1a5c590e2",
+    "userId": "b5b853eb-35d4-4ef1-aa92-2a51520169a3",
+    "movieId": "98765",
+    "text": "Disappointing. Not worth the time.",
+    "rating": 2,
+    "timestamp": "2023-10-22T17:30:00Z"
+  }
+]

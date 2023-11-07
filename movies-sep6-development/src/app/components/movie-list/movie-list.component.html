@@ -1,0 +1,39 @@
+<div class="movie-list">
+
+  <!-- Featured Movie -->
+  <div *ngIf="items && items.length" class="featured-movie-container">
+    <a [routerLink]="['/' + contentMode, items[0].id]" class="featured-movie">
+      <div class="featured-movie-background"
+           [style.background-image]="'url(https://image.tmdb.org/t/p/original' + items[0].backdrop_path + ')'">
+        <div class="featured-movie-title">
+          <h1>{{ items[0].title ?? items[0].name }}</h1> <!-- Series use name instead of title -->
+          <div class="featured-ranking">
+            <div class="rating-stars">
+              <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                <i [class]="getStarType(items[0].vote_average, i + 1)"></i>
+              </ng-container>
+            </div>
+          </div>
+          <div class="featured-description">{{ items[0].overview }}</div>
+          <div class="featured-buttons">
+            <button class="btn btn-play">Play</button>
+            <button class="btn btn-info" [routerLink]="['/' + contentMode, items[0].id]">More Info</button>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- List of movies excluding the first one -->
+  <div class="movie-row">
+    <ng-container *ngFor="let movie of items; let i = index">
+      <!-- Exclude the first movie from this list and check for poster_path -->
+      <div *ngIf="i !== 0 && movie.poster_path" class="movie-details-container">
+        <!-- Main movie details section, only shown if movie has a poster_path -->
+        <a [routerLink]="['/' + contentMode, movie.id]" class="main-details">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+        </a>
+      </div>
+    </ng-container>
+  </div>
+</div>

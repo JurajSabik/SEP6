@@ -1,0 +1,35 @@
+/* Common styles for both photos and initials to make them circular */
+.avatar {
+  width: 40px;  /* Set a fixed width */
+  height: 40px; /* Set a fixed height to maintain aspect ratio for a circle */
+  border-radius: 50%; /* Makes the element round */
+  overflow: hidden; /* Ensures nothing goes outside the circular boundary */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; /* Makes background transparent for images */
+}
+
+/* Style specifically for the user photo */
+.user-photo {
+  object-fit: cover; /* Ensures the image covers the area without losing aspect ratio */
+}
+
+/* Additional styling for initials */
+.user-initials {
+  background-color: #fff; /* White background for initials */
+  color: #000; /* Black text color */
+  font-size: 16px; /* Adjust the font size as needed */
+  font-weight: bold; /* Makes initials bold */
+}
+
+.main-button {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+/*  set hand when mouve over*/
+  cursor: pointer;
+  outline: none;
+}

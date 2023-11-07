@@ -1,0 +1,78 @@
+/* Base navbar styles */
+.navbar {
+  background-color: #141414; /* Dark background for contrast */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.5); /* Subtle shadow for depth */
+  font-family: 'Roboto', sans-serif; /* Roboto for modern look */
+}
+
+/* Category group and item styles */
+.nav-categories {
+  display: flex;
+  align-items: center;
+}
+
+.nav-category-group {
+  display: flex;
+  align-items: center;
+}
+
+.nav-category,
+.genre-dropdown-button{
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 16px; /* Consistent font size for all text */
+}
+
+.nav-category:hover,
+.genre-dropdown-button:hover
+.mat-button-toggle:hover {
+  color: #e50914; /* Netflix red for hover state */
+  background-color: #2c2c2c; /* Slightly lighter background for items on hover */
+}
+
+.mat-button-toggle{
+  color: #ffffff;
+}
+
+/* Active class for current page */
+.nav-category.active,
+.mat-button-toggle-checked {
+  font-weight: 500; /* Slightly bolder */
+}
+
+/* Divider styles */
+.nav-divider {
+  height: 24px;
+  width: 1px;
+  background-color: #ffffff;
+  margin: 0 20px;
+}
+
+/* Button toggle group and toggle styles */
+mat-button-toggle-group {
+  display: flex;
+  align-items: center;
+}
+
+mat-button-toggle,
+mat-button-toggle-checked {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+
+
+::ng-deep .cdk-overlay-pane {
+  max-height: 350px !important;
+}

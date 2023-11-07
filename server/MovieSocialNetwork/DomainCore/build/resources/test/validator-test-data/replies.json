@@ -1,0 +1,92 @@
+[
+  {
+    "replyId": "b496e146-431e-45f3-9e7c-3f4db3881f57",
+    "text": "Thank you for your feedback!",
+    "userId": "b956d3e5-8fe9-441f-9d33-c62b8f1e5b4d",
+    "toUserId": "19a6a33f-1189-4e29-9b1a-3149f85f986e",
+    "commentId": "8b4c48f5-6703-4e99-ba3c-53c49b16b899",
+    "timestamp": "2023-10-31T12:45:00Z",
+    "upVotes": 5,
+    "downVotes": 0
+  },
+  {
+    "replyId": "d6dcb4c5-f2fc-4e26-9989-6ad8f4d3cc70",
+    "text": "We apologize for any inconvenience caused.",
+    "userId": "5eb21c17-9a22-4a27-8e70-06b6a5b858f1",
+    "toUserId": "ccbc3209-28c5-4296-9a16-4e40c2d872f8",
+    "commentId": "3d0ecb6b-1f43-4055-9cf7-3cd9b2dd6665",
+    "timestamp": "2023-10-30T14:00:00Z",
+    "upVotes": 2,
+    "downVotes": 0
+  },
+  {
+    "replyId": "7157cde6-24f7-49f4-8c09-f2f47a4136ee",
+    "text": "We appreciate your valuable input!",
+    "userId": "4a4a7e74-6494-4e86-bd19-7983b134a5ec",
+    "toUserId": "0f66f4e1-54f6-4138-a7e3-731c96d14776",
+    "commentId": "f7c918c2-ef1d-47b2-b16d-0fcf9d4690e4",
+    "timestamp": "2023-10-29T10:15:00Z",
+    "upVotes": 3,
+    "downVotes": 0
+  },
+  {
+    "replyId": "0a24a0f1-d53c-47ec-a9b7-101ba2f6e63e",
+    "text": "We will work on improving our services.",
+    "userId": "b0d4ccaa-c1cf-4431-97cc-7ab4383f5ec8",
+    "toUserId": "6a6a2b6e-647d-46c3-89c6-5eaa2becc3f8",
+    "commentId": "e9900a59-dde5-4c5a-94a5-bb78a53d9e0c",
+    "timestamp": "2023-10-28T11:30:00Z",
+    "upVotes": 1,
+    "downVotes": 0
+  },
+  {
+    "replyId": "f4b5a9cc-5f29-4961-9573-50c4dab0d0b6",
+    "text": "Your satisfaction is our top priority!",
+    "userId": "b5e45c06-206e-4373-9a3a-40ac177af3f5",
+    "toUserId": "982b493e-e063-4645-80ab-99e10ef80b14",
+    "commentId": "ebd9b2d7-91e3-4c67-8e58-4c06cc055029",
+    "timestamp": "2023-10-27T13:20:00Z",
+    "upVotes": 0,
+    "downVotes": 0
+  },
+  {
+    "replyId": "8f3e1a60-4294-40c2-8f05-431477b80c8f",
+    "text": "We understand your concerns and are taking them seriously.",
+    "userId": "b81f33f6-c2fc-4e26-9d7e-5e9f58f9e4d5",
+    "toUserId": "d9f7d998-7b5d-472a-b54d-8f79a76e4b17",
+    "commentId": "84c6d1b2-050c-4d85-865f-5f7d8f3d3d0b",
+    "timestamp": "2023-10-26T09:50:00Z",
+    "upVotes": 0,
+    "downVotes": 0
+  },
+  {
+    "replyId": "d7da2895-7e19-409d-9fb2-7c34d9ff8ec2",
+    "text": "We appreciate your honest feedback.",
+    "userId": "6a109ca5-8e07-4cf5-b785-441d7d0d1a2e",
+    "toUserId": "0e3d31ac-6f18-4701-8a82-d482b503b05a",
+    "commentId": "9b8394c2-4e4e-4a5c-96a9-5a1b43ed01c4",
+    "timestamp": "2023-10-25T15:40:00Z",
+    "upVotes": 0,
+    "downVotes": 0
+  },
+  {
+    "replyId": "fe3a8536-4b09-4787-b279-6d047c1b0a5f",
+    "text": "We will take your suggestions into consideration for future improvements.",
+    "userId": "d83e0b98-4db8-4b3f-8de6-7a2a4d175c02",
+    "toUserId": "e4a6a375-4f34-41f1-a71f-75d936b8493e",
+    "commentId": "5e8a7e97-85b0-4868-8e10-3706b7a5a428",
+    "timestamp": "2023-10-24T12:15:00Z",
+    "upVotes": 0,
+    "downVotes": 0
+  },
+  {
+    "replyId": "f47ce7b4-07d3-4f83-a62d-3e9d6bb097d7",
+    "text": "We are sorry to hear about your experience. We will investigate the matter further.",
+    "userId": "c12d4b68-c3f6-45c6-9053-d024131a2413",
+    "toUserId": "3e7be2b9-6a46-44ed-b18f-20494d2e5c0b",
+    "commentId": "fe57327a-3f24-40f0-bf26-82ef71d7d3f1",
+    "timestamp": "2023-10-23T16:25:00Z",
+    "upVotes": 0,
+    "downVotes": 0
+  }
+]
