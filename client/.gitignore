@@ -40,32 +40,3 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-
-
-# Environment configuration files
-*.env
-
-# Angular files
-*.log
-/angular
-/angular-cache
-
-# Dependency directories
-bower_components/
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variables file
-.env
-.env.test
-
-# System Files
-*.swp
-*~
-.DS_Store
-
-/server-socket/

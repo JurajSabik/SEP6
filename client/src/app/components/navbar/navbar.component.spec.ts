@@ -15,7 +15,7 @@ describe('NavbarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [NavbarComponent],
       providers: [
-        { provide: AuthService, useValue: mockAuthService } 
+        { provide: AuthService, useValue: mockAuthService }
       ]
     });
 

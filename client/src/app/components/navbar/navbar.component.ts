@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  menuOpen = false;
   isLoggedIn = false;
   userPhoto: string | null = null;
   showMiddleNav = true;
@@ -40,5 +41,8 @@ export class NavbarComponent {
     if (this.searchExpandedSubscription) {
       this.searchExpandedSubscription.unsubscribe();
     }
+  }
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
 }

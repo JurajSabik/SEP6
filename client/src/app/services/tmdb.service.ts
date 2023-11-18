@@ -66,4 +66,16 @@ export class TmdbService {
     let params = new HttpParams().set('query', query);
     return this.http.get(`${BASE_URL}search/${type}?api_key=${API_KEY}`, { params });
   }
+
+  getActorDetails(actorId: number | null): Observable<any> {
+    return this.http.get(`${BASE_URL}person/${actorId}?api_key=${API_KEY}`);
+  }
+
+  getActorPhotos(actorId: number | null): Observable<any> {
+    return this.http.get(`${BASE_URL}person/${actorId}/images?api_key=${API_KEY}`);
+  }
+
+  getActorMovies(actorId: number | null): Observable<any> {
+    return this.http.get(`${BASE_URL}person/${actorId}/movie_credits?api_key=${API_KEY}`);
+  }
 }

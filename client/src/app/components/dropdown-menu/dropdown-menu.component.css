@@ -33,3 +33,13 @@
   cursor: pointer;
   outline: none;
 }
+
+@media (max-width: 768px) {
+  .main-button {
+    width: auto;
+    margin: 10px 0;
+  }
+  ::ng-deep .cdk-overlay-pane {
+    max-width: 100% !important;
+  }
+}

@@ -1,59 +1,70 @@
 <router-outlet>
-<div class="container">
-<div class="movie-details-container" *ngIf="movie">
-  <div class="background-test" [ngStyle]="{'background-image': 'url(' + (backgroundImageUrl ? backgroundImageUrl : 'assets/images/default-background.jpg') + ')'}"></div>
-    <div class="padding-container">
-      <section class="main-details">
-        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
-        <div class="text-details">
-          <h1>{{ movie.title ?? movie.name}}</h1>
-          <p>{{ movie.overview }}</p>
-          <div *ngIf="director && director.length && director[0].profile_path !== null">
-            <p><strong>Director</strong> {{ movie.director }}</p>
-          </div>
-          <div class="director" *ngIf="director && director.length && director[0].profile_path !== null ">
-            <div class="actor-card" *ngFor="let dir of director | slice:0:8">
-              <!-- Only show image if dir.profile_path exists -->
-              <img *ngIf="dir.profile_path" [src]="'https://image.tmdb.org/t/p/w200' + dir.profile_path" alt="{{ dir.name }}">
-              <h3>{{ dir.name }}</h3>
+  <div class="container">
+    <div *ngIf="isLoading" class="loading-indicator">Loading...</div>
+    <div *ngIf="!isLoading">
+      <div class="movie-details-container" *ngIf="movie">
+        <div class="background-test"
+             [ngStyle]="{'background-image': backgroundImageUrl ? 'url(' + backgroundImageUrl + ')' : null}">
+        </div>
+        <div class="padding-container">
+          <section class="main-details">
+            <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+            <div class="text-details">
+              <h1>{{ movie.title ?? movie.name}}</h1>
+              <p>{{ movie.overview }}</p>
+              <div *ngIf="director && director.length && director[0].profile_path !== null">
+                <p><strong>Director</strong> {{ movie.director }}</p>
+              </div>
+              <div class="director" *ngIf="director && director.length && director[0].profile_path !== null ">
+                <div class="actor-card" *ngFor="let dir of director | slice:0:8">
+                  <!-- Only show image if dir.profile_path exists -->
+                  <img *ngIf="dir.profile_path" [src]="'https://image.tmdb.org/t/p/w200' + dir.profile_path"
+                       alt="{{ dir.name }}">
+                  <h3>{{ dir.name }}</h3>
+                </div>
+              </div>
+
+              <p><strong>Duration:</strong> {{ movie.runtime }} minutes</p>
+              <p><strong>Release Date:</strong> {{ movie.release_date | date:'longDate' }}</p>
+              <p><strong>Rating:</strong> {{ movie.vote_average }} / 10</p>
+              <!-- Include additional movie information as needed -->
             </div>
-          </div>
+          </section>
 
-          <p><strong>Duration:</strong> {{ movie.runtime }} minutes</p>
-          <p><strong>Release Date:</strong> {{ movie.release_date | date:'longDate' }}</p>
-          <p><strong>Rating:</strong> {{ movie.vote_average }} / 10</p>
-          <!-- Include additional movie information as needed -->
+
+          <h2>Cast</h2>
+          <!-- Actor cards section with a limit to 10 actors -->
+          <section class="actors-grid">
+            <div *ngFor="let actor of actors | slice:0:8">
+              <!-- Only show actor card if actor.profile_path exists -->
+              <div class="actor-card" *ngIf="actor.profile_path">
+                <a [routerLink]="['/actor', actor.id]">
+                  <img [src]="'https://image.tmdb.org/t/p/w200' + actor.profile_path" routerLinkActive="active"
+                       alt="{{ actor.name }}">
+                </a>
+                <h3>{{ actor.name }}</h3>
+
+              </div>
+            </div>
+          </section>
+
+
+          <h2>Related {{selectedMediaType.includes('tv') ? 'TV Shows' : 'Movies'}}</h2>
+          <!-- Section for related movies with a limit to 5 movies -->
+          <section class="related-movies" *ngIf="relatedMovies && relatedMovies.length">
+            <div *ngFor="let relatedMovie of relatedMovies | slice:0:16">
+              <!-- Only show related movie card if relatedMovie.poster_path exists -->
+              <div class="related-movie-card" *ngIf="relatedMovie.poster_path">
+                <a [routerLink]="['/' + selectedMediaType, relatedMovie.id]">
+                <img [src]="'https://image.tmdb.org/t/p/w200' + relatedMovie.poster_path" routerLinkActive="active"
+                     alt="{{ relatedMovie.title }}">
+              </a>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
-
-
-      <h2>Cast</h2>
-      <!-- Actor cards section with a limit to 10 actors -->
-      <section class="actors-grid">
-        <div *ngFor="let actor of actors | slice:0:8">
-          <!-- Only show actor card if actor.profile_path exists -->
-          <div class="actor-card" *ngIf="actor.profile_path">
-            <img [src]="'https://image.tmdb.org/t/p/w200' + actor.profile_path" alt="{{ actor.name }}">
-            <h3>{{ actor.name }}</h3>
-          </div>
-        </div>
-      </section>
-
-
-      <h2>Related {{selectedMediaType.includes('tv') ? 'TV Shows' : 'Movies'}}</h2>
-      <!-- Section for related movies with a limit to 5 movies -->
-      <section class="related-movies" *ngIf="relatedMovies && relatedMovies.length">
-        <div *ngFor="let relatedMovie of relatedMovies | slice:0:16">
-          <!-- Only show related movie card if relatedMovie.poster_path exists -->
-          <div class="related-movie-card" *ngIf="relatedMovie.poster_path">
-            <a [routerLink]="['/' + selectedMediaType, relatedMovie.id]">
-              <img [src]="'https://image.tmdb.org/t/p/w200' + relatedMovie.poster_path"  routerLinkActive="active" alt="{{ relatedMovie.title }}">
-            </a>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   </div>
-</div>
 </router-outlet>
 

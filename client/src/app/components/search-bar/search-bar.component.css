@@ -61,3 +61,14 @@
 .login-icon, .signup-icon {
   margin-right: 5px; /* Space before the text */
 }
+
+@media (max-width: 768px) {
+  .search-container {
+    order: -1; /* Move search to the top */
+    width: 100%;
+    justify-content: center;
+  }
+  .search-container.expanded input {
+    width: 80%; /* Smaller width for mobile */
+  }
+}

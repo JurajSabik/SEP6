@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'tv', component: MovieListComponent },
   { path: 'tv/:id', component: MovieDetailComponent },
   { path: 'credits/:id', component: ActorDetailsComponent },
+  { path: 'actor/:id', component: ActorDetailsComponent },
 
 ];
 
