@@ -6,7 +6,7 @@ import java.sql.Timestamp
 import java.time.LocalDateTime
 
 class ReviewValidator : Validator<Review> {
-  override fun validate(entity: Review) {
+  override suspend fun validate(entity: Review) {
     val errors = mutableListOf<String>()
     val ratingMin = 0
     val ratingMax = 5

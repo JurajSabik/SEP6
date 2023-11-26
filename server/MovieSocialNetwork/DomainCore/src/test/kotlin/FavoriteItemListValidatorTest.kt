@@ -1,3 +1,4 @@
+import kotlinx.coroutines.runBlocking
 import models.Comment
 import models.FavoriteItemList
 import org.junit.jupiter.api.Assertions.*
@@ -23,7 +24,7 @@ class FavoriteItemListValidatorTest {
   @ParameterizedTest
   @MethodSource("getStreamOfFavoriteItemLists")
   fun shouldValidateWithoutThrowing(favoriteItemList: FavoriteItemList) {
-    assertDoesNotThrow { favoriteItemListValidator.validate(favoriteItemList) }
+    assertDoesNotThrow { runBlocking {  favoriteItemListValidator.validate(favoriteItemList) }}
   }
 
   companion object {
@@ -42,7 +43,7 @@ class FavoriteItemListValidatorTest {
       timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1))
     )
     val exception = assertThrows(ValidationException::class.java) {
-      favoriteItemListValidator.validate(invalidList)
+      runBlocking {  favoriteItemListValidator.validate(invalidList) }
     }
 
     assertTrue(exception.message!!.contains("FavoriteItemListValidator"))

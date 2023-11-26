@@ -10,7 +10,7 @@ import kotlin.collections.HashSet
 @Entity
 @NoArgConstructor
 @Table(name = "USERS")
-class UserEntity(
+ class UserEntity(
   @Id
   @Column(name = "userId")
   val userId: UUID,

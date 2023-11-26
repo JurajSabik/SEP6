@@ -18,82 +18,68 @@ class UserController(private val userRepo: UserPersistenceService) {
   private val userService: UserService = UserService(userRepo)
 
   @GetMapping("/{userId}")
-  fun getUserById(@PathVariable userId: UUID): ResponseEntity<User> {
-    try {
+  suspend fun getUserById(@PathVariable userId: UUID): ResponseEntity<User> {
+    return try {
       val user = userRepo.getUserById(userId)
-      return ResponseEntity.ok(user)
+      ResponseEntity.ok(user)
     } catch (e: ResourceNotFoundException) {
-      throw ResponseStatusException(
-        HttpStatus.NOT_FOUND, e.message
-      )
+      ResponseEntity.notFound().build()
     }
   }
 
   @PostMapping()
-  fun createUser(@RequestBody user: User): ResponseEntity<User> {
+  suspend fun createUser(@RequestBody user: User): ResponseEntity<User> {
     val createdUser = userService.createUser(user)
     return ResponseEntity(createdUser, HttpStatus.CREATED)
   }
 
   @PutMapping()
-  fun updateUser(@RequestBody user: User): ResponseEntity<String> {
-    try {
+  suspend fun updateUser(@RequestBody user: User): ResponseEntity<String> {
+    return try {
       userService.updateUser(user)
+      ResponseEntity.ok().build()
     } catch (e: ValidationException) {
-      throw ResponseStatusException(
-        HttpStatus.BAD_REQUEST, e.message
-      )
+      ResponseEntity.badRequest().build()
     } catch (e: ResourceNotFoundException) {
-      throw ResponseStatusException(
-        HttpStatus.NOT_FOUND, e.message
-      )
+      ResponseEntity.notFound().build()
     }
-
-    return ResponseEntity.ok().build()
   }
 
   @DeleteMapping("/{userId}")
-  fun deleteUser(@PathVariable userId: UUID): ResponseEntity<Void> {
-    try {
+  suspend fun deleteUser(@PathVariable userId: UUID): ResponseEntity<Void> {
+    return try {
       userRepo.deleteUser(userId)
-      return ResponseEntity.ok().build()
+      ResponseEntity.ok().build()
     } catch (e: ResourceNotFoundException) {
-      throw ResponseStatusException(
-        HttpStatus.NOT_FOUND, e.message
-      )
+      ResponseEntity.notFound().build()
     }
   }
 
   @PutMapping("follow/{userId}/{followerId}")
-  fun addFollowerForUser(@PathVariable userId: UUID, @PathVariable followerId: UUID) {
-    try {
+  suspend fun addFollowerForUser(@PathVariable userId: UUID, @PathVariable followerId: UUID): ResponseEntity<Void> {
+    return try {
       userService.followOtherUser(userId, followerId)
+      ResponseEntity.ok().build()
     } catch (e: ResourceNotFoundException) {
-      throw ResponseStatusException(
-        HttpStatus.NOT_FOUND, e.message
-      )
+      ResponseEntity.notFound().build()
     }
   }
 
   @GetMapping("followers/{userId}")
-  fun getFollowers(@PathVariable userId: UUID): ResponseEntity<List<FollowerDto>> {
-    try {
-      return ResponseEntity(userService.getFollowers(userId), HttpStatus.OK)
+  suspend fun getFollowers(@PathVariable userId: UUID): ResponseEntity<List<FollowerDto>> {
+    return try {
+      ResponseEntity(userService.getFollowers(userId), HttpStatus.OK)
     } catch (e: ResourceNotFoundException) {
-      throw ResponseStatusException(
-        HttpStatus.NOT_FOUND, e.message
-      )
+      ResponseEntity.notFound().build()
     }
   }
 
   @GetMapping("following/{userId}")
-  fun getFollowing(@PathVariable userId: UUID): ResponseEntity<List<FollowerDto>> {
-    try {
-      return ResponseEntity(userService.getFollowing(userId), HttpStatus.OK)
+  suspend fun getFollowing(@PathVariable userId: UUID): ResponseEntity<List<FollowerDto>> {
+    return try {
+      ResponseEntity(userService.getFollowing(userId), HttpStatus.OK)
     } catch (e: ResourceNotFoundException) {
-      throw ResponseStatusException(
-        HttpStatus.NOT_FOUND, e.message
-      )
+      ResponseEntity.notFound().build()
     }
   }
 }

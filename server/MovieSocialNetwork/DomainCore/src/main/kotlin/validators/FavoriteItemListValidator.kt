@@ -6,7 +6,7 @@ import java.sql.Timestamp
 import java.time.LocalDateTime
 
 class FavoriteItemListValidator : Validator<FavoriteItemList> {
-  override fun validate(entity: FavoriteItemList) {
+  override suspend fun validate(entity: FavoriteItemList) {
     val errors = mutableListOf<String>()
     if (entity.name.isBlank()) errors.add("List name must not be blank.")
     if (entity.items.isEmpty()) errors.add("The list must contain at least one item.")

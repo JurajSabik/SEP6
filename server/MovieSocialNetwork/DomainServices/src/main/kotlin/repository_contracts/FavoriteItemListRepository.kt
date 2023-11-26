@@ -5,8 +5,8 @@ import models.Movie
 import java.util.UUID
 
 interface FavoriteItemListRepository{
-  fun createFavoriteMovieList(favoriteItemList: FavoriteItemList)
-  fun updateFavoriteItemList(favoriteItemList: FavoriteItemList)
-  fun deleteFavoriteItemList(listId: UUID)
-  fun getFavoriteItemListById(listId: UUID): FavoriteItemList?
+  suspend fun createFavoriteMovieList(favoriteItemList: FavoriteItemList)
+  suspend fun updateFavoriteItemList(favoriteItemList: FavoriteItemList)
+  suspend fun deleteFavoriteItemList(listId: UUID)
+  suspend fun getFavoriteItemListById(listId: UUID): FavoriteItemList?
 }

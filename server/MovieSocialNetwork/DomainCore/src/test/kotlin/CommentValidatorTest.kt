@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import kotlinx.coroutines.runBlocking
 import models.Comment
 import org.apache.commons.lang3.RandomStringUtils
 import org.junit.jupiter.api.Assertions.*
@@ -27,12 +28,12 @@ class CommentValidatorTest {
   @ParameterizedTest
   @MethodSource("getStreamOfComments")
   fun shouldValidateWithoutThrowing(comment: Comment) {
-    assertDoesNotThrow { commentValidator.validate(comment) }
+    assertDoesNotThrow { runBlocking {   commentValidator.validate(comment) } }
   }
 
   companion object {
     @JvmStatic
-    fun getStreamOfComments(): Stream<Comment> {
+     fun getStreamOfComments(): Stream<Comment> {
       return getStreamOfDomainModels("comments.json")
     }
   }
@@ -48,7 +49,7 @@ class CommentValidatorTest {
     )
     val validator = CommentValidator()
     val exception = assertThrows(ValidationException::class.java) {
-      validator.validate(invalidComment)
+      runBlocking {   validator.validate(invalidComment) }
     }
 
     assertTrue(exception.message!!.contains("CommentValidator"))

@@ -1,3 +1,4 @@
+import kotlinx.coroutines.runBlocking
 import models.User
 import models.enums.UserRole
 import org.apache.commons.lang3.RandomStringUtils
@@ -22,7 +23,7 @@ class UserValidatorTest {
   @ParameterizedTest
   @MethodSource("getStreamOfUsers")
   fun shouldValidateWithoutThrowing(user: User) {
-    Assertions.assertDoesNotThrow { userValidator.validate(user) }
+    Assertions.assertDoesNotThrow { runBlocking { userValidator.validate(user) } }
   }
 
   companion object {
@@ -41,7 +42,7 @@ class UserValidatorTest {
       role = UserRole.STANDARD_USER
     )
     val exception = Assertions.assertThrows(ValidationException::class.java) {
-      userValidator.validate(invalidUserOne)
+      runBlocking { userValidator.validate(invalidUserOne) }
     }
 
     Assertions.assertTrue(exception.message!!.contains("UserValidator"))
@@ -56,7 +57,7 @@ class UserValidatorTest {
       role = UserRole.STANDARD_USER
     )
     val exceptionTwo = Assertions.assertThrows(ValidationException::class.java) {
-      userValidator.validate(invalidUserTwo)
+      runBlocking { userValidator.validate(invalidUserTwo) }
     }
 
     Assertions.assertTrue(exceptionTwo.message!!.contains("UserValidator"))

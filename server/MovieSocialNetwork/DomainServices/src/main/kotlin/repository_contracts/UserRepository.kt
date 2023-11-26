@@ -5,11 +5,11 @@ import java.util.*
 import kotlin.collections.HashSet
 
 interface UserRepository {
-  fun createUser(user: User): User
-  fun updateUser(user: User)
-  fun deleteUser(userId: UUID)
-  fun getUserById(userId: UUID): User?
-  fun addFollower(userId: UUID, followerId: UUID)
-  fun getFollowers(userId: UUID): List<User>?
-  fun getFollowing(userId: UUID): List<User>?
+  suspend fun createUser(user: User): User
+  suspend fun updateUser(user: User)
+  suspend fun deleteUser(userId: UUID)
+  suspend fun getUserById(userId: UUID): User?
+  suspend fun addFollower(userId: UUID, followerId: UUID)
+  suspend fun getFollowers(userId: UUID): List<User>?
+  suspend fun getFollowing(userId: UUID): List<User>?
 }

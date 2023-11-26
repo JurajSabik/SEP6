@@ -1,3 +1,4 @@
+import kotlinx.coroutines.runBlocking
 import models.Comment
 import models.FavoriteItemList
 import models.Reply
@@ -26,7 +27,7 @@ class ReplyValidatorTest {
   @ParameterizedTest
   @MethodSource("getStreamOfFavoriteItemLists")
   fun shouldValidateWithoutThrowing(reply: Reply) {
-    assertDoesNotThrow { replyValidator.validate(reply) }
+    assertDoesNotThrow { runBlocking {   replyValidator.validate(reply) }}
   }
 
   companion object {
@@ -46,7 +47,7 @@ class ReplyValidatorTest {
       timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1))
     )
     val exception = assertThrows(ValidationException::class.java) {
-      replyValidator.validate(invalidReply)
+      runBlocking {  replyValidator.validate(invalidReply) }
     }
 
     assertTrue(exception.message!!.contains("ReplyValidator"))

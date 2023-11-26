@@ -11,25 +11,25 @@ class UserService(
   @NotNull private val repository: UserRepository,
   private val validator: UserValidator = UserValidator()
 ) {
-  fun createUser(user: User): User {
+  suspend fun createUser(user: User): User {
     validator.validate(user)
     return repository.createUser(user)
   }
 
-  fun updateUser(user: User) {
+  suspend fun updateUser(user: User) {
     validator.validate(user)
     repository.updateUser(user)
   }
 
-  fun followOtherUser(userId: UUID, followingId: UUID) {
+  suspend fun followOtherUser(userId: UUID, followingId: UUID) {
     repository.addFollower(userId, followingId)
   }
 
-  fun getFollowing(userId: UUID): List<FollowerDto> {
+  suspend fun getFollowing(userId: UUID): List<FollowerDto> {
     return repository.getFollowing(userId)!!.map { user -> FollowerDto(user.userId, user.username) }
   }
 
-  fun getFollowers(userId: UUID): List<FollowerDto> {
+  suspend fun getFollowers(userId: UUID): List<FollowerDto> {
     return repository.getFollowers(userId)!!.map { user -> FollowerDto(user.userId, user.username) }
   }
 }

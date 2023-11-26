@@ -6,7 +6,7 @@ import validators.exceptions.ValidationException
 import java.time.LocalDate
 
 class UserValidator : Validator<User> {
-  override fun validate(entity: User) {
+  override suspend fun validate(entity: User) {
     val errors = mutableListOf<String>()
     val emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$".toRegex()
     val maxUsernameCharacters = 20

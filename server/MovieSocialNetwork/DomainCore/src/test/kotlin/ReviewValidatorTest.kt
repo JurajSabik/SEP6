@@ -1,3 +1,4 @@
+import kotlinx.coroutines.runBlocking
 import models.Review
 import org.apache.commons.lang3.RandomStringUtils
 import org.junit.jupiter.api.Assertions
@@ -23,7 +24,7 @@ class ReviewValidatorTest {
   @ParameterizedTest
   @MethodSource("getStreamOfReviews")
   fun shouldValidateWithoutThrowing(review: Review) {
-    Assertions.assertDoesNotThrow { reviewValidator.validate(review) }
+    Assertions.assertDoesNotThrow { runBlocking {   reviewValidator.validate(review) } }
   }
 
   companion object {
@@ -43,7 +44,7 @@ class ReviewValidatorTest {
       timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1))
     )
     val exception = Assertions.assertThrows(ValidationException::class.java) {
-      reviewValidator.validate(invalidReview)
+      runBlocking { reviewValidator.validate(invalidReview) }
     }
 
     Assertions.assertTrue(exception.message!!.contains("ReviewValidator"))

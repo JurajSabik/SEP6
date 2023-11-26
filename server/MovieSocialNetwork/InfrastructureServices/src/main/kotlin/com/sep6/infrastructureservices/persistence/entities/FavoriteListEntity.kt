@@ -2,8 +2,7 @@ package com.sep6.infrastructureservices.persistence.entities
 
 import jakarta.persistence.*
 import models.FavoriteItemList
-import models.Item
-import models.User
+
 import java.sql.Timestamp
 import java.util.*
 

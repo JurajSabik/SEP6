@@ -4,8 +4,8 @@ import models.Comment
 import java.util.*
 
 interface CommentRepository {
-  fun createComment(comment: Comment)
-  fun updateComment(comment: Comment)
-  fun deleteComment(commentId: UUID)
-  fun getCommentById(commentId: UUID): Comment?
+  suspend fun createComment(comment: Comment)
+  suspend fun updateComment(comment: Comment)
+  suspend fun deleteComment(commentId: UUID)
+  suspend fun getCommentById(commentId: UUID): Comment?
 }
