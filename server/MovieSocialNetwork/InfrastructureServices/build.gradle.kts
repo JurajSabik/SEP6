@@ -33,6 +33,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-websocket")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation ("io.github.oshai:kotlin-logging-jvm:5.1.0")
   implementation(project(mapOf("path" to ":DomainServices")))
   implementation(project(mapOf("path" to ":DomainCore")))
   implementation(project(mapOf("path" to ":ApplicationServices")))

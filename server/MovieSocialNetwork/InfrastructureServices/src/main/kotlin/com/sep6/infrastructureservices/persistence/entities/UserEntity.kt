@@ -15,6 +15,9 @@ import kotlin.collections.HashSet
   @Column(name = "userId")
   val userId: UUID,
 
+  @Column(name = "externalId", nullable = true)
+  val externalId: String?,
+
   @Column(name = "username", nullable = false, unique = true)
   val username: String,
 
@@ -53,6 +56,7 @@ import kotlin.collections.HashSet
 ) {
   constructor(user: User) : this(
     user.userId,
+    user.externalId,
     user.username,
     user.email,
     user.birthday,
@@ -60,7 +64,7 @@ import kotlin.collections.HashSet
   )
 
   constructor(otherUserId: UUID) : this(
-    otherUserId, "", "", LocalDate.now(), UserRole.STANDARD_USER
+    otherUserId, null,"", "", LocalDate.now(), UserRole.STANDARD_USER
   )
 
   fun mapToDomain(): User {

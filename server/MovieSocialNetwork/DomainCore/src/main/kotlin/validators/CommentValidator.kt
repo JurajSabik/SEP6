@@ -23,6 +23,7 @@ class CommentValidator : Validator<Comment> {
 
       if (entity.timestamp.after(Timestamp.valueOf(LocalDateTime.now()))) errors.add("Timestamp cannot be in the future.")
     }
+
     if (errors.isNotEmpty()) {
       throw ValidationException(errors, "CommentValidator")
     }

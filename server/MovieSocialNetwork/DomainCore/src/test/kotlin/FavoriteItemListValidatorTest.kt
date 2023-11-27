@@ -1,5 +1,4 @@
 import kotlinx.coroutines.runBlocking
-import models.Comment
 import models.FavoriteItemList
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -35,12 +34,14 @@ class FavoriteItemListValidatorTest {
   }
 
   @Test
-  fun testValidationExceptionMessage(): Unit {
+  fun testValidationExceptionMessage() {
     val invalidList = FavoriteItemList(
       name = "",
       userId = UUID.randomUUID(),
       items = listOf(),
-      timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1))
+      timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1)),
+      upVotes = -1,
+      downVotes = -5
     )
     val exception = assertThrows(ValidationException::class.java) {
       runBlocking {  favoriteItemListValidator.validate(invalidList) }
@@ -49,6 +50,7 @@ class FavoriteItemListValidatorTest {
     assertTrue(exception.message!!.contains("FavoriteItemListValidator"))
     assertTrue(exception.message!!.contains("List name must not be blank."))
     assertTrue(exception.message!!.contains("The list must contain at least one item."))
+    assertTrue(exception.message!!.contains("Upvotes and Downvotes cannot have a negative value."))
     assertTrue(exception.message!!.contains("Timestamp cannot be in the future."))
   }
 }
