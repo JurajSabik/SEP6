@@ -10,9 +10,13 @@
     <mat-icon>settings</mat-icon>
     <span>Settings</span>
   </button>
-  <button mat-menu-item disabled>
+  <button mat-menu-item (click) = "goToFriends()">
     <mat-icon>people</mat-icon>
     <span>Friends</span>
+  </button>
+  <button mat-menu-item (click)="goToProfile()" >
+    <mat-icon>person</mat-icon>
+    <span>Profile</span>
   </button>
   <button mat-menu-item>
     <mat-icon>dashboards</mat-icon>

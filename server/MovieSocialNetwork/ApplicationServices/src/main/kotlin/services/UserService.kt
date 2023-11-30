@@ -21,8 +21,8 @@ class UserService(
     repository.updateUser(user)
   }
 
-  suspend fun followOtherUser(userId: UUID, followingId: UUID) {
-    repository.addFollower(userId, followingId)
+  suspend fun followOtherUser(userId: UUID, otherUserId: UUID) {
+    repository.addFollower(userId, otherUserId)
   }
 
   suspend fun getFollowing(userId: UUID): List<FollowerDto> {
@@ -31,5 +31,21 @@ class UserService(
 
   suspend fun getFollowers(userId: UUID): List<FollowerDto> {
     return repository.getFollowers(userId)!!.map { user -> FollowerDto(user.userId, user.username) }
+  }
+
+  suspend fun unfollowOtherUser(userId: UUID, otherUserId: UUID) {
+    repository.removeFollower(userId, otherUserId)
+  }
+
+  suspend fun doesUserExist(username: String): Boolean {
+    return repository.doesUserExist(username)
+  }
+
+  suspend fun getUserByExternalId(externalId: String): User {
+    return repository.getUserByExternalId(externalId)
+  }
+
+  suspend fun getUserByUsername(username: String): User {
+    return repository.getUserByUsername(username)
   }
 }

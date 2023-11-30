@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-header>
+    <mat-icon mat-card-avatar>person</mat-icon>
+    <mat-card-title>{{ otherUser?.username }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-actions *ngIf="isFollowingList" align="end">
+    <button mat-button class="unfollow-button" color="primary" (click)="unfollowUser($event)">Unfollow</button>
+  </mat-card-actions>
+</mat-card>
+

@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { TmdbService } from './tmdb.service';
+import {TmdbService} from './tmdb.service';
 
 describe('TmdbService', () => {
   let service: TmdbService;

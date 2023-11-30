@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 0 2rem;
   height: 64px;
-  box-shadow: 0 2px 4px rgba(0,0,0,.5); /* Subtle shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .5); /* Subtle shadow for depth */
   font-family: 'Roboto', sans-serif; /* Roboto for modern look */
 }
 
@@ -23,7 +23,7 @@
 }
 
 .nav-category,
-.genre-dropdown-button{
+.genre-dropdown-button {
   color: #ffffff;
   text-decoration: none;
   padding: 10px 20px;
@@ -35,11 +35,11 @@
 .nav-category:hover,
 .genre-dropdown-button:hover,
 .mat-button-toggle:hover {
-  color: #e50914; /* Netflix red for hover state */
+  color: teal; /* Netflix red for hover state */
   background-color: #2c2c2c; /* Slightly lighter background for items on hover */
 }
 
-.mat-button-toggle{
+.mat-button-toggle {
   color: #ffffff;
 }
 
@@ -72,7 +72,6 @@ mat-button-toggle-checked {
 }
 
 
-
 ::ng-deep .cdk-overlay-pane {
   max-height: 350px !important;
 }
@@ -82,10 +81,12 @@ mat-button-toggle-checked {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .nav-category-group,
   .nav-category-dropdown {
     width: 100%;
   }
+
   .nav-category, .genre-dropdown-button {
     padding: 5px 10px; /* Smaller padding */
     font-size: 14px; /* Smaller font size */

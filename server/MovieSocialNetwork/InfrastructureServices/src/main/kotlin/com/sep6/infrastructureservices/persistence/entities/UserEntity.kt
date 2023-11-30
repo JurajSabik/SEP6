@@ -1,7 +1,6 @@
 package com.sep6.infrastructureservices.persistence.entities
 
 import jakarta.persistence.*
-import java.time.LocalDate
 import java.util.*
 import models.User
 import models.enums.UserRole
@@ -10,12 +9,12 @@ import kotlin.collections.HashSet
 @Entity
 @NoArgConstructor
 @Table(name = "USERS")
- class UserEntity(
+class UserEntity(
   @Id
   @Column(name = "userId")
   val userId: UUID,
 
-  @Column(name = "externalId", nullable = true)
+  @Column(name = "externalId", nullable = true, unique = true)
   val externalId: String?,
 
   @Column(name = "username", nullable = false, unique = true)
@@ -24,34 +23,31 @@ import kotlin.collections.HashSet
   @Column(name = "email", nullable = false, unique = true)
   val email: String,
 
-  @Column(name = "birthday", nullable = false)
-  val birthday: LocalDate,
-
   @Enumerated(EnumType.STRING)
   @Column(name = "role", nullable = false)
   val role: UserRole,
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
     name = "user_followers",
     joinColumns = [JoinColumn(name = "user_id")],
-    inverseJoinColumns = [JoinColumn(name = "follower_id")]
+    inverseJoinColumns = [JoinColumn(name = "other_user_id")]
   )
-  var followers: MutableSet<UserEntity>? = HashSet(),
-
-  @ManyToMany(mappedBy = "followers")
   var following: MutableSet<UserEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+  @ManyToMany(mappedBy = "following", fetch = FetchType.EAGER)
+  var followers: MutableSet<UserEntity>? = HashSet(),
+
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
   val favoriteItemLists: MutableSet<FavoriteListEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
   val reviewList: MutableSet<ReviewEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
   val commentList: MutableSet<CommentEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
   val replyList: MutableSet<CommentEntity>? = HashSet()
 ) {
   constructor(user: User) : this(
@@ -59,20 +55,19 @@ import kotlin.collections.HashSet
     user.externalId,
     user.username,
     user.email,
-    user.birthday,
     user.role
   )
 
   constructor(otherUserId: UUID) : this(
-    otherUserId, null,"", "", LocalDate.now(), UserRole.STANDARD_USER
+    otherUserId, null, "", "", UserRole.STANDARD_USER
   )
 
   fun mapToDomain(): User {
     return User(
       userId = userId,
+      externalId = externalId,
       username = username,
       email = email,
-      birthday = birthday,
       role = role
     )
   }

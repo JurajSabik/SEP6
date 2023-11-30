@@ -1,5 +1,6 @@
 package com.sep6.infrastructureservices.rest.exception_handling
 
+import com.sep6.infrastructureservices.persistence.exceptions.AlreadyFollowingException
 import com.sep6.infrastructureservices.persistence.exceptions.ResourceNotFoundException
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.http.HttpStatus
@@ -20,6 +21,11 @@ class ControllerExceptionHandler {
     return ResponseEntity(message, HttpStatus.NOT_FOUND)
   }
 
+  @ExceptionHandler(AlreadyFollowingException::class)
+  fun alreadyFollowingException(ex: AlreadyFollowingException, request: WebRequest): ResponseEntity<ErrorMessage> {
+    val message = getMessage(ex, request, HttpStatus.BAD_REQUEST.value())
+    return ResponseEntity(message, HttpStatus.BAD_REQUEST)
+  }
   @ExceptionHandler(ValidationException::class)
   fun validationExceptionHandler(ex: Exception, request: WebRequest): ResponseEntity<ErrorMessage> {
     val message = getMessage(ex, request, HttpStatus.BAD_REQUEST.value())

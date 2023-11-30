@@ -1,5 +1,5 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable, EventEmitter} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ export class NavbarService {
 
   searchExpanded$ = this.searchExpanded.asObservable();
 
-  constructor() { }
+  constructor() {
+  }
 
   setSearchExpanded(isExpanded: boolean): void {
     this.searchExpanded.next(isExpanded);

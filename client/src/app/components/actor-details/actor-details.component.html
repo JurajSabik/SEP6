@@ -1,12 +1,14 @@
 <div *ngIf="actor" class="actor-details-container">
   <!-- Dynamic Background -->
-  <div class="actor-background" [ngStyle]="{'background-image': backgroundImageUrl ? 'url(' + backgroundImageUrl + ')' : 'none'}"></div>
+  <div class="actor-background"
+       [ngStyle]="{'background-image': backgroundImageUrl ? 'url(' + backgroundImageUrl + ')' : 'none'}"></div>
 
   <div class="content">
     <div class="left-column">
       <!-- Actor Profile -->
       <div class="actor-profile">
-        <img *ngIf="actor.profile_path" [src]="'https://image.tmdb.org/t/p/w300' + actor.profile_path" alt="{{ actor.name }}">
+        <img *ngIf="actor.profile_path" [src]="'https://image.tmdb.org/t/p/w300' + actor.profile_path"
+             alt="{{ actor.name }}">
       </div>
     </div>
 
@@ -29,7 +31,7 @@
     </div>
   </div>
   <div class="padding-container">
-  <!-- Actor Movies -->
+    <!-- Actor Movies -->
     <div *ngIf="actorMovies?.cast?.length" class="actor-movies">
       <h2>Movies</h2>
       <div class="movie-cards">
@@ -37,12 +39,12 @@
           <!-- Only render the movie card if movie.poster_path exists -->
           <div *ngIf="movie?.poster_path" class="movie-card">
             <a [routerLink]="['/movie', movie.id]">
-            <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" alt="{{ movie.title }}">
+              <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" alt="{{ movie.title }}">
             </a>
             <h3>{{ movie.title }}</h3>
           </div>
         </div>
       </div>
     </div>
-</div>
+  </div>
 </div>

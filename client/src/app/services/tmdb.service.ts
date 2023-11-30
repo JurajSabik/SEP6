@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 const API_KEY = 'a7eba6c159cef4431cfddfaa56861157';
 const BASE_URL = 'https://api.themoviedb.org/3/';
@@ -10,7 +10,8 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 })
 export class TmdbService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getItems(contentType: 'tv' | 'movie' = 'movie', page: number = 1, genre: number | null = null, sortBy: string = 'popular'): Observable<any> {
     let params = new HttpParams()
@@ -40,7 +41,7 @@ export class TmdbService {
     let endpoint = genre !== null
       ? `${BASE_URL}discover/${contentType}?api_key=${API_KEY}`
       : `${BASE_URL}${contentType}/popular?api_key=${API_KEY}`;
-    return this.http.get(endpoint, { params });
+    return this.http.get(endpoint, {params});
   }
 
   // A generic method for getting item details, either a movie or a series
@@ -64,7 +65,7 @@ export class TmdbService {
 
   search(query: string, type: 'movie' | 'tv' | 'person' = 'movie'): Observable<any> {
     let params = new HttpParams().set('query', query);
-    return this.http.get(`${BASE_URL}search/${type}?api_key=${API_KEY}`, { params });
+    return this.http.get(`${BASE_URL}search/${type}?api_key=${API_KEY}`, {params});
   }
 
   getActorDetails(actorId: number | null): Observable<any> {

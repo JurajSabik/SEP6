@@ -1,0 +1,13 @@
+<!-- add-follower-dialog.component.html -->
+<h2 mat-dialog-title>Follow another user</h2>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Enter username:" [(ngModel)]="username" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button [mat-dialog-close]="{ username: username }" cdkFocusInitial>
+    Follow User
+  </button>
+</div>

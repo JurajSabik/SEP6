@@ -1,7 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { NavbarService } from '../../services/navbar.service';
-import { AuthService } from '../../services/auth.service';
+import {Component} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {NavbarService} from '../../services/navbar.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -42,6 +42,7 @@ export class NavbarComponent {
       this.searchExpandedSubscription.unsubscribe();
     }
   }
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }

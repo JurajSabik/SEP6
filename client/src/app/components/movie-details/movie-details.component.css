@@ -27,7 +27,7 @@
 
 .main-details {
   padding: 20px;
-  max-width: 800px  ;
+  max-width: 800px;
   display: flex;
   align-items: flex-start;
 }
@@ -81,7 +81,7 @@
   transform: scale(1.1);
 }
 
-h2{
+h2 {
   padding: 0 40px;
 }
 
@@ -111,7 +111,6 @@ h2{
   margin: 10px;
   text-align: center;
 }
-
 
 
 /* Styles for related movies */
@@ -210,6 +209,7 @@ h2{
     height: 80px; /* Adjust height to maintain aspect ratio */
   }
 }
+
 @media (max-width: 768px) {
   .text-details h1 {
     font-size: 24px; /* Smaller font size for title */
@@ -219,6 +219,7 @@ h2{
     font-size: 16px; /* Smaller font size for paragraphs */
   }
 }
+
 @media (max-width: 768px) {
   .padding-container {
     padding: 10px;

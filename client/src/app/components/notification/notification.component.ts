@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-//import { WebSocketService } from '../../services/web-socket.service';
-import { Subscription } from 'rxjs';
-
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs';
+// This will probably be removed altogether if we don't have the time to implement web sockets server side
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
@@ -9,13 +8,14 @@ import { Subscription } from 'rxjs';
 })
 export class NotificationComponent implements OnInit, OnDestroy {
   notifications = [
-    { id: 1, message: '🥷 Mihai, comment on your post', isNew: true },
-    { id: 2, message: 'Jurah liked your post ❤️', isNew: false },
+    {id: 1, message: '🥷 Mihai, comment on your post', isNew: true},
+    {id: 2, message: 'Jurah liked your post ❤️', isNew: false},
     // ... other notifications
   ];
   private notificationsSubscription: Subscription | undefined;
 
-  constructor(/*private webSocketService: WebSocketService*/) {}
+  constructor(/*private webSocketService: WebSocketService*/) {
+  }
 
   ngOnInit(): void {
     // THIS IS A TEST TO IMPLEMENT THE NOTIFICATION, TROUGH SOCKET.IO
@@ -57,7 +57,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
     if (notification) {
       notification.isNew = false;
       // Just call the service method to emit the 'markAsRead' event
-     // this.webSocketService.markAsRead(notificationId);
+      // this.webSocketService.markAsRead(notificationId);
     }
   }
 

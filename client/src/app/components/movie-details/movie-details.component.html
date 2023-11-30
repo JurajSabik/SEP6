@@ -56,9 +56,9 @@
               <!-- Only show related movie card if relatedMovie.poster_path exists -->
               <div class="related-movie-card" *ngIf="relatedMovie.poster_path">
                 <a [routerLink]="['/' + selectedMediaType, relatedMovie.id]">
-                <img [src]="'https://image.tmdb.org/t/p/w200' + relatedMovie.poster_path" routerLinkActive="active"
-                     alt="{{ relatedMovie.title }}">
-              </a>
+                  <img [src]="'https://image.tmdb.org/t/p/w200' + relatedMovie.poster_path" routerLinkActive="active"
+                       alt="{{ relatedMovie.title }}">
+                </a>
               </div>
             </div>
           </section>

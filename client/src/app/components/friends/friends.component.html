@@ -1,0 +1,42 @@
+<!-- friends.component.html -->
+<div class="friends-container">
+  <h2>Follow Friends</h2>
+  <div class="center-content">
+    <button mat-raised-button color="primary" (click)="openAddFollowerDialog()">Follow another user</button>
+  </div>
+
+  <mat-tab-group #matTabGroup>
+    <mat-tab label="Following">
+      <ng-container *ngIf="followingList$ | async as followingList; else loadingFollowing">
+        <div *ngIf="followingList.length > 0">
+          <app-user-card *ngFor="let user of followingList" [otherUser]="user" [isFollowingList]="true" (unfollow)="unfollowUser(user.userId) "
+                         [routerLink]="['/profile', user.userId]"></app-user-card>
+        </div>
+        <div *ngIf="followingList.length === 0">No users are being followed.</div>
+      </ng-container>
+      <ng-template #loadingFollowing>
+        <div class="center-content">
+          <mat-progress-spinner *ngIf="!(followingList$ | async)" mode="indeterminate"
+                                diameter="50"></mat-progress-spinner>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Followers">
+      <ng-container *ngIf="followersList$ | async as followersList; else loadingFollowers">
+        <div *ngIf="followersList.length > 0">
+          <app-user-card *ngFor="let user of followersList" [otherUser]="user"
+                         [routerLink]="['/profile', user.userId]"></app-user-card>
+        </div>
+        <div *ngIf="followersList.length === 0">No followers yet.</div>
+      </ng-container>
+      <ng-template #loadingFollowers>
+        <div class="center-content">
+          <mat-progress-spinner *ngIf="!(followersList$ | async)" mode="indeterminate"
+                                diameter="50"></mat-progress-spinner>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+

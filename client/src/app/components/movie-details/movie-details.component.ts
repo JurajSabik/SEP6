@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { TmdbService } from '../../services/tmdb.service';
-import { filter, switchMap } from "rxjs/operators";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {TmdbService} from '../../services/tmdb.service';
+import {filter, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-movie-detail',

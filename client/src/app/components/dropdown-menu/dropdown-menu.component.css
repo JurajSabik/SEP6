@@ -1,6 +1,6 @@
 /* Common styles for both photos and initials to make them circular */
 .avatar {
-  width: 40px;  /* Set a fixed width */
+  width: 40px; /* Set a fixed width */
   height: 40px; /* Set a fixed height to maintain aspect ratio for a circle */
   border-radius: 50%; /* Makes the element round */
   overflow: hidden; /* Ensures nothing goes outside the circular boundary */
@@ -29,7 +29,7 @@
   background-color: transparent;
   border: none;
   box-shadow: none;
-/*  set hand when mouve over*/
+  /*  set hand when mouve over*/
   cursor: pointer;
   outline: none;
 }
@@ -39,6 +39,7 @@
     width: auto;
     margin: 10px 0;
   }
+
   ::ng-deep .cdk-overlay-pane {
     max-width: 100% !important;
   }

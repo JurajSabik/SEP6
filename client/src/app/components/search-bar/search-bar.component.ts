@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { NavbarService } from '../../services/navbar.service';
-import { TmdbService } from '../../services/tmdb.service';
+import {Component} from '@angular/core';
+import {NavbarService} from '../../services/navbar.service';
+import {TmdbService} from '../../services/tmdb.service';
 import { Router } from '@angular/router';
 
 

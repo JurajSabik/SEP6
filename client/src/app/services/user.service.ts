@@ -1,60 +1,64 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {DomainUser} from "../model/domain/domain-user";
+import {Follower} from "../model/domain/follower-dto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private static readonly USERNAME = 'sep6';
-  private static readonly PASSWORD = '1234';
 
   private userBaseUrl = 'http://localhost:8080/api/users';
-  private csrfTokenUrl = 'http://localhost:8080/api/csrf-token';
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'Basic ' + btoa(`${UserService.USERNAME}:${UserService.PASSWORD}`)
-  });
 
-  constructor(private http: HttpClient) {}
-
-  setCsrfToken(token: string): void {
-    this.headers = this.headers.set('X-CSRF-TOKEN', token);
+  constructor(private http: HttpClient) {
   }
 
-  private getHeaders(): HttpHeaders {
-    return this.headers;
+  getUserById(userId: string): Observable<DomainUser> {
+    return this.http.get<DomainUser>(`${this.userBaseUrl}/${userId}`);
   }
 
-  getCsrfToken(): Observable<any> {
-    return this.http.get(this.csrfTokenUrl, { headers: this.getHeaders() });
+  getUserByUsername(username: string): Observable<DomainUser> {
+    return this.http.get<DomainUser>(`${this.userBaseUrl}/username/${username}`)
   }
 
-  getUserById(userId: string): Observable<any> {
-    return this.http.get(`${this.userBaseUrl}/${userId}`, { headers: this.getHeaders() });
+  getUserByExternalId(externalId: string): Observable<DomainUser> {
+    return this.http.get<DomainUser>(`${this.userBaseUrl}/external/${externalId}`)
   }
 
-  createUser(user: any): Observable<any> {
-    return this.http.post(this.userBaseUrl, user, { headers: this.getHeaders() });
+  doesUserExist(username: string): Observable<Boolean> {
+    return this.http.get<boolean>(`${this.userBaseUrl}/exists/${username}`)
   }
 
-  updateUser(user: any): Observable<any> {
-    return this.http.put(this.userBaseUrl, user, { headers: this.getHeaders() });
+  doesUserExistByEmail(email: string): Observable<Boolean> {
+    return this.http.get<boolean>(`${this.userBaseUrl}/exists/email/${email}`)
+  }
+
+  createUser(user: any): Observable<DomainUser> {
+    return this.http.post<DomainUser>(this.userBaseUrl, user);
+  }
+
+  updateUser(user: any): Observable<void> {
+    return this.http.put<void>(this.userBaseUrl, user);
   }
 
   deleteUser(userId: string): Observable<any> {
-    return this.http.delete(`${this.userBaseUrl}/${userId}`, { headers: this.getHeaders() });
+    return this.http.delete(`${this.userBaseUrl}/${userId}`);
   }
 
-  followUser(userId: string, followerId: string): Observable<any> {
-    return this.http.put(`${this.userBaseUrl}/follow/${userId}/${followerId}`, {}, { headers: this.getHeaders() });
+  followUser(userId: string, otherUserId: string): Observable<any> {
+    return this.http.put(`${this.userBaseUrl}/follow/${userId}/${otherUserId}`,{});
   }
 
-  getFollowers(userId: string): Observable<any> {
-    return this.http.get(`${this.userBaseUrl}/followers/${userId}`, { headers: this.getHeaders() });
+  unfollowUser(userId: string, otherUserId: string): Observable<any> {
+    return this.http.put(`${this.userBaseUrl}/unfollow/${userId}/${otherUserId}`,{});
   }
 
-  getFollowing(userId: string): Observable<any> {
-    return this.http.get(`${this.userBaseUrl}/following/${userId}`, { headers: this.getHeaders() });
+  getFollowers(userId: string): Observable<Follower[]> {
+    return this.http.get<Follower[]>(`${this.userBaseUrl}/followers/${userId}`);
+  }
+
+  getFollowing(userId: string): Observable<Follower[]> {
+    return this.http.get<Follower[]>(`${this.userBaseUrl}/following/${userId}`);
   }
 }

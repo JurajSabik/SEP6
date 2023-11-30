@@ -51,9 +51,11 @@
   .navbar-container {
     flex-direction: column;
   }
+
   .nav-items {
     justify-content: center;
   }
+
   /* Add more styles for mobile view */
 }
 
@@ -95,6 +97,7 @@
     width: 100%;
     justify-content: center;
   }
+
   .search-container.expanded input {
     width: 80%; /* Smaller width for mobile */
   }

@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import validators.UserValidator
 import validators.exceptions.ValidationException
-import java.time.LocalDate
 import java.util.stream.Stream
 
 class UserValidatorTest {
@@ -34,11 +33,11 @@ class UserValidatorTest {
   }
 
   @Test
-  fun testValidationExceptionMessage(): Unit {
+  fun testValidationExceptionMessage() {
     val invalidUserOne = User(
       username = "",
+      externalId = "",
       email = "incorrect",
-      birthday = LocalDate.now().plusDays(1),
       role = UserRole.STANDARD_USER
     )
     val exception = Assertions.assertThrows(ValidationException::class.java) {
@@ -47,13 +46,12 @@ class UserValidatorTest {
 
     Assertions.assertTrue(exception.message!!.contains("UserValidator"))
     Assertions.assertTrue(exception.message!!.contains("Username must not be blank."))
-    Assertions.assertTrue(exception.message!!.contains("Birthday cannot be in the future."))
     Assertions.assertTrue(exception.message!!.contains("Invalid email format."))
 
     val invalidUserTwo = User(
       username = RandomStringUtils.randomAlphanumeric(21),
+      externalId = "",
       email = "someth92asd2.com",
-      birthday = LocalDate.of(1908, 1, 1),
       role = UserRole.STANDARD_USER
     )
     val exceptionTwo = Assertions.assertThrows(ValidationException::class.java) {
@@ -62,7 +60,6 @@ class UserValidatorTest {
 
     Assertions.assertTrue(exceptionTwo.message!!.contains("UserValidator"))
     Assertions.assertTrue(exceptionTwo.message!!.contains("Username cannot have more than 20 characters."))
-    Assertions.assertTrue(exceptionTwo.message!!.contains("Birthday cannot be before 1909. The user cannot physically be that old."))
     Assertions.assertTrue(exceptionTwo.message!!.contains("Invalid email format."))
   }
 }

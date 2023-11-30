@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import {Component} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
+import {SnackbarService} from "../../services/snackbar.service";
 
 
 @Component({
@@ -9,28 +12,26 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignupComponent {
 
-  firstName: string = '';
-  lastName: string = '';
+  username: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) { 
-    
+  constructor(private authService: AuthService,
+              private userService: UserService,
+              private snackbarService: SnackbarService,
+              private router: Router
+  ) {
+
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.errorMessage = '';  // Resetting the error message
 
     // Basic validation logic
-    if (!this.firstName) {
-      this.errorMessage = 'First Name is required.';
-      return;
-    }
-
-    if (!this.lastName) {
-      this.errorMessage = 'Last Name is required.';
+    if (!this.username) {
+      this.errorMessage = 'Username is required.';
       return;
     }
 
@@ -50,13 +51,28 @@ export class SignupComponent {
       return;
     }
 
-    // If validations pass, handle Firebase signup logic
-    this.handleFirebaseSignup();
+    this.userService.doesUserExistByEmail(this.email).subscribe((exists) => {
+      if(exists) {
+        this.errorMessage = 'User with that email already exists. Try logging in.';
+        return;
+      }
+    });
+
+    this.userService.doesUserExist(this.username).subscribe(async (exists) => {
+      if(exists) {
+        this.errorMessage = 'User with that username already exists. If you signed up previously, try logging in.';
+        return;
+      } else {
+        await this.handleFirebaseSignup();
+      }
+    });
   }
 
   async handleFirebaseSignup() {
     try {
-      await this.authService.signUpWithEmail(this.email, this.password, this.firstName, this.lastName);
+      await this.authService.signUpWithEmail(this.email, this.password, this.username);
+      this.snackbarService.open(`Successfully created account with username ${this.username}.`)
+      await this.router.navigate(['/home']);
     } catch (error) {
       this.errorMessage = (error as any).message;
     }

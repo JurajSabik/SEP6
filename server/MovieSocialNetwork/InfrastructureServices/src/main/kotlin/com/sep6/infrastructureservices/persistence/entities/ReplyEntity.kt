@@ -9,7 +9,7 @@ import java.util.*
 class ReplyEntity(
   @Id
   @Column(name = "reply_id")
-  val commentId: UUID ,
+  val commentId: UUID,
 
   @ManyToOne(cascade = [CascadeType.ALL])
   @JoinColumn(name = "user_id", nullable = false)

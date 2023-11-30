@@ -1,7 +1,7 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TmdbService } from '../../services/tmdb.service';
-import { NavbarService } from '../../services/navbar.service';
+import {Component, OnInit, HostListener} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {TmdbService} from '../../services/tmdb.service';
+import {NavbarService} from '../../services/navbar.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -21,7 +21,8 @@ export class MovieListComponent implements OnInit {
     private route: ActivatedRoute,
     private tmdbService: TmdbService,
     private navbarService: NavbarService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     // Determine if we are showing movies or series from the route segment
@@ -85,17 +86,16 @@ export class MovieListComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
-    // You might want to trigger some functionality on resize events as well
   }
 
   getStarType(rating: number, starIndex: number): string {
     const fullStarRating = Math.floor(rating / 2);
     if (starIndex <= fullStarRating) {
-      return 'fa fa-star'; // Full star class
+      return 'fa fa-star';
     } else if (starIndex === fullStarRating + 1 && rating % 2 >= 0.5) {
-      return 'fa fa-star-half-o'; // Half star class
+      return 'fa fa-star-half-o';
     } else {
-      return 'fa fa-star-o'; // Empty star class
+      return 'fa fa-star-o';
     }
   }
 

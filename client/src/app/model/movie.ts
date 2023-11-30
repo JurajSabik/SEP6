@@ -1,5 +1,3 @@
-// models/movie.model.ts
-
 export interface Movie {
   id: any;
   poster_path: string;

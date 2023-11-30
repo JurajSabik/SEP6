@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TmdbService } from '../../services/tmdb.service';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {TmdbService} from '../../services/tmdb.service';
+import {Router, NavigationEnd} from '@angular/router';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar-middle',
@@ -10,9 +10,9 @@ import { filter } from 'rxjs/operators';
 })
 export class NavbarMiddleComponent implements OnInit {
   genres: any[] = [];
-  selectedMediaType: string = 'movie'; // Default to 'movies'
+  selectedMediaType: string = 'movie';
 
-  constructor(private tmdbService: TmdbService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private tmdbService: TmdbService, private router: Router) {
     // Listen to changes in the route to dynamically set the selected media type
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)

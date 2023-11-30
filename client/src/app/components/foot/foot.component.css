@@ -1,16 +1,13 @@
-.footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  position: relative;
+.mat-toolbar {
+  position: fixed;
   bottom: 0;
   width: 100%;
+  color: #1e1e1e;
 }
 
 .footer-content {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 5px auto;
   padding: 0 20px;
 }
 
@@ -21,21 +18,15 @@
 .social-icon {
   display: inline-block;
   margin: 0 10px;
-  color: white; /* Set icon color */
-  font-size: 24px; /* Set icon size */
+  color: white;
+  font-size: 24px;
 }
 
 .social-icon:hover {
-  color: #ddd; /* Change color on hover, if desired */
+  color: #ddd;
 }
 
 .footer-text {
   font-size: 14px;
   margin-top: 10px;
-}
-
-.search-header h2 {
-  font-size: 20px;
-  margin: 10px 0;
-  color: #333; /* Change as per your color scheme */
 }
