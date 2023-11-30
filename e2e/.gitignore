@@ -1,0 +1,24 @@
+# Playwright
+node_modules/
+browser*debug*/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Dependency directories
+puppeteer/
+puppeteer-core/
+chromium/
+firefox/
+
+# Test output
+test-results/
+
+# Temporary files
+*.tmp
+*.swp
+.DS_Store
