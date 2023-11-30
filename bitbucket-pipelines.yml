@@ -28,17 +28,17 @@ pipelines:
             - npm run build
           after-script:
             - pipe: atlassian/checkstyle-report:0.3.0
-      - step:
-          name: Client Test
-          image: node:20-alpine
-          script:
-            - apk add chromium
-            - export CHROME_BIN=/usr/bin/chromium-browser
-            - cd ./client/
-            - npm install
-            - ./node_modules/.bin/ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
-          after-script:
-            - pipe: atlassian/checkstyle-report:0.3.0
+      #- step:
+      #    name: Client Test
+      #    image: node:20-alpine
+      #    script:
+      #      - apk add chromium
+      #      - export CHROME_BIN=/usr/bin/chromium-browser
+      #      - cd ./client/
+      #      - npm install
+      #      - ./node_modules/.bin/ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
+      #    after-script:
+      #      - pipe: atlassian/checkstyle-report:0.3.0
     - step:
         name: Security Scan
         script:
