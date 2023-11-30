@@ -46,7 +46,6 @@ Thumbs.db
 *.env
 
 # Angular files
-/angular.json
 *.log
 /angular
 /angular-cache
