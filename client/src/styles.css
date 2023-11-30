@@ -1,3 +1,10 @@
 
 html, body { height: 100%; }
 body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@media (max-width: 768px) {
+  .nav-item, .genre-dropdown-button, .mat-button-toggle {
+    padding: 8px 12px; /* Larger touch targets */
+    font-size: 14px; /* Adjust font size */
+  }
+}

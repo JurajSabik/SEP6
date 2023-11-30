@@ -8,3 +8,7 @@
   background-color: red; /* Example color */
   color: white; /* Color of the text in the badge */
 }
+
+@media (max-width: 768px) {
+  /* Adjust styles for notification icon and menu */
+}

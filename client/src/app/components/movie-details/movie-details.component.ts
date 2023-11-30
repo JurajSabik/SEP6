@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TmdbService } from '../../services/tmdb.service';
-import { filter } from "rxjs/operators";
+import { filter, switchMap } from "rxjs/operators";
 
 @Component({
   selector: 'app-movie-detail',
@@ -14,8 +14,9 @@ export class MovieDetailComponent implements OnInit {
   actors: any[] = [];
   director: any[] = [];
   backgroundImageUrl: string | null = null;
-  selectedMediaType: string = 'movie'; // Default to 'movies'
+  selectedMediaType: string = 'movie';
   relatedMovies: any[] = [];
+  isLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,9 +24,12 @@ export class MovieDetailComponent implements OnInit {
     private router: Router
   ) {
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
+      filter(event => event instanceof NavigationEnd),
+      switchMap(() => this.route.params)
+    ).subscribe(params => {
+      this.movieId = +params['id'];
       this.setMediaTypeFromRoute();
+      this.loadMovieDetails();
     });
   }
 
@@ -33,22 +37,20 @@ export class MovieDetailComponent implements OnInit {
     this.setMediaTypeFromRoute();
     const id = this.route.snapshot.paramMap.get('id');
     this.movieId = id ? +id : null;
-    console.log('Movie ID: ', this.movieId);
 
     if (this.movieId) {
-      this.fetchMovieDetail();
-    } else {
-      console.error('Movie ID not provided in the route!');
+      this.loadMovieDetails();
     }
   }
 
   setMediaTypeFromRoute(): void {
     const path = this.router.url.split('?')[0];
     this.selectedMediaType = path.includes('/tv') ? 'tv' : 'movie';
-    console.log('Selected Media Type: ', this.selectedMediaType);
   }
 
-  fetchMovieDetail(): void {
+  loadMovieDetails(): void {
+    this.isLoading = true;
+    window.scrollTo(0, 0);
     this.tmdbService.getDetails(this.selectedMediaType, this.movieId as number).subscribe(
       data => {
         this.movie = data;
@@ -56,18 +58,18 @@ export class MovieDetailComponent implements OnInit {
         this.fetchMovieCast();
         this.fetchRelatedMovies();
       },
-      error => console.error('There was an error fetching the movie details!', error)
+      error => {
+        console.error('There was an error fetching the movie details!', error);
+        this.isLoading = false;
+      }
     );
   }
-
-// ...
 
   fetchMovieCast(): void {
     this.tmdbService.getCast(this.selectedMediaType as 'tv' | 'movie', this.movieId as number).subscribe(
       data => {
-        console.log('Cast: ', data);
         this.director = data.crew.filter((member: any) => member.job === 'Director');
-        this.actors = data.cast.slice(0, 8); // Take only the first 10 actors
+        this.actors = data.cast.slice(0, 8);
       },
       error => {
         console.error('There was an error fetching the movie cast!', error);
@@ -75,19 +77,16 @@ export class MovieDetailComponent implements OnInit {
     );
   }
 
-// ...
-
   fetchRelatedMovies(): void {
     this.tmdbService.getRelatedMovies(this.selectedMediaType as 'tv' | 'movie', this.movieId as number).subscribe(
       data => {
-        this.relatedMovies = data.results.slice(0, 16); // Take only the first 5 related movies
+        this.relatedMovies = data.results.slice(0, 16);
+        this.isLoading = false;  // Set loading to false after all data is fetched
       },
       error => {
         console.error('There was an error fetching related movies!', error);
+        this.isLoading = false;
       }
     );
   }
-
-// You would call fetchRelatedMovies() similarly to fetchMovieCast() in your component logic
-
 }

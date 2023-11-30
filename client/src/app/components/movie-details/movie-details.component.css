@@ -11,6 +11,9 @@
 }
 
 .background-test {
+  background-image: url("/assets/images/default-background.jpg");
+  background-size: cover;
+  background-position: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -170,4 +173,58 @@ h2{
   justify-content: flex-start;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .main-details {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .main-details img {
+    height: auto;
+    width: 100%;
+    max-width: 400px; /* Adjust based on your preference */
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .text-details {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .actors-grid, .related-movies {
+    justify-content: center;
+  }
+
+  .actor-card, .related-movie-card {
+    width: 80px; /* Smaller size on mobile */
+    margin: 5px;
+  }
+
+  .actor-card img, .related-movie-card img {
+    width: 80px;
+    height: 80px; /* Adjust height to maintain aspect ratio */
+  }
+}
+@media (max-width: 768px) {
+  .text-details h1 {
+    font-size: 24px; /* Smaller font size for title */
+  }
+
+  .text-details p {
+    font-size: 16px; /* Smaller font size for paragraphs */
+  }
+}
+@media (max-width: 768px) {
+  .padding-container {
+    padding: 10px;
+  }
+
+  .movie-details-container {
+    padding: 0 20px; /* Smaller lateral margins */
+  }
 }

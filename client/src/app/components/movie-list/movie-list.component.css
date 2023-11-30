@@ -224,3 +224,55 @@ featured-title {
   /* ... existing styles ... */
 }
 
+@media (max-width: 768px) {
+  .featured-movie-container {
+    height: 50vh; /* Smaller height on mobile */
+  }
+
+  .featured-movie-title h1 {
+    font-size: 2rem; /* Smaller font size for title */
+  }
+
+  .featured-description {
+    font-size: 0.9rem; /* Smaller font size for description */
+    max-width: 80%; /* Wider description area */
+  }
+
+  .featured-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%; /* Full-width buttons */
+    margin-bottom: 10px; /* Spacing between buttons */
+  }
+}
+@media (max-width: 768px) {
+  .movie-row {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust for smaller screens */
+    padding: 10px; /* Smaller padding */
+  }
+
+  .movie-details-container {
+    height: 180px; /* Adjust the height for smaller screens */
+  }
+
+  .main-details img {
+    object-fit: contain; /* Adjust if necessary to prevent image distortion */
+  }
+}
+@media (max-width: 768px) {
+  .text-details h1 {
+    font-size: 1rem; /* Smaller font size */
+  }
+
+  .featured-ranking, .rating-stars {
+    font-size: 1rem; /* Smaller font size for ratings */
+  }
+}
+@media (max-width: 768px) {
+  .home-container, .movie-list {
+    padding: 10px; /* Smaller padding for the container */
+  }
+}
