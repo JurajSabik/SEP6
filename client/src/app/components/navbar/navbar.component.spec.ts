@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NavbarComponent } from './navbar.component';
-import { AuthService } from 'src/app/services/auth.service
+import { AuthService } from 'src/app/services/auth.service';
 
 const mockAuthService = {
   isLoggedIn: jasmine.createSpy('isLoggedIn')

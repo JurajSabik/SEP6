@@ -4,8 +4,8 @@ import models.Review
 import java.util.*
 
 interface ReviewRepository {
-  fun createReview(review: Review)
-  fun updateReview(review: Review)
-  fun deleteReview(reviewId: UUID)
-  fun getReviewById(reviewId: UUID): Review?
+  suspend fun createReview(review: Review)
+  suspend fun updateReview(review: Review)
+  suspend fun deleteReview(reviewId: UUID)
+  suspend fun getReviewById(reviewId: UUID): Review?
 }

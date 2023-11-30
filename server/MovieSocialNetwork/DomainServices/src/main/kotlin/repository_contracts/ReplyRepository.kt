@@ -4,8 +4,8 @@ import models.Reply
 import java.util.UUID
 
 interface ReplyRepository {
-  fun createReply(reply: Reply)
-  fun updateReply(reply: Reply)
-  fun deleteReply(replyId: UUID)
-  fun getReplyById(replyId: UUID): Reply?
+  suspend fun createReply(reply: Reply)
+  suspend fun updateReply(reply: Reply)
+  suspend fun deleteReply(replyId: UUID)
+  suspend fun getReplyById(replyId: UUID): Reply?
 }

@@ -1,5 +1,5 @@
 package validators
 
 interface Validator<T> {
-    fun  validate(entity: T)
+    suspend fun  validate(entity: T)
 }

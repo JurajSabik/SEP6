@@ -1,20 +1,21 @@
 plugins {
-    kotlin("jvm") version "1.9.0"
+  kotlin("jvm") version "1.9.0"
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0-rc1")
-    testImplementation("com.google.code.gson:gson:2.10.1")
-    testImplementation("org.apache.commons:commons-text:1.11.0")
-    testImplementation(kotlin("test"))
-    testImplementation ("org.junit.jupiter:junit-jupiter-params:5.9.3")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0-rc1")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+  testImplementation("com.google.code.gson:gson:2.10.1")
+  testImplementation("org.apache.commons:commons-text:1.11.0")
+  testImplementation(kotlin("test"))
+  testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.3")
 
 }
 
 tasks.test {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
 
 kotlin {
-    jvmToolchain(8)
+  jvmToolchain(8)
 }

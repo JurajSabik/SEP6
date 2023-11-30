@@ -5,22 +5,43 @@
 
 # Prerequisites: appropriate project structure should exist in the repository.
 
-image: gradle:6.6.0
+image: gradle:8.2.0
 
 pipelines:
   default:
     - parallel:
       - step:
-          name: Build and Test
+          name: Build and Test Backend
           caches:
             - gradle
           script:
+            - cd server/MovieSocialNetwork
             - gradle build
           after-script:
             - pipe: atlassian/checkstyle-report:0.3.0
       - step:
-          name: Security Scan
+          name: Client Build
+          image: node:20-alpine
           script:
-            # Run a security scan for sensitive data.
-            # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
-            - pipe: atlassian/git-secrets-scan:0.5.1
+            - cd ./client/
+            - npm install
+            - npm run build
+          after-script:
+            - pipe: atlassian/checkstyle-report:0.3.0
+      - step:
+          name: Client Test
+          image: node:20-alpine
+          script:
+            - apk add chromium
+            - export CHROME_BIN=/usr/bin/chromium-browser
+            - cd ./client/
+            - npm install
+            - ./node_modules/.bin/ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
+          after-script:
+            - pipe: atlassian/checkstyle-report:0.3.0
+    - step:
+        name: Security Scan
+        script:
+          # Run a security scan for sensitive data.
+          # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+          - pipe: atlassian/git-secrets-scan:0.5.1

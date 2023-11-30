@@ -2,6 +2,7 @@ package com.sep6.infrastructureservices.persistence.repositories
 
 import com.sep6.infrastructureservices.persistence.entities.*
 import org.springframework.data.repository.CrudRepository
+
 import java.util.*
 
 interface UserPersistenceRepository : CrudRepository<UserEntity, UUID>

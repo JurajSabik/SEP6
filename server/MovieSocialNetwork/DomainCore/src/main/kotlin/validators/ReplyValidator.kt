@@ -6,7 +6,7 @@ import java.sql.Timestamp
 import java.time.LocalDateTime
 
 class ReplyValidator : Validator<Reply> {
-  override fun validate(entity: Reply) {
+  override suspend fun validate(entity: Reply) {
     val errors = mutableListOf<String>()
     val textLengthMax = 200
 

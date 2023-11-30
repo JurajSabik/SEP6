@@ -1,5 +1,7 @@
+.idea
 .gradle
-build/
+**/build/
+**/.gradle
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -15,3 +17,12 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+/.idea/
+/build/
+/gradle/
+/.gradle/
+/DomainServices/build/
+/DomainCore/build/
+/ApplicationServices/build/
+/InfrastructureServices/.gradle/
+/InfrastructureServices/build/
