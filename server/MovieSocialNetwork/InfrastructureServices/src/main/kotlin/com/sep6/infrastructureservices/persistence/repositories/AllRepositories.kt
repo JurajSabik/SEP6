@@ -14,6 +14,10 @@ interface UserPersistenceRepository : JpaRepository<UserEntity, UUID> {
     fun findByUsername(username: String): UserEntity
 }
 interface FavoriteListPersistenceRepository : CrudRepository<FavoriteListEntity, UUID>
-interface ReviewPersistenceRepository : JpaRepository<ReviewEntity, UUID>
 interface ReplyPersistenceRepository : JpaRepository<ReplyEntity, UUID>
 interface CommentPersistenceRepository : CrudRepository<CommentEntity, UUID>
+interface ReviewPersistenceRepository : JpaRepository<ReviewEntity, UUID> {
+  fun findByMovieId(movieId: String): List<ReviewEntity>
+  fun findByUser(user: UserEntity): List<ReviewEntity>
+}
+interface ReviewVotingPersistenceRepository : CrudRepository<ReviewVoting, ReviewVotingKey>

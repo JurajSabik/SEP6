@@ -1,6 +1,7 @@
 package repository_contracts
 
 import models.User
+import models.Vote
 import java.util.*
 
 interface UserRepository {
@@ -11,6 +12,7 @@ interface UserRepository {
   suspend fun addFollower(userId: UUID, otherUserId: UUID)
   suspend fun getFollowers(userId: UUID): List<User>?
   suspend fun getFollowing(userId: UUID): List<User>?
+  suspend fun getVotes(userId: UUID): List<Vote>?
   suspend fun removeFollower(userId: UUID, otherUserId: UUID)
   suspend fun getUserByExternalId(externalId: String): User
   suspend fun getUserByUsername(username: String): User

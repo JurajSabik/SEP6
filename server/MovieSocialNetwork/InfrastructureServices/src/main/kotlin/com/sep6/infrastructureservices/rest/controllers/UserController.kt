@@ -4,6 +4,7 @@ import com.sep6.infrastructureservices.persistence.services.UserPersistenceServi
 import dtos.FollowerDto
 import io.github.oshai.kotlinlogging.KotlinLogging
 import models.User
+import models.Vote
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -63,6 +64,11 @@ class UserController(private val userRepo: UserPersistenceService) {
   @GetMapping("/following/{userId}")
   suspend fun getFollowing(@PathVariable userId: UUID): ResponseEntity<List<FollowerDto>> {
     return ResponseEntity(userService.getFollowing(userId), HttpStatus.OK)
+  }
+
+  @GetMapping("votes/{userId}")
+  suspend fun getVotes(@PathVariable userId: UUID): ResponseEntity<List<Vote>> {
+    return ResponseEntity(userRepo.getVotes(userId), HttpStatus.OK)
   }
 
   @GetMapping("/exists/{username}")

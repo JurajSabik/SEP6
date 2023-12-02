@@ -2,13 +2,11 @@ package models
 
 import org.jetbrains.annotations.NotNull
 import java.sql.Timestamp
-import java.util.UUID
+import java.util.*
 
-data class Review(
-  val reviewId: UUID = UUID.randomUUID(),
+class Vote (
+  @NotNull val reviewId: UUID,
   @NotNull val userId: UUID,
-  @NotNull val movieId: String,
-  @NotNull val text: String,
-  @NotNull val rating: Int,
+  @NotNull val isUpvote: Boolean,
   @NotNull val timestamp: Timestamp = Timestamp(System.currentTimeMillis())
 )

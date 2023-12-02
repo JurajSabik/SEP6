@@ -41,14 +41,17 @@ class UserEntity(
   @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
   val favoriteItemLists: MutableSet<FavoriteListEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER)
   val reviewList: MutableSet<ReviewEntity>? = HashSet(),
 
   @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
   val commentList: MutableSet<CommentEntity>? = HashSet(),
 
   @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
-  val replyList: MutableSet<CommentEntity>? = HashSet()
+  val replyList: MutableSet<CommentEntity>? = HashSet(),
+
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER)
+  val votes: MutableSet<ReviewVoting>? = HashSet()
 ) {
   constructor(user: User) : this(
     user.userId,

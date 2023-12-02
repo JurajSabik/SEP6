@@ -7,6 +7,7 @@ import com.sep6.infrastructureservices.persistence.repositories.UserPersistenceR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import models.User
+import models.Vote
 import org.springframework.stereotype.Service
 import repository_contracts.UserRepository
 import java.util.*
@@ -82,6 +83,11 @@ class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository) : UserR
     otherUser.followers?.removeIf { userEntity -> userEntity.userId == user.userId }
     user.let { jpaUserRepo.save(it) }
     otherUser.let { jpaUserRepo.save(it) }
+  }
+
+  override suspend fun getVotes(userId: UUID): List<Vote>? = withContext(Dispatchers.IO) {
+    val user: UserEntity? = getUser(userId)
+    return@withContext user?.votes?.map { voteEntity -> voteEntity.mapToDomain() }
   }
 
   private suspend fun getUser(userId: UUID): UserEntity? = withContext(Dispatchers.IO) {
