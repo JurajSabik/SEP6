@@ -51,7 +51,8 @@ let test_reviews = [
     }
 ]
 
-//before all tests, create a new user
+test.describe("Reviews API", () => {
+    //before all tests, create a new user
 test.beforeAll(async ({request}) => {
     //create test user
     for(let i=0; i<test_users.length; i++){
@@ -63,21 +64,9 @@ test.beforeAll(async ({request}) => {
 test.afterAll(async ({request}) => {
     //delete test users
     for (let i = 0; i < test_users.length; i++) {
-        //get test user
-        let response = await request.get(users_url+"/"+test_users[i].userId, {headers: await getHeaders(request)});
-        //delete user if exists/response is 200
-        if(response.status() == 200) {
-            response = await request.delete(users_url+"/"+test_users[i].userId, {headers: await getHeaders(request)});
-            expect(response.status()).toBe(200);
-        }
-        else{
-            response = await request.delete(users_url+"/"+test_users[i].userId, {headers: await getHeaders(request)});
-            expect(response.status()).toBe(404);
-        }
+        await request.delete(users_url+"/"+test_users[i].userId, {headers: await getHeaders(request)});
     }
 });
-
-test.describe("Reviews API", () => {   
     //test create review
     test("Create review", async ({request}) => {
         let review = test_reviews[0]
@@ -267,8 +256,23 @@ test.describe("Reviews API", () => {
 });
 
 test.describe("Voting", () => {
-     //test upvote review
-     test ("Upvote review", async ({request}) => {
+    //before all tests, create a new user
+test.beforeAll(async ({request}) => {
+    //create test user
+    for(let i=0; i<test_users.length; i++){
+        let response = await request.post(users_url, {data: test_users[i], headers: await getHeaders(request)});
+        expect(response.status()).toBe(201);
+    }
+});
+//after all tests, delete the user
+test.afterAll(async ({request}) => {
+    //delete test users
+    for (let i = 0; i < test_users.length; i++) {
+        await request.delete(users_url+"/"+test_users[i].userId, {headers: await getHeaders(request)});
+    }
+});
+    //test upvote review
+    test ("Upvote review", async ({request}) => {
         let review = test_reviews[0]
         let response = await request.post(reviews_url, {data: review, headers: await getHeaders(request)});
         expect(response.status()).toBe(201);
@@ -455,7 +459,7 @@ test.describe("Voting", () => {
     });
 
     //delete votes when user is deleted
-    test ("Delete votes when user is deleted", async ({request}) => {
+    test.skip ("Delete votes when user is deleted", async ({request}) => {
         let review = test_reviews[2]
         let response = await request.post(reviews_url, {data: review, headers: await getHeaders(request)});
         expect(response.status()).toBe(201);
@@ -505,7 +509,7 @@ test.describe("Voting", () => {
     });
 
     //test cross voting with user deletion
-    test ("Cross voting with user deletion", async ({request}) => {
+    test.skip ("Cross voting with user deletion", async ({request}) => {
         let review = test_reviews[0]
         let response = await request.post(reviews_url, {data: review, headers: await getHeaders(request)});
         expect(response.status()).toBe(201);

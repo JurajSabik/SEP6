@@ -9,7 +9,5 @@ data class Comment(
   @NotNull val userId: UUID,
   @NotNull val reviewId: UUID,
   @NotNull val text: String,
-  @NotNull val timestamp: Timestamp,
-  val upVotes: Int = 0,
-  val downVotes: Int = 0
+  @NotNull val timestamp: Timestamp = Timestamp(System.currentTimeMillis()),
 )

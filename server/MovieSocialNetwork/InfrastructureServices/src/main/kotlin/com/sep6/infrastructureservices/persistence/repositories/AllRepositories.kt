@@ -18,13 +18,14 @@ interface FavoriteListPersistenceRepository : JpaRepository<FavoriteListEntity, 
     fun existsByUserUserId(userId: UUID):Boolean
 }
 interface ReplyPersistenceRepository : JpaRepository<ReplyEntity, UUID>
-interface CommentPersistenceRepository : JpaRepository<CommentEntity, UUID>
-
 interface ItemRepository : JpaRepository<ItemEntity, UUID> {
     fun findByExternalId(externalId: String): ItemEntity
     fun existsByExternalId(externalId: String):Boolean
 }
-interface ReviewPersistenceRepository : JpaRepository<ReviewEntity, UUID> {
+interface CommentPersistenceRepository : JpaRepository<CommentEntity, UUID> {
+    fun findByReview(review: ReviewEntity): List<CommentEntity>
+    fun findByUser(user: UserEntity): List<CommentEntity>
+}interface ReviewPersistenceRepository : JpaRepository<ReviewEntity, UUID> {
   fun findByMovieId(movieId: String): List<ReviewEntity>
   fun findByUser(user: UserEntity): List<ReviewEntity>
 }

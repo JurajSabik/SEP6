@@ -34,6 +34,16 @@ class ReviewEntity(
   @Column(name = "timestamp", nullable = false)
   val timestamp: Timestamp
 ) {
+  constructor(reviewId: UUID, userId: UUID) : this(
+    reviewId,
+    UserEntity(userId),
+    "",
+    "",
+    0,
+    HashSet<ReviewVoting>(),
+    Timestamp(System.currentTimeMillis())
+  )
+
   constructor(review: Review) : this(
     review.reviewId,
     UserEntity(review.userId),

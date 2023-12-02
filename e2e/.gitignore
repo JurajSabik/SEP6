@@ -17,6 +17,7 @@ firefox/
 
 # Test output
 test-results/
+playwright-report/
 
 # Temporary files
 *.tmp

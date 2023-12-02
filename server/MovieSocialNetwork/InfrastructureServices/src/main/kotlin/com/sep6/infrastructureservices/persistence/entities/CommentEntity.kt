@@ -1,6 +1,7 @@
 package com.sep6.infrastructureservices.persistence.entities
 
 import jakarta.persistence.*
+import models.Comment
 import java.sql.Timestamp
 import java.util.*
 
@@ -25,9 +26,22 @@ class CommentEntity(
   @Column(name = "timestamp", nullable = false)
   val timestamp: Timestamp,
 
-  @Column(name = "up_votes")
-  val upVotes: Int = 0,
+){
+  constructor(comment: Comment) : this(
+    comment.commentId,
+    UserEntity(comment.userId),
+    ReviewEntity(comment.reviewId, comment.userId),
+    comment.text,
+    comment.timestamp,
+  )
 
-  @Column(name = "down_votes")
-  val downVotes: Int = 0
-)
+  fun mapToDomain(): Comment {
+    return Comment(
+      commentId,
+      user.userId,
+      review.reviewId,
+      text,
+      timestamp,
+    )
+  }
+}
