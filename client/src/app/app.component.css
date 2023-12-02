@@ -1,14 +1,16 @@
-.nav-bar {
-  position: sticky;
-  top: 0; /* This is the distance from the top of the viewport the element will stick to */
-  z-index: 1000; /* This ensures that the navbar will stay above other page elements */
-  background-color: #333; /* or any color you prefer */
-  /*padding: 1rem; !* Adjust padding to your preference *!*/
-  width: 100%; /* Ensures the navbar stretches across the full width of the viewport */
-}
 
 * {
   margin: 0;
   padding: 0;
+}
 
+.nav-bar {
+  position: sticky;
+  top: 0; /* This is the distance from the top of the viewport the element will stick to */
+  z-index: 1000; /* This ensures that the navbar will stay above other page elements */
+  /*padding: 1rem; !* Adjust padding to your preference *!*/
+  width: 100%; /* Ensures the navbar stretches across the full width of the viewport */
+}
+
+.main {
 }

@@ -6,6 +6,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { MovieDetailComponent } from './components/movie-details/movie-details.component';
 import { ActorDetailsComponent } from './components/actor-details/actor-details.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'tv/:id', component: MovieDetailComponent },
   { path: 'credits/:id', component: ActorDetailsComponent },
   { path: 'actor/:id', component: ActorDetailsComponent },
-
+  //path for search result with query parameter
+  { path: 'results', component: SearchResultComponent },
 ];
 
 @NgModule({

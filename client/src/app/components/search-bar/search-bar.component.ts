@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavbarService } from '../../services/navbar.service';
 import { TmdbService } from '../../services/tmdb.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,9 @@ export class SearchBarComponent {
   isExpanded = false;
   searchText = '';
 
-  constructor(private navbarService: NavbarService, private tmdbService: TmdbService) {
+  constructor(private navbarService: NavbarService,
+              private tmdbService: TmdbService,
+              private router: Router) {
   }
 
   toggleSearch(): void {
@@ -25,20 +28,13 @@ export class SearchBarComponent {
 
   search(): void {
     if (this.searchText) {
-      // Call the search method from your service
-      this.tmdbService.search(this.searchText).subscribe({
-        next: results => {
-          // Handle your search results here
-          console.log('Search results:', results);
-          // Emit the search results using the NavbarService
-          this.navbarService.emitSearchResults(results);
-          // You could emit an event with the results or assign them to a variable
-        },
-        error: err => {
-          // Handle the error here
-          console.error('Error searching:', err);
-        }
-      });
+      this.router.navigate(['/results'], {queryParams: {query: this.searchText}});
     }
   }
+
+  clearSearch(): void {
+    this.searchText = '';
+  }
+
 }
+

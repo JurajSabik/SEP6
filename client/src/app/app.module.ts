@@ -27,11 +27,15 @@ import { NotificationComponent } from './components/notification/notification.co
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 
+
 import { MatBadgeModule } from '@angular/material/badge'; // <-- Import this
 import { MatButtonModule } from '@angular/material/button';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { NavbarMiddleComponent } from './components/navbar-middle/navbar-middle.component';
-import {MatButtonToggleModule} from "@angular/material/button-toggle"; // <-- Make sure this is imported
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { MovieGridComponent } from './components/movie-grid/movie-grid.component';
+import { FootComponent } from './components/foot/foot.component';
 
 
 
@@ -54,6 +58,9 @@ const routes: Routes = [
     NotificationComponent,
     SearchBarComponent,
     NavbarMiddleComponent,
+    SearchResultComponent,
+    MovieGridComponent,
+    FootComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +79,7 @@ const routes: Routes = [
     MatSlideToggleModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,12 @@
          *ngIf="isExpanded"
          [(ngModel)]="searchText"
          (keyup.enter)="search()"
-         #searchInput>
-  <mat-icon (click)="toggleSearch()" class="search-icon">search</mat-icon>
+         #searchInput
+         class="search-input">
+  <mat-icon *ngIf="isExpanded && searchText" class="clear-icon" (click)="clearSearch()">
+    clear
+  </mat-icon>
+  <mat-icon (click)="toggleSearch()" class="search-icon">
+    {{ isExpanded ? 'double_arrow' : 'search' }}
+  </mat-icon>
 </div>
