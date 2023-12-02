@@ -24,16 +24,6 @@
     </a>
   </div>
 
-  <!-- List of movies excluding the first one -->
-  <div class="movie-row">
-    <ng-container *ngFor="let movie of items; let i = index">
-      <!-- Exclude the first movie from this list and check for poster_path -->
-      <div *ngIf="i !== 0 && movie.poster_path" class="movie-details-container">
-        <!-- Main movie details section, only shown if movie has a poster_path -->
-        <a [routerLink]="['/' + contentMode, movie.id]" class="main-details">
-          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
-        </a>
-      </div>
-    </ng-container>
-  </div>
+  <!-- Movie List except the first-->
+  <app-movie-grid [items]="items" [contentMode]="contentMode"></app-movie-grid>
 </div>

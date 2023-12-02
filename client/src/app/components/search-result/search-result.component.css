@@ -1,0 +1,13 @@
+.search-header {
+  margin: 0px 0;
+  padding: 40px 40px 0px 40px;
+  background-color: #1e1e1e;
+}
+
+h2 {
+  font-size: 30px;
+  margin: 0px;
+  padding: 0px;
+  color: #ffdddd; /* Change as per your color scheme */
+  background-color: transparent;
+}
