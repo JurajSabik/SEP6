@@ -38,7 +38,7 @@ class UserController(private val userRepo: UserPersistenceService) {
 
   @DeleteMapping("/{userId}")
   suspend fun deleteUser(@PathVariable userId: UUID): ResponseEntity<Void> {
-    userRepo.deleteUser(userId)
+    userService.deleteUser(userId)
     return ResponseEntity.ok().build()
   }
 
@@ -70,6 +70,7 @@ class UserController(private val userRepo: UserPersistenceService) {
   suspend fun getVotes(@PathVariable userId: UUID): ResponseEntity<List<Vote>> {
     return ResponseEntity(userRepo.getVotes(userId), HttpStatus.OK)
   }
+
 
   @GetMapping("/exists/{username}")
   suspend fun getDoesExist(@PathVariable username: String): ResponseEntity<Boolean> {

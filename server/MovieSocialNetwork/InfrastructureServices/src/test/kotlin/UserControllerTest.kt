@@ -51,6 +51,10 @@ class UserControllerTest {
     @Test
     fun `deleteUser returns ok`() = runBlocking {
         coEvery { userRepo.deleteUser(userId) } returns Unit
+        coEvery { userRepo.deleteFollowersAndFollowing(userId) } returns Unit
+        coEvery { userRepo.deleteReviews(userId) } returns Unit
+        coEvery { userRepo.deleteReviewVotes(userId) } returns Unit
+
         val responseEntity: ResponseEntity<Void> = userController.deleteUser(userId)
         assertEquals(HttpStatus.OK, responseEntity.statusCode)
     }

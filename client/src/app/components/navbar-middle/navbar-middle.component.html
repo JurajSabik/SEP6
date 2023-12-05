@@ -7,7 +7,7 @@
     </mat-button-toggle-group>
     <div class="nav-divider"></div> <!-- Divider between toggle buttons and other nav items -->
     <a class="nav-category" routerLink="/{{selectedMediaType}},'popular'">Popular</a>
-    <a class="nav-category" routerLink="/my-list">My Lists</a>
+    <a class="nav-category" (click)="goToFavoriteLists()">My Lists</a>
   </div>
   <div class="nav-category-dropdown">
     <!-- Assign the button a class for styling and add matMenuTriggerFor directive -->

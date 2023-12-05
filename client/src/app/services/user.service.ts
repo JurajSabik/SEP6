@@ -34,7 +34,7 @@ export class UserService {
     return this.http.get<boolean>(`${this.userBaseUrl}/exists/email/${email}`)
   }
 
-  createUser(user: any): Observable<DomainUser> {
+  createUser(user: DomainUser): Observable<DomainUser> {
     return this.http.post<DomainUser>(this.userBaseUrl, user);
   }
 

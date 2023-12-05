@@ -26,9 +26,9 @@ export class SearchBarComponent {
     }
   }
 
-  search(): void {
+  async search(): Promise<void> {
     if (this.searchText) {
-      this.router.navigate(['/results'], {queryParams: {query: this.searchText}});
+      await this.router.navigate(['/results'], {queryParams: {query: this.searchText}});
     }
   }
 

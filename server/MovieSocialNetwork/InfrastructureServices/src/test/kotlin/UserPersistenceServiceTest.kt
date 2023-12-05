@@ -9,12 +9,14 @@ import models.enums.UserRole
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
+import org.springframework.transaction.support.TransactionTemplate
 import java.time.LocalDate
 import java.util.*
 
 class UserPersistenceServiceTest {
     private val jpaUserRepo: UserPersistenceRepository = mockk()
-    private val userPersistenceService = UserPersistenceService(jpaUserRepo)
+    private val transactionTemplate: TransactionTemplate = mockk()
+    private val userPersistenceService = UserPersistenceService(jpaUserRepo, transactionTemplate)
     private val expectedUser = User(userId = UUID.randomUUID(), externalId = "external ID", username = "testUsername",
         email = "test@email.com", role = UserRole.STANDARD_USER)
     private val expectedFollower = User(userId = UUID.randomUUID(), externalId = "external ID", username = "testFollowername",

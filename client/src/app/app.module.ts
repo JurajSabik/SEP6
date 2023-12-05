@@ -47,6 +47,16 @@ import {MatCardModule} from "@angular/material/card";
 import {UserProfileComponent} from './components/user-profile/user-profile.component';
 import {ConfirmDeleteDialogComponent} from './components/confirm-delete-dialog-component/confirm-delete-dialog.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { FavoriteListsComponent } from './components/favorite-item-lists/favorite-item-lists.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import { ItemComponent } from './components/favorite-item-lists/item/item.component';
+import {MatListModule} from "@angular/material/list";
+import {MatLineModule} from "@angular/material/core";
+import { CreateListComponent} from './components/favorite-item-lists/create-list/create-list.component';
+import {NgOptimizedImage} from "@angular/common";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { EditListComponent } from './components/favorite-item-lists/edit-list/edit-list.component';
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -71,6 +81,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     AppUserCardComponent,
     UserProfileComponent,
     ConfirmDeleteDialogComponent,
+    FavoriteListsComponent,
+    ItemComponent,
+    CreateListComponent,
+    EditListComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +109,13 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatDialogModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatExpansionModule,
+    MatListModule,
+    MatLineModule,
+    NgOptimizedImage,
+    MatTooltipModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

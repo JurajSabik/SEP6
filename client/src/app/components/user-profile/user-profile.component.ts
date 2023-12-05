@@ -63,4 +63,8 @@ export class UserProfileComponent implements OnInit {
     await this.authService.signOut();
     await this.router.navigate(["/home"]);
   }
+
+  async goToUserList() {
+     await this.router.navigate([`/favorite-item-list/${this.userProfile?.userId}`]);
+  }
 }

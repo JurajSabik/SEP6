@@ -1,5 +1,6 @@
 import kotlinx.coroutines.runBlocking
 import models.FavoriteItemList
+import models.ItemType
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -11,6 +12,7 @@ import java.sql.Timestamp
 import java.time.LocalDateTime
 import java.util.*
 import java.util.stream.Stream
+import kotlin.collections.HashSet
 
 class FavoriteItemListValidatorTest {
   private lateinit var favoriteItemListValidator: FavoriteItemListValidator
@@ -37,11 +39,10 @@ class FavoriteItemListValidatorTest {
   fun testValidationExceptionMessage() {
     val invalidList = FavoriteItemList(
       name = "",
+      type = ItemType.MOVIE,
       userId = UUID.randomUUID(),
-      items = listOf(),
+      items = HashSet(),
       timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1)),
-      upVotes = -1,
-      downVotes = -5
     )
     val exception = assertThrows(ValidationException::class.java) {
       runBlocking {  favoriteItemListValidator.validate(invalidList) }
@@ -50,7 +51,6 @@ class FavoriteItemListValidatorTest {
     assertTrue(exception.message!!.contains("FavoriteItemListValidator"))
     assertTrue(exception.message!!.contains("List name must not be blank."))
     assertTrue(exception.message!!.contains("The list must contain at least one item."))
-    assertTrue(exception.message!!.contains("Upvotes and Downvotes cannot have a negative value."))
     assertTrue(exception.message!!.contains("Timestamp cannot be in the future."))
   }
 }

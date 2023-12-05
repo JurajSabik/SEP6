@@ -5,6 +5,7 @@ import com.sep6.infrastructureservices.persistence.exceptions.ResourceNotFoundEx
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.context.request.WebRequest
@@ -20,7 +21,11 @@ class ControllerExceptionHandler {
     val message = getMessage(ex, request, HttpStatus.NOT_FOUND.value())
     return ResponseEntity(message, HttpStatus.NOT_FOUND)
   }
-
+  @ExceptionHandler(HttpMessageNotReadableException::class)
+  fun httpMessageNotReadableException(ex: HttpMessageNotReadableException, request: WebRequest): ResponseEntity<ErrorMessage> {
+    val message = getMessage(ex, request, HttpStatus.BAD_REQUEST.value())
+    return ResponseEntity(message, HttpStatus.BAD_REQUEST)
+  }
   @ExceptionHandler(AlreadyFollowingException::class)
   fun alreadyFollowingException(ex: AlreadyFollowingException, request: WebRequest): ResponseEntity<ErrorMessage> {
     val message = getMessage(ex, request, HttpStatus.BAD_REQUEST.value())

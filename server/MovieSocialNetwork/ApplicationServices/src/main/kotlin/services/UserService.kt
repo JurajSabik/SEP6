@@ -37,6 +37,13 @@ class UserService(
     repository.removeFollower(userId, otherUserId)
   }
 
+  suspend fun deleteUser(userId: UUID) {
+    repository.deleteFollowersAndFollowing(userId)
+    repository.deleteReviewVotes(userId)
+    repository.deleteReviews(userId)
+    repository.deleteUser(userId)
+  }
+
   suspend fun doesUserExist(username: String): Boolean {
     return repository.doesUserExist(username)
   }

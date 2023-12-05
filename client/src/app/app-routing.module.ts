@@ -9,6 +9,9 @@ import {ActorDetailsComponent} from './components/actor-details/actor-details.co
 import {SearchResultComponent} from './components/search-result/search-result.component';
 import {FriendsComponent} from "./components/friends/friends.component";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
+import {FavoriteListsComponent} from "./components/favorite-item-lists/favorite-item-lists.component";
+import {CreateListComponent} from "./components/favorite-item-lists/create-list/create-list.component";
+import {EditListComponent} from "./components/favorite-item-lists/edit-list/edit-list.component";
 
 
 const routes: Routes = [
@@ -25,6 +28,9 @@ const routes: Routes = [
   {path: 'friends', component: FriendsComponent},
   {path: 'profile/:userId', component: UserProfileComponent },
   {path: 'results', component: SearchResultComponent},
+  {path: 'favorite-item-list/:userId', component: FavoriteListsComponent},
+  {path: 'create-list/:userId', component: CreateListComponent},
+  {path: 'edit-list/:listId', component: EditListComponent}
 ];
 
 @NgModule({

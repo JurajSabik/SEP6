@@ -45,7 +45,7 @@ export class TmdbService {
   }
 
   // A generic method for getting item details, either a movie or a series
-  getDetails(contentType: string, id: number): Observable<any> {
+  getDetails(contentType: string, id: number | string): Observable<any> {
     return this.http.get(`${BASE_URL}${contentType}/${id}?api_key=${API_KEY}`);
   }
 
@@ -68,7 +68,7 @@ export class TmdbService {
     return this.http.get(`${BASE_URL}search/${type}?api_key=${API_KEY}`, {params});
   }
 
-  getActorDetails(actorId: number | null): Observable<any> {
+  getActorDetails(actorId: number | string | null): Observable<any> {
     return this.http.get(`${BASE_URL}person/${actorId}?api_key=${API_KEY}`);
   }
 

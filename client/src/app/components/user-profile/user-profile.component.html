@@ -9,12 +9,15 @@
         {{ userProfile?.role === UserRole.MODERATOR ? 'Moderator' : 'Standard User' }}
       </mat-card-subtitle>
     </mat-card-header>
-
     <mat-card-content>
       <p><strong>Email:</strong> {{ userProfile?.email }}</p>
       <!-- Add more profile details as needed -->
       <button *ngIf="isCurrentUser" mat-raised-button color="warn" (click)="openDeleteAccountDialog()">
         Delete Account
+      </button>
+      <br>
+      <button mat-raised-button color="primary" (click)="goToUserList()">
+        Lists of favorite items
       </button>
     </mat-card-content>
   </mat-card>

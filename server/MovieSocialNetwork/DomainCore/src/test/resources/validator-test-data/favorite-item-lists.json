@@ -3,6 +3,7 @@
     "listId": "e70b52a0-60a5-41a5-86d1-5e6c27074a4b",
     "userId": "2cde18c2-42fd-4f5a-a349-1efad4b13fe2",
     "name": "Favorite Movies List",
+    "type": "Movie",
     "items": [
       {
         "itemId": "1d2aa09a-60c7-40d3-9c04-33c8d5d76f86",
@@ -17,13 +18,12 @@
         "externalId": "movie-3"
       }
     ],
-    "timestamp": "2023-10-31T16:30:00Z",
-    "upVotes": 10,
-    "downVotes": 2
+    "timestamp": "2023-10-31T16:30:00Z"
   },
   {
     "listId": "fd007a23-cc39-4433-9a45-e5f05cf9a1f5",
     "userId": "3d9d5a5e-50a9-4d16-94e6-187de1b9f6d1",
+    "type": "Movie",
     "name": "Favorite Directors List",
     "items": [
       {
@@ -39,13 +39,12 @@
         "externalId": "director-3"
       }
     ],
-    "timestamp": "2023-10-30T14:45:00Z",
-    "upVotes": 15,
-    "downVotes": 3
+    "timestamp": "2023-10-30T14:45:00Z"
   },
   {
     "listId": "f26e39b6-12e6-4ff1-9809-2d5b29f4874c",
     "userId": "95f8c7c3-4a95-44e1-8a47-f5e7d32d6407",
+    "type": "Movie",
     "name": "Wishlist",
     "items": [
       {
@@ -64,6 +63,7 @@
   {
     "listId": "af1d4ab5-c84a-4137-b20b-5b5bece61b07",
     "userId": "78f8cd1f-c78e-43f5-9363-f23cda07ad3e",
+    "type": "Movie",
     "name": "Favorite Actors List",
     "items": [
       {
@@ -86,6 +86,7 @@
   {
     "listId": "4f2ac1a5-5b18-4cc2-a8c7-2714f3507777",
     "userId": "03d5ea85-0a19-4726-9b6f-8f4c31ac4e7f",
+    "type": "MOVIE",
     "name": "Travel Wishlist",
     "items": [
       {
@@ -101,13 +102,12 @@
         "externalId": "location-3"
       }
     ],
-    "timestamp": "2023-10-27T08:30:00Z",
-    "upVotes": 8,
-    "downVotes": 1
+    "timestamp": "2023-10-27T08:30:00Z"
   },
   {
     "listId": "5a5a5da0-58f2-4e89-9d15-2c2c6224be8b",
     "userId": "a9f70e0b-4f3f-47c2-94e5-90c7d40f9a7e",
+    "type": "Movie",
     "name": "Gift Ideas List",
     "items": [
       {

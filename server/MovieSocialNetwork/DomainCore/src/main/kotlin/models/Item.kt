@@ -4,6 +4,6 @@ import org.jetbrains.annotations.NotNull
 import java.util.UUID
 
 open class Item (
-  @NotNull val itemId: UUID,
+  val itemId: UUID = UUID.randomUUID(),
   @NotNull open val externalId: String
 )

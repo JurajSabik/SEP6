@@ -1,0 +1,36 @@
+
+.custom-card-tv {
+  border: 3px solid teal;
+  margin: 8px;
+}
+
+.custom-card-movie {
+  border: 3px solid maroon;
+  margin: 8px;
+  position: relative;
+}
+
+.custom-card-star{
+  border: 3px solid gold;
+  margin: 8px;
+  position: relative;
+}
+
+mat-card {
+  width: fit-content;
+  height: fit-content;
+}
+
+mat-icon {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: white;
+  z-index: 2;
+}
+
+mat-card:hover {
+  cursor: pointer;
+  box-shadow:10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+

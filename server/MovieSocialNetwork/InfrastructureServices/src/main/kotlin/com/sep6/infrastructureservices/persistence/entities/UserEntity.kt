@@ -1,5 +1,6 @@
 package com.sep6.infrastructureservices.persistence.entities
 
+import jakarta.annotation.PostConstruct
 import jakarta.persistence.*
 import java.util.*
 import models.User
@@ -38,7 +39,7 @@ class UserEntity(
   @ManyToMany(mappedBy = "following", fetch = FetchType.EAGER)
   var followers: MutableSet<UserEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER)
   val favoriteItemLists: MutableSet<FavoriteListEntity>? = HashSet(),
 
   @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER)
@@ -53,6 +54,7 @@ class UserEntity(
   @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER)
   val votes: MutableSet<ReviewVoting>? = HashSet()
 ) {
+
   constructor(user: User) : this(
     user.userId,
     user.externalId,
@@ -73,5 +75,20 @@ class UserEntity(
       email = email,
       role = role
     )
+  }
+
+  fun clearAllLists() {
+    // Clear associations
+    following?.forEach {
+      it.followers?.remove(this)
+    }
+    followers?.forEach { it.following?.remove(this) }
+
+    // Clear lists
+    following?.clear()
+    followers?.clear()
+    favoriteItemLists?.clear()
+    reviewList?.clear()
+    commentList?.clear()
   }
 }

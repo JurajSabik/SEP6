@@ -17,4 +17,7 @@ interface UserRepository {
   suspend fun getUserByExternalId(externalId: String): User
   suspend fun getUserByUsername(username: String): User
   suspend fun doesUserExist(username: String): Boolean
+  fun deleteFollowersAndFollowing(userId: UUID)
+  fun deleteReviewVotes(userId: UUID)
+  fun deleteReviews(userId: UUID)
 }

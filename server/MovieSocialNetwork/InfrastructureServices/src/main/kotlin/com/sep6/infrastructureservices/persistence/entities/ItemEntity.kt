@@ -18,5 +18,9 @@ class ItemEntity(
   @Column(name = "externalId", unique = true, nullable = false)
   val externalId: String
 ) {
+  fun mapToDomain(): Item {
+     return Item(this.itemId, this.externalId)
+  }
+
   constructor(item: Item) : this(item.itemId, item.externalId)
 }

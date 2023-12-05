@@ -1,0 +1,103 @@
+<!-- create-list.component.html -->
+
+<div class="container">
+  <h2>Create a New List</h2>
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="List Name" [(ngModel)]="newListName" [ngModelOptions]="{standalone: true}" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <div *ngIf="createdList.length === 0 else disabled">
+        <mat-select [(ngModel)]="newListType" [ngModelOptions]="{standalone: true}" required>
+          <mat-option *ngFor="let type of listTypeArray" [value]="type">{{ type.toLowerCase() }}</mat-option>
+        </mat-select>
+      </div>
+      <ng-template #disabled>
+        <mat-select [(ngModel)]="newListType" [ngModelOptions]="{standalone: true}" required disabled>
+          <mat-option *ngFor="let type of listTypeArray" [value]="type">{{ type.toLowerCase() }}</mat-option>
+        </mat-select>
+      </ng-template>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Add Items</mat-label>
+      <input matInput placeholder="Search items..." [(ngModel)]="searchQuery" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <button class="searchButton" mat-raised-button color="primary" type="button" (click)="search()">Search
+      for {{newListType.toString()}}:
+    </button>
+    <div class="created-list">
+      <h3>Current Items in List:</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let createdItem of createdList">
+          {{createdItem.name}}
+          {{createdItem.title}}
+          <button class="custom-remove-button" mat-raised-button color="primary" type="button"
+                  (click)="removeItemFromList(createdItem)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+      <button mat-raised-button color="primary" type="submit">Create List</button>
+    </div>
+    <br>
+    <div class="search-results">
+      <div *ngIf="newListType === 'MOVIE'">
+        <mat-card class="custom-card" *ngFor="let item of filteredItems; let i = index">
+          <mat-card-header>
+            <mat-icon>movie</mat-icon>
+          </mat-card-header>
+          <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path" alt="{{ item.title }}">
+          <mat-card-content>
+            <h3>{{ item.title }}</h3>
+            <p>Rating: {{ item.vote_average }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="button" (click)="addItemToList(item)">
+              Add to List
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div *ngIf="newListType === 'TV_SERIES'">
+        <mat-card class="custom-card" *ngFor="let item of filteredItems; let i = index">
+          <mat-card-header>
+            <mat-icon>tv</mat-icon>
+          </mat-card-header>
+          <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path" alt="{{ item.title }}">
+          <mat-card-content>
+            <h3>{{ item.title }}</h3>
+            <p>Rating: {{ item.vote_average }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="button" (click)="addItemToList(item)">
+              Add to List
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div *ngIf="newListType === 'STAR'">
+        <mat-card class="custom-card" *ngFor="let item of filteredItems; let i = index" [routerLink]="">
+          <mat-icon>star</mat-icon>
+          <mat-card-header>
+
+            <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + item.profile_path" alt="{{ item.title }}">
+          </mat-card-header>
+          <mat-card-content>
+            <h3>{{ item.name }}</h3>
+            <p>Gender: {{ item.gender == 2 ? 'male' : 'female' }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="button" (click)="addItemToList(item)">
+              Add to List
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+  </form>
+</div>
+

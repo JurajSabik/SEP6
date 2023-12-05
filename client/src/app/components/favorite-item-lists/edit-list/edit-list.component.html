@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Edit List</h2>
+  <div *ngIf="list">
+    <form>
+      <mat-form-field>
+        <mat-label>List Name:</mat-label>
+        <input matInput placeholder="List Name" [(ngModel)]="list.name" [ngModelOptions]="{standalone: true}" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="updateList()">Update List</button> <br>
+      <mat-label>List Type:</mat-label>
+      <mat-chip-set>
+        <mat-chip>
+          <mat-icon matChipAvatar>{{getIconForType() }}</mat-icon>
+          {{list.type?.toUpperCase()}}
+        </mat-chip>
+      </mat-chip-set>
+    </form>
+
+
+    <mat-card class="custom-card" *ngFor="let item of list.items">
+      <app-item [item]="item" [type]="list.type">
+      </app-item>
+      <mat-card-actions>
+        <button *ngIf="list.items.length > 1" mat-raised-button color="warn" type="button" (click)="removeItemFromList(item)">
+          Delete from list
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

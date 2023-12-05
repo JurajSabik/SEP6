@@ -1,0 +1,38 @@
+/* edit-list.component.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+mat-list {
+  width: 100%;
+  max-width: 400px; /* Adjust max-width as needed */
+}
+
+mat-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ccc; /* Add a border between items */
+}
+
+button {
+  margin-left: 8px;
+}
+.custom-card {
+  width: fit-content;
+  border: 3px solid teal;
+  margin: 8px;
+}
+
+.custom-card img {
+  max-width: 100%;
+  height: fit-content;
+}
+
+

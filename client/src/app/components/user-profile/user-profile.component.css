@@ -37,3 +37,6 @@ mat-card {
   margin: 10px;
   color: #fff;
 }
+ button {
+   margin-top: 1vh;
+ }

@@ -13,9 +13,17 @@ interface UserPersistenceRepository : JpaRepository<UserEntity, UUID> {
     fun existsByEmail(email: String): Boolean
     fun findByUsername(username: String): UserEntity
 }
-interface FavoriteListPersistenceRepository : CrudRepository<FavoriteListEntity, UUID>
+interface FavoriteListPersistenceRepository : JpaRepository<FavoriteListEntity, UUID> {
+    fun findAllByUserUserId(userId: UUID): List<FavoriteListEntity>
+    fun existsByUserUserId(userId: UUID):Boolean
+}
 interface ReplyPersistenceRepository : JpaRepository<ReplyEntity, UUID>
-interface CommentPersistenceRepository : CrudRepository<CommentEntity, UUID>
+interface CommentPersistenceRepository : JpaRepository<CommentEntity, UUID>
+
+interface ItemRepository : JpaRepository<ItemEntity, UUID> {
+    fun findByExternalId(externalId: String): ItemEntity
+    fun existsByExternalId(externalId: String):Boolean
+}
 interface ReviewPersistenceRepository : JpaRepository<ReviewEntity, UUID> {
   fun findByMovieId(movieId: String): List<ReviewEntity>
   fun findByUser(user: UserEntity): List<ReviewEntity>

@@ -4,16 +4,25 @@ import com.sep6.infrastructureservices.persistence.entities.UserEntity
 import com.sep6.infrastructureservices.persistence.exceptions.AlreadyFollowingException
 import com.sep6.infrastructureservices.persistence.exceptions.ResourceNotFoundException
 import com.sep6.infrastructureservices.persistence.repositories.UserPersistenceRepository
+import io.github.oshai.kotlinlogging.KotlinLogging
+import jakarta.persistence.EntityManager
+import jakarta.persistence.PersistenceContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import models.User
 import models.Vote
 import org.springframework.stereotype.Service
+import org.springframework.transaction.support.TransactionTemplate
 import repository_contracts.UserRepository
 import java.util.*
 
+
+private val logger = KotlinLogging.logger {}
 @Service
-class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository) : UserRepository {
+class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository, private val transactionTemplate: TransactionTemplate ) : UserRepository {
+  @PersistenceContext
+  private val entityManager: EntityManager? = null
+
   override suspend fun createUser(user: User): User = withContext(Dispatchers.IO) {
     val response = jpaUserRepo.save(UserEntity(user))
     return@withContext response.mapToDomain()
@@ -28,10 +37,41 @@ class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository) : UserR
 
   override suspend fun deleteUser(userId: UUID): Unit = withContext(Dispatchers.IO) {
     when (jpaUserRepo.existsById(userId)) {
-      true -> jpaUserRepo.deleteById(userId)
+      true -> {
+        jpaUserRepo.deleteById(userId)
+      }
       false -> throw ResourceNotFoundException("User with id $userId not found")
     }
   }
+
+  override fun deleteFollowersAndFollowing(userId: UUID): Unit  {
+    transactionTemplate.execute  {
+      entityManager?.createNativeQuery("DELETE FROM user_followers WHERE user_id = :userId OR other_user_id = :userId")
+        ?.setParameter("userId", userId)
+        ?.executeUpdate()
+      it.flush()
+    }
+
+  }
+
+  override fun deleteReviewVotes(userId: UUID): Unit  {
+    transactionTemplate.execute  {
+      entityManager?.createNativeQuery("DELETE FROM review_voting WHERE user_id = :userId")
+        ?.setParameter("userId", userId)
+        ?.executeUpdate()
+      it.flush()
+    }
+
+  }
+  override fun deleteReviews(userId: UUID): Unit  {
+    transactionTemplate.execute  {
+      entityManager?.createNativeQuery("DELETE FROM reviews WHERE user_id = :userId")
+        ?.setParameter("userId", userId)
+        ?.executeUpdate()
+      it.flush()
+    }
+  }
+
 
   override suspend fun getUserById(userId: UUID): User? = withContext(Dispatchers.IO) {
     return@withContext if (jpaUserRepo.existsById(userId)) jpaUserRepo.findById(userId).get()

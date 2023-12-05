@@ -1,0 +1,31 @@
+<div *ngIf="type == ListType.STAR">
+  <mat-card class="custom-card-star">
+        <mat-icon>star</mat-icon>
+        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + itemFromTmdb.profile_path"
+             alt="{{ itemFromTmdb.title }}">
+      <mat-card-content>
+        <h3>Name: {{ itemFromTmdb.name }}</h3>
+        <p>Gender: {{ itemFromTmdb.gender == 2 ? 'male' : 'female' }}</p>
+      </mat-card-content>
+  </mat-card>
+</div>
+<div *ngIf="type === ListType.MOVIE ">
+  <mat-card class="custom-card-movie">
+          <mat-icon>movie</mat-icon>
+          <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + itemFromTmdb.poster_path" >
+          <mat-card-content>
+            <h3>{{ itemFromTmdb.title }}</h3>
+            <p>Rating: {{ itemFromTmdb.vote_average }}</p>
+          </mat-card-content>
+  </mat-card>
+</div>
+<div *ngIf="type == ListType.TV_SERIES">
+  <mat-card class="custom-card-tv">
+    <mat-icon>tv</mat-icon>
+    <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + itemFromTmdb.poster_path" >
+    <mat-card-content>
+      <h3>{{ itemFromTmdb.title }}</h3>
+      <p>Rating: {{ itemFromTmdb.vote_average }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
