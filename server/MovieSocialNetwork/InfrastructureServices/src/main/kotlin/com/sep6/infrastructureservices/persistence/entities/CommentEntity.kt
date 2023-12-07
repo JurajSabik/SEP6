@@ -12,11 +12,11 @@ class CommentEntity(
   @Column(name = "comment_id")
   val commentId: UUID = UUID.randomUUID(),
 
-  @ManyToOne(cascade = [CascadeType.ALL])
+  @ManyToOne()
   @JoinColumn(name = "user_id", nullable = false)
   val user: UserEntity,
 
-  @ManyToOne(cascade = [CascadeType.ALL])
+  @ManyToOne()
   @JoinColumn(name = "review_id", nullable = false)
   val review: ReviewEntity,
 

@@ -23,3 +23,7 @@ mat-tab-group {
 mat-progress-spinner {
   margin-top: 20px; /* Add margin to separate from other content */
 }
+
+* {
+  color: white;
+}

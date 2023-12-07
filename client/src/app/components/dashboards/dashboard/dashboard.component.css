@@ -11,3 +11,11 @@ userDataContainer {
     margin-left: 50vh;
     margin-top: 10vh;
 }
+
+mat-tab {
+  color: white !important;
+}
+
+h1 {
+  color: white;
+}

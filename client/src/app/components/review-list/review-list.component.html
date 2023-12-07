@@ -1,0 +1,19 @@
+<div class="review-list-container">
+  <div *ngFor="let review of reviews" class="review-card">
+    <div class="review-header">
+      <img [src]="userPhotoUrl" alt="User Photo" class="user-photo"/>
+      <div class="review-content">
+        <p class="review-text">{{ getPreviewText(review.text) }}</p>
+        <div class="user-info">
+          <span class="user-name">{{userName }}</span>
+          <div class="rating-stars">
+            <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+              <i [class]="getStarType(review.rating, i + 1)"></i>
+            </ng-container>
+          </div>
+        </div>
+        <a [routerLink]="['/review', review.reviewId]" class="read-more-link">Read More</a>
+      </div>
+    </div>
+  </div>
+</div>

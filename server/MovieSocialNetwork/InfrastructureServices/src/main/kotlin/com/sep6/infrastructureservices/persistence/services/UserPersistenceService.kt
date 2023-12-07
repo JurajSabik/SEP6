@@ -8,6 +8,7 @@ import dtos.GeneralUserData
 import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
+import jakarta.transaction.Transactional
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import models.User
@@ -79,6 +80,14 @@ class UserPersistenceService(
     }
   }
 
+  override fun deleteComments(userId: UUID): Unit {
+    transactionTemplate.execute {
+      entityManager?.createNativeQuery("DELETE FROM comments WHERE user_id = :userId")
+        ?.setParameter("userId", userId)
+        ?.executeUpdate()
+      it.flush()
+    }
+  }
   override suspend fun getGeneralUserData(userId: UUID): GeneralUserData {
     val user: UserEntity? = getUser(userId)
     return GeneralUserData(
@@ -96,10 +105,19 @@ class UserPersistenceService(
     return@withContext if (jpaUserRepo.existsById(userId)) jpaUserRepo.findById(userId).get()
       .mapToDomain() else throw ResourceNotFoundException("User with id $userId not found")
   }
-
+  fun getUserWithFollowers(userId: UUID): UserEntity? {
+    return entityManager?.createQuery(
+      "SELECT u FROM UserEntity u LEFT JOIN FETCH u.following LEFT JOIN FETCH u.followers WHERE u.userId = :userId",
+      UserEntity::class.java
+    )
+      ?.setParameter("userId", userId)
+      ?.singleResult;
+  }
+  @Transactional
   override suspend fun addFollower(userId: UUID, otherUserId: UUID): Unit = withContext(Dispatchers.IO) {
-    val (user: UserEntity, otherUser: UserEntity) = getUserAndUserToFollow(otherUserId, userId)
-    user.following?.forEach { userInList ->
+    val user = getUserWithFollowers(userId);
+    val otherUser = getUserWithFollowers(otherUserId)
+    user?.following?.forEach { userInList ->
       run {
         if (userInList.userId == otherUserId) {
           throw AlreadyFollowingException("User with id $userId already follows user with id $otherUserId")
@@ -107,10 +125,18 @@ class UserPersistenceService(
       }
     }
 
-    otherUser.let { user.following?.add(it) }
-    user.let { otherUser.followers?.add(it) }
-    user.let { jpaUserRepo.save(it) }
-    otherUser.let { jpaUserRepo.save(it) }
+    otherUser.let { user?.following?.add(it!!) }
+    user.let { otherUser?.followers?.add(it!!) }
+    user.let {
+      if (it != null) {
+        jpaUserRepo.save(it)
+      }
+    }
+    otherUser.let {
+      if (it != null) {
+        jpaUserRepo.save(it)
+      }
+    }
   }
 
   private fun getUserAndUserToFollow(
@@ -127,21 +153,30 @@ class UserPersistenceService(
   }
 
   override suspend fun getFollowers(userId: UUID): List<User>? = withContext(Dispatchers.IO) {
-    val user: UserEntity? = getUser(userId)
+    val user: UserEntity? = getUserWithFollowers(userId)
     return@withContext user?.followers?.map { userEntity -> userEntity.mapToDomain() }
   }
 
   override suspend fun getFollowing(userId: UUID): List<User>? = withContext(Dispatchers.IO) {
-    val user: UserEntity? = getUser(userId)
+    val user: UserEntity? = getUserWithFollowers(userId)
     return@withContext user?.following?.map { userEntity -> userEntity.mapToDomain() }
   }
 
   override suspend fun removeFollower(userId: UUID, otherUserId: UUID): Unit = withContext(Dispatchers.IO) {
-    val (user: UserEntity, otherUser: UserEntity) = getUserAndUserToFollow(otherUserId, userId)
-    user.following?.removeIf { userEntity -> userEntity.userId == otherUser.userId }
-    otherUser.followers?.removeIf { userEntity -> userEntity.userId == user.userId }
-    user.let { jpaUserRepo.save(it) }
-    otherUser.let { jpaUserRepo.save(it) }
+    val user = getUserWithFollowers(userId)
+    val otherUser = getUserWithFollowers(otherUserId)
+    user?.following?.removeIf { userEntity -> userEntity.userId == otherUser?.userId }
+    otherUser?.followers?.removeIf { userEntity -> userEntity.userId == user?.userId }
+    user.let {
+      if (it != null) {
+        jpaUserRepo.save(it)
+      }
+    }
+    otherUser.let {
+      if (it != null) {
+        jpaUserRepo.save(it)
+      }
+    }
   }
 
   override suspend fun getVotes(userId: UUID): List<Vote>? = withContext(Dispatchers.IO) {

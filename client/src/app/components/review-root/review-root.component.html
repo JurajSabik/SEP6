@@ -1,0 +1,73 @@
+<div class="center-content" [ngStyle]="{'background-image': backgroundImageUrl ? 'url(' + backgroundImageUrl + ')' : 'teal'}" >
+
+  <h1>{{ movieTitle }}</h1>
+
+  <mat-card class="user-profile-card">
+    <mat-card-header>
+      <div mat-card-avatar class="user-avatar">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <mat-card-title>user: {{ reviewAuthor?.username }}</mat-card-title>
+      <mat-card-subtitle>
+        Rating: {{ review?.rating }}
+        <div>
+          <mat-icon *ngFor="let i of getStarList();"> star</mat-icon>
+          <mat-icon *ngFor="let i of getStarBorderList()"> star_border</mat-icon>
+        </div>
+
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>{{ review?.text }}</p>
+      <p>[ {{ getTimeDelta() }} ]</p>
+
+      <p><strong>Upvotes:</strong>{{numberOfUpvotes$ | async}}<br><strong>Downvotes:</strong> {{ numberOfDownvotes$ | async }} </p>
+      <button mat-icon-button *ngIf="isLoggedIn()" (click)="upvote()">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      <button mat-icon-button *ngIf="isLoggedIn()" (click)="downvote()">
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+      <button *ngIf="isMyReview()" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button *ngIf="isMyReview()" (click)="edit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+  <br>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Add Comment</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="isLoggedIn(); then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <form (ngSubmit)="onSubmit()">
+          <mat-form-field>
+            <input matInput placeholder="Comment" [(ngModel)]="newCommentText" [ngModelOptions]="{standalone: true}"
+                   required>
+          </mat-form-field>
+          <button mat-icon-button color="primary" type="submit">
+            <mat-icon>add</mat-icon>
+          </button>
+        </form>
+
+      </ng-template>
+      <ng-template #elseBlock>
+        <p>You must be logged in to comment</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+  <br>
+</div>
+
+<div class="comment-container">
+  <h2 mat-subheader>Comments</h2>
+  <mat-divider class="divider"></mat-divider>
+  <app-comment *ngFor="let comment of commentList$ | async " [comment]="comment" [loggedUser]="loggedUser"
+                (removed)="refreshCommentList()"></app-comment>
+</div>

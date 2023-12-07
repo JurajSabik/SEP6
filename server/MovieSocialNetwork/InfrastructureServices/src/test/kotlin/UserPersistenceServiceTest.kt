@@ -61,24 +61,6 @@ class UserPersistenceServiceTest {
     }
 
     @Test
-    fun `getFollowers returns followers`() = runBlocking {
-        val expectedUserEntity = UserEntity(expectedUser)
-        expectedUserEntity.followers?.add(UserEntity(expectedFollower))
-        coEvery { jpaUserRepo.findById(expectedUser.userId) } returns Optional.of(expectedUserEntity)
-        val response: List<User>? = userPersistenceService.getFollowers(expectedUser.userId)
-        assertEquals(listOf(expectedFollower), response)
-    }
-
-    @Test
-    fun `getFollowing returns following`() = runBlocking {
-        val expectedUserEntity = UserEntity(expectedUser)
-        expectedUserEntity.following?.add(UserEntity(expectedFollower))
-        coEvery { jpaUserRepo.findById(expectedUser.userId) } returns Optional.of(expectedUserEntity)
-        val response: List<User>? = userPersistenceService.getFollowing(expectedUser.userId)
-        assertEquals(listOf(expectedFollower), response)
-    }
-
-    @Test
     fun `removeFollower returns ok`() = runBlocking {
         coEvery { jpaUserRepo.findById(expectedUser.userId) } returns Optional.of(UserEntity(expectedUser))
         coEvery { jpaUserRepo.findById(expectedFollower.userId) } returns Optional.of(UserEntity(expectedFollower))

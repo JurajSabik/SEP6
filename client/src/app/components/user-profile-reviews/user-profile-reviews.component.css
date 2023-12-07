@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+mat-card {
+  border: 1px solid #fff;
+  background-color: #333;
+  margin: 10px;
+  color: #fff;
+}
+
+mat-card-subtitle {
+  color: #ffffff;
+}
+
+.details-panel {
+  width: fit-content;
+  padding: 1rem;
+}
+
+mat-card:hover {
+  cursor: pointer;
+  box-shadow:10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+* {
+  color: white;
+}

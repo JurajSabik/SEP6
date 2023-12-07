@@ -13,6 +13,8 @@ import {FavoriteListsComponent} from "@components/favorite-item-lists/favorite-i
 import {CreateListComponent} from "@components/favorite-item-lists/create-list/create-list.component";
 import {EditListComponent} from "@components/favorite-item-lists/edit-list/edit-list.component";
 import {DashboardComponent} from "@components/dashboards/dashboard/dashboard.component";
+import {ReviewRootComponent} from "@components/review-root/review-root.component";
+import {UserProfileReviewsComponent} from "@components/user-profile-reviews/user-profile-reviews.component";
 
 
 const routes: Routes = [
@@ -29,10 +31,12 @@ const routes: Routes = [
   {path: 'friends', component: FriendsComponent},
   {path: 'profile/:userId', component: UserProfileComponent },
   {path: 'results', component: SearchResultComponent},
+  {path: 'review/:reviewId', component: ReviewRootComponent},
   {path: 'favorite-item-list/:userId', component: FavoriteListsComponent},
   {path: 'create-list/:userId', component: CreateListComponent},
   {path: 'edit-list/:listId', component: EditListComponent},
-  {path: 'dashboard/:userId', component: DashboardComponent}
+  {path: 'dashboard/:userId', component: DashboardComponent},
+  {path: 'user-reviews/:userId', component: UserProfileReviewsComponent}
 ];
 
 @NgModule({

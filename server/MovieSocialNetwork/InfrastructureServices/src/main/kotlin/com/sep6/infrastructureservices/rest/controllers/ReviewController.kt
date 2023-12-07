@@ -1,6 +1,7 @@
 package com.sep6.infrastructureservices.rest.controllers
 
 import com.sep6.infrastructureservices.persistence.services.ReviewPersistenceService
+import io.github.oshai.kotlinlogging.KotlinLogging
 import models.Review
 import models.Vote
 import org.springframework.http.HttpStatus
@@ -10,6 +11,7 @@ import java.util.*
 import services.ReviewService
 
 @RestController
+@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/"], allowCredentials = "true")
 @RequestMapping("api/reviews")
 class ReviewController(private val reviewRepo: ReviewPersistenceService) {
   private val reviewService: ReviewService = ReviewService(reviewRepo)
@@ -59,8 +61,8 @@ class ReviewController(private val reviewRepo: ReviewPersistenceService) {
     return ResponseEntity.ok().build()
   }
 
-  @DeleteMapping("vote/{reviewId}/{userId}")
-  suspend fun deleteVote(@PathVariable reviewId: UUID, @PathVariable userId: UUID): ResponseEntity<Void> {
+  @DeleteMapping("upvote/delete/{reviewId}/{userId}")
+   fun deleteVote(@PathVariable reviewId: UUID, @PathVariable userId: UUID): ResponseEntity<Void> {
     reviewRepo.deleteVote(reviewId, userId)
     return ResponseEntity.ok().build()
   }

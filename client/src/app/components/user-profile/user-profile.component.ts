@@ -67,4 +67,8 @@ export class UserProfileComponent implements OnInit {
   async goToUserList() {
      await this.router.navigate([`/favorite-item-list/${this.userProfile?.userId}`]);
   }
+
+  async goToReviews() {
+     await this.router.navigate([`/user-reviews/${this.userProfile?.userId}`])
+  }
 }

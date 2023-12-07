@@ -1,0 +1,26 @@
+<mat-card class="comment-card">
+  <mat-card-header>
+    <mat-card-title>user: {{ commentAuthor }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ comment?.text }}</p>
+    <p>[ {{ getTimeDelta() }} ]</p>
+
+    <button *ngIf="isMyComment()" (click)="delete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button *ngIf="isMyComment()" (click)="edit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button *ngIf="isLoggedIn()" (click)="reply()">
+      <mat-icon>reply</mat-icon>
+    </button>
+
+    <div>
+      <mat-form-field *ngIf="isReplying">
+        <textarea matInput [(ngModel)]="replyText" placeholder="Reply"></textarea>
+      </mat-form-field>
+      <button *ngIf="isReplying" (click)="submitReply()">Submit</button>
+    </div>
+  </mat-card-content>
+</mat-card>

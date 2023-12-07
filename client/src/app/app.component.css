@@ -1,7 +1,12 @@
 
 * {
+  z-index: -1000;
   margin: 0;
   padding: 0;
+  background-image: url('/assets/images/default-background.jpg');
+  background-size: cover; /* Cover the entire page */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
 .nav-bar {

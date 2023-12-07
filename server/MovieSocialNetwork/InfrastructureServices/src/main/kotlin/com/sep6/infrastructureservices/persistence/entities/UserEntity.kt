@@ -5,6 +5,7 @@ import jakarta.persistence.*
 import java.util.*
 import models.User
 import models.enums.UserRole
+import org.hibernate.Hibernate
 import kotlin.collections.HashSet
 
 @Entity
@@ -28,7 +29,7 @@ class UserEntity(
   @Column(name = "role", nullable = false)
   val role: UserRole,
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
     name = "user_followers",
     joinColumns = [JoinColumn(name = "user_id")],
@@ -36,22 +37,22 @@ class UserEntity(
   )
   var following: MutableSet<UserEntity>? = HashSet(),
 
-  @ManyToMany(mappedBy = "following", fetch = FetchType.EAGER)
+  @ManyToMany(mappedBy = "following", fetch = FetchType.LAZY)
   var followers: MutableSet<UserEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.LAZY)
   val favoriteItemLists: MutableSet<FavoriteListEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.LAZY)
   val reviewList: MutableSet<ReviewEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.LAZY)
   val commentList: MutableSet<CommentEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.LAZY)
   val replyList: MutableSet<CommentEntity>? = HashSet(),
 
-  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = [CascadeType.REMOVE])
   val votes: MutableSet<ReviewVoting>? = HashSet()
 ) {
 

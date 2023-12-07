@@ -42,6 +42,17 @@ class ReviewVoting(
     Timestamp(System.currentTimeMillis())
   )
 
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (other !is ReviewVotingKey) return false
+
+    if (review.reviewId != other.reviewId) return false
+    if (user.userId != other.userId) return false
+
+    return true
+  }
+
   fun mapToDomain(): Vote {
     return Vote(
       id.reviewId,

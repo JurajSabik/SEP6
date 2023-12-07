@@ -22,4 +22,5 @@ interface UserRepository {
   fun deleteReviewVotes(userId: UUID)
   fun deleteReviews(userId: UUID)
   suspend fun getGeneralUserData(userId: UUID): GeneralUserData
+  fun deleteComments(userId: UUID)
 }

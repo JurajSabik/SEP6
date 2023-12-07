@@ -40,6 +40,7 @@ class UserService(
   suspend fun deleteUser(userId: UUID) {
     repository.deleteFollowersAndFollowing(userId)
     repository.deleteReviewVotes(userId)
+    repository.deleteComments(userId)
     repository.deleteReviews(userId)
     repository.deleteUser(userId)
   }

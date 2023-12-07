@@ -15,7 +15,7 @@
         <button color="primary" class="custom-button-tv" *ngIf="list.type == ListType.TV_SERIES" mat-icon-button>
           <mat-icon>tv</mat-icon>
         </button>
-        {{ list.name }}
+        {{list.name}}
       </mat-list-item>
         <div *ngIf="isCurrentDomainUser()">
           <button class="createButton" mat-raised-button color="primary" type="button" (click)="goToCreateLists()">

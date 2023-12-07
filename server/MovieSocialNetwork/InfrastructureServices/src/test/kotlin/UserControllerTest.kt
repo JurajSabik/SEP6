@@ -52,6 +52,7 @@ class UserControllerTest {
     fun `deleteUser returns ok`() = runBlocking {
         coEvery { userRepo.deleteUser(userId) } returns Unit
         coEvery { userRepo.deleteFollowersAndFollowing(userId) } returns Unit
+        coEvery {userRepo.deleteComments(userId)} returns Unit
         coEvery { userRepo.deleteReviews(userId) } returns Unit
         coEvery { userRepo.deleteReviewVotes(userId) } returns Unit
 

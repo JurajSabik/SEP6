@@ -13,7 +13,7 @@ interface ReviewRepository {
   suspend fun getReviewsByUserId(userId: UUID): List<Review>?
   suspend fun upVoteReview(reviewId: UUID, userId: UUID)
   suspend fun downVoteReview(reviewId: UUID, userId: UUID)
-  suspend fun deleteVote(reviewId: UUID, userId: UUID)
+  fun deleteVote(reviewId: UUID, userId: UUID)
   suspend fun getVotesByReviewId(reviewId: UUID): List<Vote>?
   suspend fun getVotesByUserId(userId: UUID): List<Vote>?
 }

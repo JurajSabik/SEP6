@@ -37,7 +37,6 @@ dependencies {
   implementation(project(mapOf("path" to ":DomainServices")))
   implementation(project(mapOf("path" to ":DomainCore")))
   implementation(project(mapOf("path" to ":ApplicationServices")))
-  implementation("com.google.firebase:firebase-admin:8.0.0")
   runtimeOnly("org.postgresql:postgresql")
   runtimeOnly("com.h2database:h2")
   testImplementation("org.springframework.boot:spring-boot-starter-test")

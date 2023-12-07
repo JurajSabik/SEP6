@@ -11,7 +11,7 @@ import {MovieListComponent} from '@components/movie-list/movie-list.component';
 import {MovieDetailComponent} from '@components/movie-details/movie-details.component';
 import {ActorDetailsComponent} from '@components/actor-details/actor-details.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
 import {getAuth, provideAuth} from '@angular/fire/auth';
 import {environment} from '../environments/environments';
@@ -26,6 +26,8 @@ import {NotificationComponent} from '@components/notification/notification.compo
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {ReviewListComponent} from '@components/review-list/review-list.component';
+import {ReviewPopupComponent} from "@components/review-popup/review-popup.component";
 
 
 import {MatBadgeModule} from '@angular/material/badge'; // <-- Import this
@@ -47,6 +49,7 @@ import {MatCardModule} from "@angular/material/card";
 import {UserProfileComponent} from '@components/user-profile/user-profile.component';
 import {ConfirmDeleteDialogComponent} from '@components/confirm-delete-dialog-component/confirm-delete-dialog.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { ReviewRootComponent } from '@components/review-root/review-root.component';
 import { FavoriteListsComponent } from '@components/favorite-item-lists/favorite-item-lists.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import { ItemComponent } from '@components/favorite-item-lists/item/item.component';
@@ -60,6 +63,8 @@ import {MatChipsModule} from "@angular/material/chips";
 import { DashboardComponent } from '@components/dashboards/dashboard/dashboard.component';
 import { FavoriteItemListsDashboardComponent } from '@components/dashboards/favorite-item-lists-dashboard/favorite-item-lists-dashboard.component';
 import {CanvasJSAngularChartsModule} from "@canvasjs/angular-charts";
+import { CommentComponent } from '@components/comment/comment.component';
+import { UserProfileReviewsComponent } from '@components/user-profile-reviews/user-profile-reviews.component';
 
 @NgModule({
   declarations: [
@@ -84,12 +89,17 @@ import {CanvasJSAngularChartsModule} from "@canvasjs/angular-charts";
     AppUserCardComponent,
     UserProfileComponent,
     ConfirmDeleteDialogComponent,
+    ReviewRootComponent,
+    CommentComponent,
     FavoriteListsComponent,
     ItemComponent,
     CreateListComponent,
     EditListComponent,
     DashboardComponent,
     FavoriteItemListsDashboardComponent,
+    UserProfileReviewsComponent,
+    ReviewListComponent,
+    ReviewPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +124,8 @@ import {CanvasJSAngularChartsModule} from "@canvasjs/angular-charts";
     MatDialogModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatExpansionModule,
     MatListModule,

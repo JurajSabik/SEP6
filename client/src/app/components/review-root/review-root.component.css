@@ -1,8 +1,8 @@
 .center-content {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 50vh;
+  align-items: flex-start;
+  margin-top: 10vh;
 }
 
 .user-profile-card {
@@ -11,7 +11,7 @@
 }
 
 .user-avatar {
-  background-color: teal;
+  background-color: #1976d2;
   color: #fff;
   display: flex;
   align-items: center;
@@ -37,6 +37,15 @@ mat-card {
   margin: 10px;
   color: #fff;
 }
- button {
-   margin-top: 1vh;
- }
+
+.comment-container {
+  margin: 10vh;
+  width: 80vh;
+}
+.divider {
+  background-color: #1e1e1e;
+  color: #1e1e1e;
+}
+* {
+  color: white;
+}
