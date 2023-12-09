@@ -4,6 +4,7 @@ import com.sep6.infrastructureservices.persistence.entities.UserEntity
 import com.sep6.infrastructureservices.persistence.exceptions.AlreadyFollowingException
 import com.sep6.infrastructureservices.persistence.exceptions.ResourceNotFoundException
 import com.sep6.infrastructureservices.persistence.repositories.UserPersistenceRepository
+import dtos.GeneralUserData
 import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
@@ -18,8 +19,12 @@ import java.util.*
 
 
 private val logger = KotlinLogging.logger {}
+
 @Service
-class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository, private val transactionTemplate: TransactionTemplate ) : UserRepository {
+class UserPersistenceService(
+  val jpaUserRepo: UserPersistenceRepository,
+  private val transactionTemplate: TransactionTemplate
+) : UserRepository {
   @PersistenceContext
   private val entityManager: EntityManager? = null
 
@@ -40,12 +45,13 @@ class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository, private
       true -> {
         jpaUserRepo.deleteById(userId)
       }
+
       false -> throw ResourceNotFoundException("User with id $userId not found")
     }
   }
 
-  override fun deleteFollowersAndFollowing(userId: UUID): Unit  {
-    transactionTemplate.execute  {
+  override fun deleteFollowersAndFollowing(userId: UUID): Unit {
+    transactionTemplate.execute {
       entityManager?.createNativeQuery("DELETE FROM user_followers WHERE user_id = :userId OR other_user_id = :userId")
         ?.setParameter("userId", userId)
         ?.executeUpdate()
@@ -54,8 +60,8 @@ class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository, private
 
   }
 
-  override fun deleteReviewVotes(userId: UUID): Unit  {
-    transactionTemplate.execute  {
+  override fun deleteReviewVotes(userId: UUID): Unit {
+    transactionTemplate.execute {
       entityManager?.createNativeQuery("DELETE FROM review_voting WHERE user_id = :userId")
         ?.setParameter("userId", userId)
         ?.executeUpdate()
@@ -63,13 +69,26 @@ class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository, private
     }
 
   }
-  override fun deleteReviews(userId: UUID): Unit  {
-    transactionTemplate.execute  {
+
+  override fun deleteReviews(userId: UUID): Unit {
+    transactionTemplate.execute {
       entityManager?.createNativeQuery("DELETE FROM reviews WHERE user_id = :userId")
         ?.setParameter("userId", userId)
         ?.executeUpdate()
       it.flush()
     }
+  }
+
+  override suspend fun getGeneralUserData(userId: UUID): GeneralUserData {
+    val user: UserEntity? = getUser(userId)
+    return GeneralUserData(
+      user?.followers!!.size,
+      user.following!!.size,
+      user.reviewList!!.size,
+      user.favoriteItemLists!!.size,
+      user.commentList!!.size,
+      user.replyList!!.size
+    )
   }
 
 
@@ -95,8 +114,8 @@ class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository, private
   }
 
   private fun getUserAndUserToFollow(
-      otherUserId: UUID,
-      userId: UUID
+    otherUserId: UUID,
+    userId: UUID
   ): Pair<UserEntity, UserEntity> {
     lateinit var user: UserEntity
     lateinit var otherUser: UserEntity
@@ -137,23 +156,24 @@ class UserPersistenceService(val jpaUserRepo: UserPersistenceRepository, private
     return@withContext user
   }
 
-  override suspend fun doesUserExist(username: String): Boolean = withContext(Dispatchers.IO){
+  override suspend fun doesUserExist(username: String): Boolean = withContext(Dispatchers.IO) {
     return@withContext jpaUserRepo.existsByUsername(username)
   }
 
-   suspend fun doesUserExistByEmail(email: String): Boolean = withContext(Dispatchers.IO) {
+  suspend fun doesUserExistByEmail(email: String): Boolean = withContext(Dispatchers.IO) {
     return@withContext jpaUserRepo.existsByEmail(email)
   }
-  override suspend fun getUserByExternalId(externalId: String): User = withContext(Dispatchers.IO){
-    if(!jpaUserRepo.existsByExternalId(externalId)) {
+
+  override suspend fun getUserByExternalId(externalId: String): User = withContext(Dispatchers.IO) {
+    if (!jpaUserRepo.existsByExternalId(externalId)) {
       throw ResourceNotFoundException("User with externalId $externalId does not exist server-side.")
     }
 
     return@withContext jpaUserRepo.findByExternalId(externalId).mapToDomain()
   }
 
-  override suspend fun getUserByUsername(username: String): User = withContext(Dispatchers.IO){
-    if(!jpaUserRepo.existsByUsername(username)) {
+  override suspend fun getUserByUsername(username: String): User = withContext(Dispatchers.IO) {
+    if (!jpaUserRepo.existsByUsername(username)) {
       throw ResourceNotFoundException("User with username $username does not exist server-side.")
     }
 

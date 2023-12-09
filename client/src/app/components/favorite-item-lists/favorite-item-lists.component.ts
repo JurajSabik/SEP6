@@ -1,12 +1,13 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {FavoriteItemList, ListType} from "../../model/domain/favorite-item-list";
-import {FavoriteItemListService} from "../../services/favorite-item-list.service";
-import {UserHelperService} from "../../services/helpers/user-helper.service";
+import {FavoriteItemList, ListType} from "@models/domain/favorite-item-list";
+import {FavoriteItemListService} from "@services/favorite-item-list.service";
+import {UserHelperService} from "@services/helpers/user-helper.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BehaviorSubject, Observable} from "rxjs";
-import {SnackbarService} from "../../services/snackbar.service";
-import {Item} from "../../model/domain/item";
-import {DomainUser} from "../../model/domain/domain-user";
+import {SnackbarService} from "@services/snackbar.service";
+import {Item} from "@models/domain/item";
+import {DomainUser} from "@models/domain/domain-user";
+import {UserService} from "@services/user.service";
 
 @Component({
   selector: 'app-favorite-lists',
@@ -14,7 +15,8 @@ import {DomainUser} from "../../model/domain/domain-user";
   styleUrls: ['./favorite-item-lists.component.css']
 })
 export class FavoriteListsComponent implements OnInit {
-  currentUserId: string = ''
+  currentUserId: string = '';
+  currentUserUsername: string = '';
   selectedList: FavoriteItemList | null = null;
   favoriteListsSubject = new BehaviorSubject<FavoriteItemList[]>([]);
   favoriteLists$: Observable<FavoriteItemList[]> = this.favoriteListsSubject.asObservable();
@@ -26,6 +28,7 @@ export class FavoriteListsComponent implements OnInit {
               private route: ActivatedRoute,
               private snackbarService: SnackbarService,
               private userHelperService: UserHelperService,
+              private userService: UserService
   ) {
   }
 
@@ -34,6 +37,11 @@ export class FavoriteListsComponent implements OnInit {
       this.currentUserId = params.get('userId') as string;
     });
     this.currentDomainUser  = await this.userHelperService.fetchDomainUser()
+    this.userService.getUserById(this.currentUserId).subscribe( {
+      next: user => {
+        this.currentUserUsername = user.username as string
+      }
+    });
     this.refreshLists();
   }
 
@@ -71,7 +79,7 @@ export class FavoriteListsComponent implements OnInit {
 
   private checkIfEmpty(list: FavoriteItemList[]) {
     if (list.length === 0) {
-      this.snackbarService.open("You do not have any lists yet. Get started by clicking the Create New List button.", 8000)
+      this.snackbarService.open(`There are no lists to be displayed.`, 8000)
     }
   }
 
@@ -102,7 +110,7 @@ export class FavoriteListsComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
+  onDocumentClick(): void {
     this.contextMenuPosition = null;
     this.selectedContextMenuList = null;
   }

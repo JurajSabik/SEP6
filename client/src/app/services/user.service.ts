@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {DomainUser} from "../model/domain/domain-user";
-import {Follower} from "../model/domain/follower-dto";
+import {DomainUser} from "@models/domain/domain-user";
+import {Follower} from "@models/domain/follower-dto";
+import {GeneralUserData} from "@models/stats-dtos/general-user-data";
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +61,9 @@ export class UserService {
 
   getFollowing(userId: string): Observable<Follower[]> {
     return this.http.get<Follower[]>(`${this.userBaseUrl}/following/${userId}`);
+  }
+
+  getGeneralUserData(userId: string): Observable<GeneralUserData> {
+    return this.http.get<GeneralUserData>(`${this.userBaseUrl}/general/${userId}`);
   }
 }

@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="lists-panel">
-    <h2>Your Lists</h2>
+    <h2>{{currentUserUsername}}'s Lists</h2>
     <mat-nav-list>
       <mat-list-item *ngFor="let list of favoriteLists$ | async" (click)="selectList(list)"
                      (contextmenu)="onContextMenu($event, list)" matTooltip="Click to expand">
@@ -17,13 +17,11 @@
         </button>
         {{ list.name }}
       </mat-list-item>
-      <mat-list-item>
         <div *ngIf="isCurrentDomainUser()">
           <button class="createButton" mat-raised-button color="primary" type="button" (click)="goToCreateLists()">
-            <mat-icon>add</mat-icon>
+            <mat-icon class="custom-icon">add</mat-icon>
           </button>
         </div>
-      </mat-list-item>
     </mat-nav-list>
   </div>
 

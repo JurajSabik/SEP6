@@ -2,6 +2,7 @@ package com.sep6.infrastructureservices.rest.controllers
 
 import com.sep6.infrastructureservices.persistence.services.UserPersistenceService
 import dtos.FollowerDto
+import dtos.GeneralUserData
 import io.github.oshai.kotlinlogging.KotlinLogging
 import models.User
 import models.Vote
@@ -90,5 +91,10 @@ class UserController(private val userRepo: UserPersistenceService) {
   @GetMapping("/username/{username}")
   suspend fun getByUsername(@PathVariable username: String): ResponseEntity<User> {
     return ResponseEntity(userService.getUserByUsername(username), HttpStatus.OK)
+  }
+
+  @GetMapping("/general/{userId}")
+  suspend fun getGeneralUserData(@PathVariable userId: UUID): ResponseEntity<GeneralUserData> {
+    return ResponseEntity(userRepo.getGeneralUserData(userId), HttpStatus.OK)
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TmdbService} from '../../services/tmdb.service';
-import {ActorMovies} from '../../model/movie';
+import {TmdbService} from '@services/tmdb.service';
+import {ActorMovies} from '@models/movie';
 
 @Component({
   selector: 'app-actor-detail',

@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from '@services/auth.service';
 import {Router} from "@angular/router";
-import {SnackbarService} from "../../services/snackbar.service";
-import {UserHelperService} from "../../services/helpers/user-helper.service";
+import {SnackbarService} from "@services/snackbar.service";
+import {UserHelperService} from "@services/helpers/user-helper.service";
 
 @Component({
   selector: 'app-dropdown-menu',
@@ -26,6 +26,10 @@ export class DropdownMenuComponent {
   async goToProfile(): Promise<void>{
     const domainUser = await this.userHelperService.fetchDomainUser()
     await this.router.navigate([`/profile/${domainUser.userId}`])
+  }
+  async goToDashboard(): Promise<void>{
+    const domainUser = await this.userHelperService.fetchDomainUser()
+    await this.router.navigate([`/dashboard/${domainUser.userId}`])
   }
   async signOut(): Promise<void> {
     await this.authService.signOut();

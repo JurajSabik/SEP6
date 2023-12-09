@@ -1,5 +1,6 @@
 package repository_contracts
 
+import dtos.GeneralUserData
 import models.User
 import models.Vote
 import java.util.*
@@ -20,4 +21,5 @@ interface UserRepository {
   fun deleteFollowersAndFollowing(userId: UUID)
   fun deleteReviewVotes(userId: UUID)
   fun deleteReviews(userId: UUID)
+  suspend fun getGeneralUserData(userId: UUID): GeneralUserData
 }

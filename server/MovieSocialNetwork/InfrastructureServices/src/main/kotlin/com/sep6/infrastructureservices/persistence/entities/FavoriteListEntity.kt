@@ -2,7 +2,7 @@ package com.sep6.infrastructureservices.persistence.entities
 
 import jakarta.persistence.*
 import models.FavoriteItemList
-import models.ItemType
+import models.ListType
 
 import java.sql.Timestamp
 import java.util.*
@@ -17,7 +17,7 @@ class FavoriteListEntity(
 
   @Enumerated(EnumType.STRING)
   @Column(name = "itemType", nullable = false)
-  val type: ItemType,
+  val type: ListType,
 
   @ManyToOne()
   @JoinColumn(name = "user_id", nullable = false)

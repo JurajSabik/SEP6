@@ -1,6 +1,6 @@
 import kotlinx.coroutines.runBlocking
 import models.FavoriteItemList
-import models.ItemType
+import models.ListType
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -39,7 +39,7 @@ class FavoriteItemListValidatorTest {
   fun testValidationExceptionMessage() {
     val invalidList = FavoriteItemList(
       name = "",
-      type = ItemType.MOVIE,
+      type = ListType.MOVIE,
       userId = UUID.randomUUID(),
       items = HashSet(),
       timestamp = Timestamp.valueOf(LocalDateTime.now().plusDays(1)),

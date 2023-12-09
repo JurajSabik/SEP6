@@ -8,7 +8,7 @@ data class FavoriteItemList(
   val listId: UUID = UUID.randomUUID(),
   @NotNull val userId: UUID,
   @NotNull val name: String,
-  @NotNull val type: ItemType,
+  @NotNull val type: ListType,
   var items: MutableSet<Item> = HashSet(),
   @NotNull val timestamp: Timestamp,
 )

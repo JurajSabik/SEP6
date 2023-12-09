@@ -1,6 +1,6 @@
 package models
 
-enum class ItemType {
+enum class ListType {
     MOVIE,
     STAR,
     TV_SERIES
