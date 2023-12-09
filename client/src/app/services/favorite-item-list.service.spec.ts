@@ -1,16 +1,19 @@
-import { TestBed } from '@angular/core/testing';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {SignupComponent} from "@components/signup/signup.component";
+import {AppModule} from "../app.module";
+import {FavoriteItemListService} from "@services/favorite-item-list.service";
 
-import { FavoriteItemListService } from './favorite-item-list.service';
-
-describe('FavoriteItemListService', () => {
-  let service: FavoriteItemListService;
+describe('FavoriteListsService', () => {
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FavoriteItemListService);
+    return MockBuilder(FavoriteItemListService, AppModule);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', () => {
+    const fixture = MockRender(FavoriteItemListService);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
-});
+})
+
+

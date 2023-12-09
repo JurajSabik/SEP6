@@ -1,21 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AppUserCardComponent } from './app-user-card.component';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {AppModule} from "../../../app.module";
+import {AppUserCardComponent} from "@components/friends/app-user-card/app-user-card.component";
 
 describe('AppUserCardComponent', () => {
-  let component: AppUserCardComponent;
-  let fixture: ComponentFixture<AppUserCardComponent>;
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [AppUserCardComponent]
-    });
-    fixture = TestBed.createComponent(AppUserCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(AppUserCardComponent, AppModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(AppUserCardComponent);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
 });
+

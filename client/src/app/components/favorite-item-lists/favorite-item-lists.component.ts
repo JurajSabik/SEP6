@@ -15,8 +15,8 @@ import {UserService} from "@services/user.service";
   styleUrls: ['./favorite-item-lists.component.css']
 })
 export class FavoriteListsComponent implements OnInit {
-  currentUserId: string = '';
-  currentUserUsername: string = '';
+  currentUserId = '';
+  currentUserUsername = '';
   selectedList: FavoriteItemList | null = null;
   favoriteListsSubject = new BehaviorSubject<FavoriteItemList[]>([]);
   favoriteLists$: Observable<FavoriteItemList[]> = this.favoriteListsSubject.asObservable();

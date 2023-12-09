@@ -16,7 +16,7 @@
       </ng-container>
       <ng-template #loadingFollowing>
         <div class="center-content">
-          <mat-progress-spinner *ngIf="!(followingList$ | async)" mode="indeterminate"
+          <mat-progress-spinner *ngIf="(followingList$ | async) === null" mode="indeterminate"
                                 diameter="50"></mat-progress-spinner>
         </div>
       </ng-template>
@@ -32,7 +32,7 @@
       </ng-container>
       <ng-template #loadingFollowers>
         <div class="center-content">
-          <mat-progress-spinner *ngIf="!(followersList$ | async)" mode="indeterminate"
+          <mat-progress-spinner *ngIf="(followersList$ | async) === null" mode="indeterminate"
                                 diameter="50"></mat-progress-spinner>
         </div>
       </ng-template>

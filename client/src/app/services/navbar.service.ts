@@ -9,9 +9,6 @@ export class NavbarService {
 
   searchExpanded$ = this.searchExpanded.asObservable();
 
-  constructor() {
-  }
-
   setSearchExpanded(isExpanded: boolean): void {
     this.searchExpanded.next(isExpanded);
   }

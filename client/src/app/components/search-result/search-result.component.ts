@@ -10,7 +10,7 @@ import { TmdbService } from '../../services/tmdb.service';
 export class SearchResultComponent implements OnInit {
   searchResults: any[] | undefined;  // Assuming the results are in an array format
   contentMode: 'tv' | 'movie' = 'movie'; // Default to movies
-  searchQuery: string = ''; // Added property for search query
+  searchQuery = ''; // Added property for search query
 
 
   constructor(private route: ActivatedRoute, private tmdbService: TmdbService) { }

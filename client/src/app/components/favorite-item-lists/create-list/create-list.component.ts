@@ -2,11 +2,11 @@
 
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FavoriteItemList, ListType} from "../../../model/domain/favorite-item-list";
-import {TmdbService} from "../../../services/tmdb.service";
-import {Item} from "../../../model/domain/item";
-import {FavoriteItemListService} from "../../../services/favorite-item-list.service";
-import {SnackbarService} from "../../../services/snackbar.service";
+import {FavoriteItemList, ListType} from "@models/domain/favorite-item-list";
+import {TmdbService} from "@services/tmdb.service";
+import {Item} from "@models/domain/item";
+import {FavoriteItemListService} from "@services/favorite-item-list.service";
+import {SnackbarService} from "@services/snackbar.service";
 
 
 @Component({
@@ -17,7 +17,7 @@ import {SnackbarService} from "../../../services/snackbar.service";
 export class CreateListComponent implements OnInit {
   newListName = '';
   newListType: ListType = ListType.MOVIE;
-  listTypeArray: String[] = [ListType[ListType.MOVIE], ListType[ListType.STAR], ListType[ListType.TV_SERIES]]
+  listTypeArray: string[] = [ListType[ListType.MOVIE], ListType[ListType.STAR], ListType[ListType.TV_SERIES]]
   searchQuery = '';
   filteredItems: any[] = [];
   createdList: any[] = []

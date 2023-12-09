@@ -1,21 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UserProfileComponent } from './user-profile.component';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {AppModule} from "../../app.module";
+import {FavoriteListStatsService} from "@services/statistics/favorite-item-list-stats.service";
 
 describe('UserProfileComponent', () => {
-  let component: UserProfileComponent;
-  let fixture: ComponentFixture<UserProfileComponent>;
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [UserProfileComponent]
-    });
-    fixture = TestBed.createComponent(UserProfileComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(UserProfileComponent, AppModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(UserProfileComponent);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
-});
+})
+

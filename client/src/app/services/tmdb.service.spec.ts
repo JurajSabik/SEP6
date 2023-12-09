@@ -1,16 +1,17 @@
-import {TestBed} from '@angular/core/testing';
-
 import {TmdbService} from './tmdb.service';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {AppModule} from "../app.module";
 
-describe('TmdbService', () => {
-  let service: TmdbService;
+describe('TMDB', () => {
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(TmdbService);
+    return MockBuilder(TmdbService, AppModule);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', () => {
+    const fixture = MockRender(TmdbService);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
-});
+})
+

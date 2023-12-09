@@ -1,4 +1,0 @@
-package statistics
-
-class ReviewStats {
-}

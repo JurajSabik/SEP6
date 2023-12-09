@@ -6,19 +6,19 @@
       <mat-list-item *ngFor="let list of favoriteLists$ | async" (click)="selectList(list)"
                      (contextmenu)="onContextMenu($event, list)" matTooltip="Click to expand">
 
-        <button color="primary" class="custom-button-movie" *ngIf="list.type == ListType.MOVIE" mat-icon-button>
+        <button color="primary" class="custom-button-movie" *ngIf="list.type === ListType.MOVIE" mat-icon-button>
           <mat-icon>movie</mat-icon>
         </button>
-        <button color="primary" class="custom-button-star" *ngIf="list.type == ListType.STAR" mat-icon-button>
+        <button color="primary" class="custom-button-star" *ngIf="list.type === ListType.STAR" mat-icon-button>
           <mat-icon>star</mat-icon>
         </button>
-        <button color="primary" class="custom-button-tv" *ngIf="list.type == ListType.TV_SERIES" mat-icon-button>
+        <button color="primary" class="custom-button-tv" *ngIf="list.type === ListType.TV_SERIES" mat-icon-button>
           <mat-icon>tv</mat-icon>
         </button>
         {{list.name}}
       </mat-list-item>
         <div *ngIf="isCurrentDomainUser()">
-          <button class="createButton" mat-raised-button color="primary" type="button" (click)="goToCreateLists()">
+          <button class="createButton" mat-raised-button color="primary" type="button" (click)="goToCreateLists()" (keyup)="goToCreateLists()">
             <mat-icon class="custom-icon">add</mat-icon>
           </button>
         </div>
@@ -42,7 +42,7 @@
     <h2>{{ selectedList?.name }}</h2>
     <div *ngIf="selectedList">
       <app-item *ngFor="let item of selectedList.items" [item]="item" [type]="selectedList.type"
-                (click)="selectItem(item)"></app-item>
+                (click)="selectItem(item)" ></app-item>
     </div>
   </div>
 </div>

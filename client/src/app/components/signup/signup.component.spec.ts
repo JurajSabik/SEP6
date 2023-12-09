@@ -1,21 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SignupComponent} from './signup.component';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {AppModule} from "../../app.module";
 
 describe('SignupComponent', () => {
-  let component: SignupComponent;
-  let fixture: ComponentFixture<SignupComponent>;
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [SignupComponent]
-    });
-    fixture = TestBed.createComponent(SignupComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(SignupComponent, AppModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(SignupComponent);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
-});
+})
+

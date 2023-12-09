@@ -64,7 +64,23 @@
           </section>
 
           <h2>Reviews</h2>
-          <app-review-list [reviews]="reviewList | async"></app-review-list>
+          <div *ngFor="let review of reviewList | async "  class="review-card">
+            <div class="review-header">
+              <mat-icon>user</mat-icon>
+              <div class="review-content">
+                <p class="review-text">{{ getPreviewText(review.text) }}</p>
+                <div class="user-info">
+                  <span class="user-name">{{ getUsernameById(review.userId) !== undefined ?  getUsernameById(review.userId) : "Anonymous"}}</span>
+                  <div class="rating-stars">
+                    <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                      <i [class]="getStarType(review.rating, i + 1)"></i>
+                    </ng-container>
+                  </div>
+                </div>
+                <a [routerLink]="['/review', review.reviewId]" class="read-more-link">Read More</a>
+              </div>
+            </div>
+          </div>
           <div class="movie-list">
 
             <button class="btn btn-review" (click)="openReviewPopup()">Generate a Review</button>

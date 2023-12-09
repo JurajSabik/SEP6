@@ -7,6 +7,7 @@ import {UserHelperService} from "@services/helpers/user-helper.service";
 import {DomainUser} from "@models/domain/domain-user";
 import {BehaviorSubject} from "rxjs";
 import {ReviewService} from "@services/review.service";
+import {UserService} from "@services/user.service";
 
 @Component({
   selector: 'app-movie-detail',
@@ -19,9 +20,9 @@ export class MovieDetailComponent implements OnInit {
   actors: any[] = [];
   director: any[] = [];
   backgroundImageUrl: string | null = null;
-  selectedMediaType: string = 'movie';
+  selectedMediaType = 'movie';
   relatedMovies: any[] = [];
-  isLoading: boolean = false;
+  isLoading = false;
   showReviewPopup?: boolean | false;
   currentUser: DomainUser | undefined;
   private reviews = new BehaviorSubject<DomainReview[]>([]);
@@ -32,6 +33,7 @@ export class MovieDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private tmdbService: TmdbService,
     private userHelperService: UserHelperService,
+    private userService: UserService,
     private reviewService: ReviewService,
     private router: Router
   ) {
@@ -141,5 +143,30 @@ export class MovieDetailComponent implements OnInit {
         btn.classList.remove('fixed-top');
       }
     });
+  }
+  getStarType(rating: number | undefined, index: number): string | undefined{
+    return index <= rating! ? 'full-star' : 'empty-star';
+  }
+
+  getPreviewText(text: string | undefined): string | undefined{
+    const maxLength = 100;
+    if(text && text?.length) {
+      return text.length > maxLength ? `${text.substr(0, maxLength)}...` : text;
+    } else return undefined
+  }
+
+  getUsernameById(userId: string | undefined): string | undefined {
+    this.userService.getUserById(userId as string).subscribe({
+      next: user => {
+        return user.username;
+      },
+      error: err => {
+        console.error(err);
+        return undefined;
+      }
+    })
+
+    return undefined;
+
   }
 }

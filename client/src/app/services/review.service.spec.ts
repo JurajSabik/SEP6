@@ -1,16 +1,17 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ReviewService } from './review.service';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {AppModule} from "../app.module";
+import {ReviewService} from "@services/review.service";
 
 describe('ReviewService', () => {
-  let service: ReviewService;
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ReviewService);
+    return MockBuilder(ReviewService, AppModule);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', () => {
+    const fixture = MockRender(ReviewService);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
-});
+})
+

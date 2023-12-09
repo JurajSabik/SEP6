@@ -11,8 +11,8 @@ import {UserHelperService} from "../../services/helpers/user-helper.service";
 })
 export class NavbarMiddleComponent implements OnInit {
   genres: any[] = [];
-  selectedMediaType: string = 'movie';
-  currentUserId: string = ''
+  selectedMediaType = 'movie';
+  currentUserId: string | undefined;
   constructor(private tmdbService: TmdbService, private router: Router, private userHelperService: UserHelperService) {
     // Listen to changes in the route to dynamically set the selected media type
     this.router.events.pipe(

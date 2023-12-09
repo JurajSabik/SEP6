@@ -7,7 +7,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-follower-dialog.component.css'],
 })
 export class AddFollowerDialogComponent {
-  username: string = '';
+  username = '';
 
   constructor(public dialogRef: MatDialogRef<AddFollowerDialogComponent>) {}
 

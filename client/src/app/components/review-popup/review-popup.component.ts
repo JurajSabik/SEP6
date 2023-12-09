@@ -10,8 +10,8 @@ import {DomainReview} from "@models/domain/domain-review";
 export class ReviewPopupComponent {
   @Input() movieId: string | undefined;
   @Input() userId: string | undefined;
-  reviewText: string = '';
-  rating: number = 0;
+  reviewText = '';
+  rating = 0;
   @Output() submitReview = new EventEmitter<DomainReview>();
   @Output() closePopup = new EventEmitter<void>();
   constructor(private reviewService: ReviewService) {}

@@ -27,11 +27,11 @@ export class UserService {
     return this.http.get<DomainUser>(`${this.userBaseUrl}/external/${externalId}`)
   }
 
-  doesUserExist(username: string): Observable<Boolean> {
+  doesUserExist(username: string): Observable<boolean> {
     return this.http.get<boolean>(`${this.userBaseUrl}/exists/${username}`)
   }
 
-  doesUserExistByEmail(email: string): Observable<Boolean> {
+  doesUserExistByEmail(email: string): Observable<boolean> {
     return this.http.get<boolean>(`${this.userBaseUrl}/exists/email/${email}`)
   }
 

@@ -20,7 +20,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 export class ReviewRootComponent implements OnInit {
   loggedUser: DomainUser | undefined;
   reviewAuthor: DomainUser | undefined;
-  reviewId: string | null | undefined;
+  reviewId: string | undefined;
   review: DomainReview | undefined;
   votes: Vote[] | undefined;
   private votesSubject = new BehaviorSubject<Vote[]>([]);
@@ -67,7 +67,7 @@ export class ReviewRootComponent implements OnInit {
 
   private fetchRouteReviewId() {
     this.route.paramMap.subscribe((params) => {
-      this.reviewId = params.get('reviewId');
+      this.reviewId = params.get('reviewId')!;
     });
   }
 
@@ -107,9 +107,9 @@ export class ReviewRootComponent implements OnInit {
     });
 
     if (!alreadyVoted || !currVote?.isUpvote) {
-      this.reviewService.upvoteReview(this.reviewId!, this.loggedUser?.userId!).subscribe();
+      this.reviewService.upvoteReview(this.reviewId, this.loggedUser?.userId).subscribe();
     } else {
-      this.reviewService.deleteVote(this.reviewId!, this.loggedUser?.userId!).subscribe();
+      this.reviewService.deleteVote(this.reviewId, this.loggedUser?.userId).subscribe();
     }
     this.refreshVotes();
   }
@@ -128,9 +128,9 @@ export class ReviewRootComponent implements OnInit {
     });
 
     if (!alreadyVoted || currVote?.isUpvote) {
-      this.reviewService.downvoteReview(this.reviewId!, this.loggedUser?.userId!).subscribe();
+      this.reviewService.downvoteReview(this.reviewId, this.loggedUser?.userId).subscribe();
     } else {
-      this.reviewService.deleteVote(this.reviewId!, this.loggedUser?.userId!).subscribe();
+      this.reviewService.deleteVote(this.reviewId, this.loggedUser?.userId).subscribe();
     }
     this.refreshVotes();
   }
@@ -163,9 +163,9 @@ export class ReviewRootComponent implements OnInit {
   }
 
   getStarList() {
-    if (this.review !== null) {
-      let stars = [];
-      for (let i = 0; i < this.review!.rating!; i++) {
+    if (this.review !== null && this.review?.rating) {
+      const stars = [];
+      for (let i = 0; i < this.review?.rating; i++) {
         stars.push(i);
       }
       return stars;
@@ -174,9 +174,9 @@ export class ReviewRootComponent implements OnInit {
   }
 
   getStarBorderList() {
-    if (this.review !== null) {
-      let stars = [];
-      for (let i = 0; i < 5 - this.review!.rating!; i++) {
+    if (this.review !== null && this.review?.rating) {
+      const stars = [];
+      for (let i = 0; i < 5 - this.review.rating; i++) {
         stars.push(i);
       }
       return stars;
@@ -217,8 +217,7 @@ export class ReviewRootComponent implements OnInit {
   }
 
   async onSubmit() {
-    let comment: DomainComment | undefined;
-    comment = {
+    const comment: DomainComment = {
       userId: this.loggedUser!.userId,
       reviewId: this.reviewId!,
       text: this.newCommentText,
@@ -231,7 +230,7 @@ export class ReviewRootComponent implements OnInit {
     this.commentService.createComment(comment).subscribe({
       next: async (comment) => {
         this.snackbarService.open("Comment added.");
-        await this.refreshCommentList();
+        this.refreshCommentList();
       },
       error: () => {
         this.snackbarService.open("Error adding comment.")
@@ -240,6 +239,4 @@ export class ReviewRootComponent implements OnInit {
 
 
   }
-
-  protected readonly statusbar = statusbar;
 }

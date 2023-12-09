@@ -12,7 +12,7 @@ import {
 import {User} from 'firebase/auth';
 import {BehaviorSubject} from 'rxjs';
 import {UserService} from "./user.service";
-import {DomainUser, UserRole} from "../model/domain/domain-user";
+import {DomainUser, UserRole} from "@models/domain/domain-user";
 
 @Injectable({
   providedIn: 'root'

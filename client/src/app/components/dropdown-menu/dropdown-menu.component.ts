@@ -11,7 +11,7 @@ import {UserHelperService} from "@services/helpers/user-helper.service";
 })
 export class DropdownMenuComponent {
   @Input() userPhoto: string | null = null;
-  @Input() userInitials: string = '';
+  @Input() userInitials = '';
 
   constructor(public authService: AuthService,
               private userHelperService: UserHelperService,

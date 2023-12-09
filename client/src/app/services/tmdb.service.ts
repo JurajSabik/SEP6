@@ -13,7 +13,7 @@ export class TmdbService {
   constructor(private http: HttpClient) {
   }
 
-  getItems(contentType: 'tv' | 'movie' = 'movie', page: number = 1, genre: number | null = null, sortBy: string = 'popular'): Observable<any> {
+  getItems(contentType: 'tv' | 'movie' = 'movie', page = 1, genre: number | null = null, sortBy = 'popular'): Observable<any> {
     let params = new HttpParams()
       .set('page', page.toString());
 
@@ -38,7 +38,7 @@ export class TmdbService {
     params = params.append('sort_by', sortOptions[sortBy]);
 
     // Determine the endpoint based on whether we have a genre filter
-    let endpoint = genre !== null
+    const endpoint = genre !== null
       ? `${BASE_URL}discover/${contentType}?api_key=${API_KEY}`
       : `${BASE_URL}${contentType}/popular?api_key=${API_KEY}`;
     return this.http.get(endpoint, {params});
@@ -64,7 +64,7 @@ export class TmdbService {
   }
 
   search(query: string, type: 'movie' | 'tv' | 'person' = 'movie'): Observable<any> {
-    let params = new HttpParams().set('query', query);
+    const params = new HttpParams().set('query', query);
     return this.http.get(`${BASE_URL}search/${type}?api_key=${API_KEY}`, {params});
   }
 

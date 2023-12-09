@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   genres: any[] = [];
   selectedGenre: number | null = null;
-  selectedSortBy: string = 'latest';
+  selectedSortBy = 'latest';
   movies: any[] = [];
 
   constructor(private tmdbService: TmdbService) { }

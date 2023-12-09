@@ -9,8 +9,8 @@ import {SnackbarService} from "../../services/snackbar.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email: string = '';
-  password: string = '';
+  email = '';
+  password = '';
 
   constructor(
     private authService: AuthService,

@@ -8,7 +8,7 @@ import {Follower} from "../../../model/domain/follower-dto";
 })
 export class AppUserCardComponent {
   @Input() otherUser: Follower | undefined;
-  @Input() isFollowingList: boolean = false;
+  @Input() isFollowingList = false;
   @Output() unfollow: EventEmitter<string> = new EventEmitter<string>();
 
 

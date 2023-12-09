@@ -84,10 +84,6 @@ export class MovieListComponent implements OnInit {
     this.fetchContent();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-  }
-
   getStarType(rating: number, starIndex: number): string {
     const fullStarRating = Math.floor(rating / 2);
     if (starIndex <= fullStarRating) {

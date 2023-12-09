@@ -1,21 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FriendsComponent } from './friends.component';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {AppModule} from "../../app.module";
+
 
 describe('FriendsComponent', () => {
-  let component: FriendsComponent;
-  let fixture: ComponentFixture<FriendsComponent>;
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [FriendsComponent]
-    });
-    fixture = TestBed.createComponent(FriendsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(FriendsComponent, AppModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(FriendsComponent);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
+
+
 });
+

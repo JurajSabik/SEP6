@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {AppModule} from "../../app.module";
+import {UserHelperService} from "@services/helpers/user-helper.service";
 
-import { UserHelperService } from './user-helper.service';
 
-describe('UserHelperServiceService', () => {
-  let service: UserHelperService;
+describe('UserHelperService', () => {
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(UserHelperService);
+    return MockBuilder(UserHelperService, AppModule);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', () => {
+    const fixture = MockRender(UserHelperService);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
-});
+})
+

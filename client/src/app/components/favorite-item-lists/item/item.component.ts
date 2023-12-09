@@ -1,8 +1,8 @@
 
 import {Component, Input, OnInit} from '@angular/core';
-import {Item} from "../../../model/domain/item";
-import {TmdbService} from "../../../services/tmdb.service";
-import {ListType} from "../../../model/domain/favorite-item-list";
+import {Item} from "@models/domain/item";
+import {TmdbService} from "@services/tmdb.service";
+import {ListType} from "@models/domain/favorite-item-list";
 
 @Component({
   selector: 'app-item',

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DomainComment} from "../../model/domain/domain-comment";
-import {DomainUser} from "../../model/domain/domain-user";
-import {CommentService} from "../../services/comment.service";
+import {DomainComment} from "@models/domain/domain-comment";
+import {DomainUser} from "@models/domain/domain-user";
+import {CommentService} from "@services/comment.service";
 import {UserService} from "@services/user.service";
 
 @Component({
@@ -15,8 +15,8 @@ export class CommentComponent implements OnInit{
   @Input() loggedUser: DomainUser | undefined;
    commentAuthor: string | undefined;
   @Output() removed: EventEmitter<DomainComment> = new EventEmitter<DomainComment>();
-  isReplying: boolean = false;
-  replyText: string = "";
+  isReplying?: boolean;
+  replyText = "";
 
   constructor(
     private commentService: CommentService,

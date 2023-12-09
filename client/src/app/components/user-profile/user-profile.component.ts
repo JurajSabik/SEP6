@@ -15,7 +15,7 @@ import {AuthService} from "../../services/auth.service";
 export class UserProfileComponent implements OnInit {
   userId: string | null | undefined;
   userProfile: DomainUser | undefined;
-  isCurrentUser: boolean = false;
+  isCurrentUser = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -57,9 +57,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   async deleteAccount() {
-    this.userService.deleteUser(this.userProfile?.userId as string).subscribe();
-    await this.authService.getCurrentUser()?.reload();
+     await this.authService.getCurrentUser()?.reload();
     await this.authService.getCurrentUser()?.delete();
+    this.userService.deleteUser(this.userProfile?.userId as string).subscribe();
     await this.authService.signOut();
     await this.router.navigate(["/home"]);
   }

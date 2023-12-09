@@ -87,7 +87,7 @@
           </mat-card-header>
           <mat-card-content>
             <h3>{{ item.name }}</h3>
-            <p>Gender: {{ item.gender == 2 ? 'male' : 'female' }}</p>
+            <p>Gender: {{ item.gender === 2 ? 'male' : 'female' }}</p>
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button color="primary" type="button" (click)="addItemToList(item)">

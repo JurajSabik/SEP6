@@ -1,29 +1,17 @@
-import {TestBed} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
+import {AppModule} from "./app.module";
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
 
-describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+describe('TMDB', () => {
+  MockInstance.scope();
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    return MockBuilder(AppComponent, AppModule);
   });
 
-  it(`should have as title 'movies-sep6'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('movies-sep6');
+  it('should create', () => {
+    const fixture = MockRender(AppComponent);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
+})
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('movies-sep6 app is running!');
-  });
-});

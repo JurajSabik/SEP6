@@ -85,7 +85,7 @@ export class FriendsComponent implements OnInit, OnDestroy {
     });
   }
 
-  private refreshLists(): void {
+  refreshLists(): void {
     if (this.currentUser != undefined) {
       this.userService.getFollowing(this.currentUser.userId as string).subscribe((followingData) => {
         this.followingListSubject.next(followingData);

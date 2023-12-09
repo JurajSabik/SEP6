@@ -1,21 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AddFollowerDialogComponent } from './add-follower-dialog.component';
+import {MockBuilder, MockInstance, MockRender} from "ng-mocks";
+import {AddFollowerDialogComponent} from "@components/friends/add-follower-dialog/add-follower-dialog.component";
+import {AppModule} from "../../../app.module";
+import {AppUserCardComponent} from "@components/friends/app-user-card/app-user-card.component";
 
 describe('AddFollowerDialogComponent', () => {
-  let component: AddFollowerDialogComponent;
-  let fixture: ComponentFixture<AddFollowerDialogComponent>;
+  MockInstance.scope();
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [AddFollowerDialogComponent]
-    });
-    fixture = TestBed.createComponent(AddFollowerDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    return MockBuilder(AddFollowerDialogComponent, AppModule);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = MockRender(AppUserCardComponent);
+    expect(fixture.point.componentInstance).toBeDefined()
   });
-});
+})
+

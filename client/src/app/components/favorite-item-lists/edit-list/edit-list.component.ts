@@ -12,7 +12,7 @@ import {SnackbarService} from '../../../services/snackbar.service';
   styleUrls: ['./edit-list.component.css'],
 })
 export class EditListComponent implements OnInit {
-  listId: string = '';
+  listId = '';
   list: FavoriteItemList | null = null;
   constructor(
     private route: ActivatedRoute,

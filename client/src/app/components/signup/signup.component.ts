@@ -12,11 +12,11 @@ import {SnackbarService} from "../../services/snackbar.service";
 })
 export class SignupComponent {
 
-  username: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  errorMessage: string = '';
+  username = '';
+  email = '';
+  password = '';
+  confirmPassword = '';
+  errorMessage = '';
 
   constructor(private authService: AuthService,
               private userService: UserService,

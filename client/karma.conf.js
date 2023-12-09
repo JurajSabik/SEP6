@@ -14,10 +14,6 @@ module.exports = function (config) {
     ],
     client: {
       jasmine: {
-        // you can add configuration options for Jasmine here
-        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
-        // for example, you can disable the random execution with `random: false`
-        // or set a specific seed with `seed: 4321`
       },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
@@ -28,24 +24,20 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/movies-sep6'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        {type: 'html'},
+        {type: 'text-summary'}
       ]
     },
     reporters: ['progress', 'kjhtml'],
-    browsers: ['Chrome'],
-    restartOnFileChange: true,
-    
+    browsers: ['ChromiumNoSandbox', 'ChromiumHeadless'],
     customLaunchers: {
-      ChromeHeadlessCI: {
-        base: 'ChromeHeadless',
-        flags: [
-          '--no-sandbox',
-          '--disable-gpu',
-          '--headless',
-          '--remote-debugging-port=9223'
-        ]
+      ChromiumNoSandbox: {
+        base: 'ChromiumHeadless',
+        flags: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-translate', '--disable-extensions']
       }
-    }
+    },
+    singleRun: false,
+    restartOnFileChange: true,
+    browserNoActivityTimeout: 999999
   });
 };

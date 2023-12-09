@@ -37,23 +37,23 @@ export class ReviewService {
     return this.http.delete(`${this.reviewBaseUrl}/${reviewId}`);
   }
 
-  upvoteReview(reviewId: string, userId: string): Observable<any> {
+  upvoteReview(reviewId?: string , userId?: string): Observable<any> {
     return this.http.put(`${this.reviewBaseUrl}/upvote/${reviewId}/${userId}`, {});
   }
 
-  downvoteReview(reviewId: string, userId: string): Observable<any> {
+  downvoteReview(reviewId?: string, userId?: string): Observable<any> {
     return this.http.put(`${this.reviewBaseUrl}/downvote/${reviewId}/${userId}`, {});
   }
 
-  deleteVote(reviewId: string, userId: string): Observable<any> {
+  deleteVote(reviewId?: string, userId?: string): Observable<any> {
     return this.http.delete(`${this.reviewBaseUrl}/upvote/delete/${reviewId}/${userId}`);
   }
 
-  getVotesByReviewId(reviewId: string): Observable<Vote[]> {
+  getVotesByReviewId(reviewId?: string): Observable<Vote[]> {
     return this.http.get<Vote[]>(`${this.reviewBaseUrl}/votes/review/${reviewId}`);
   }
 
-  getVotesByUserId(userId: string): Observable<Vote[]> {
+  getVotesByUserId(userId?: string): Observable<Vote[]> {
     return this.http.get<Vote[]>(`${this.reviewBaseUrl}/votes/user/${userId}`);
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {FavoriteItemList} from "../model/domain/favorite-item-list";
+import {FavoriteItemList} from "@models/domain/favorite-item-list";
 
 @Injectable({
   providedIn: 'root'

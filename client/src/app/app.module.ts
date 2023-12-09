@@ -22,11 +22,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
-import {NotificationComponent} from '@components/notification/notification.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {ReviewListComponent} from '@components/review-list/review-list.component';
 import {ReviewPopupComponent} from "@components/review-popup/review-popup.component";
 
 
@@ -77,7 +75,6 @@ import { UserProfileReviewsComponent } from '@components/user-profile-reviews/us
     MovieDetailComponent,
     ActorDetailsComponent,
     DropdownMenuComponent,
-    NotificationComponent,
     SearchBarComponent,
     NavbarMiddleComponent,
     SearchResultComponent,
@@ -98,7 +95,6 @@ import { UserProfileReviewsComponent } from '@components/user-profile-reviews/us
     DashboardComponent,
     FavoriteItemListsDashboardComponent,
     UserProfileReviewsComponent,
-    ReviewListComponent,
     ReviewPopupComponent,
   ],
   imports: [

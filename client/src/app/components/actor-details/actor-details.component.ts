@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TmdbService} from '@services/tmdb.service';
 import {ActorMovies} from '@models/movie';
-
+//eslint disable
 @Component({
   selector: 'app-actor-detail',
   templateUrl: './actor-details.component.html',
@@ -52,15 +52,10 @@ export class ActorDetailsComponent implements OnInit {
         this.actorMovies = data;
         if (this.actorMovies!.cast.length > 0 && this.actorMovies!.cast[0].backdrop_path) {
           this.backgroundImageUrl = 'https://image.tmdb.org/t/p/original' + this.actorMovies!.cast[0].backdrop_path;
-        } else {
-          this.backgroundImageUrl = this.backgroundImageUrl; //this looks extremely sketchy.
-          // didn't have the time to look to into it,
-          // but I certainly will
         }
       },
       error => {
         console.error('Error fetching actor movies', error);
-        this.backgroundImageUrl = this.backgroundImageUrl;
       }
     );
   }
