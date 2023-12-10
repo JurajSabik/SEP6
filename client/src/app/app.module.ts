@@ -26,6 +26,8 @@ import {NotificationComponent} from '@components/notification/notification.compo
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {ReviewListComponent} from '@components/review-list/review-list.component';
+import {ReviewPopupComponent} from "@components/review-popup/review-popup.component";
 
 
 import {MatBadgeModule} from '@angular/material/badge'; // <-- Import this
@@ -90,6 +92,8 @@ import {CanvasJSAngularChartsModule} from "@canvasjs/angular-charts";
     EditListComponent,
     DashboardComponent,
     FavoriteItemListsDashboardComponent,
+    ReviewListComponent,
+    ReviewPopupComponent,
   ],
   imports: [
     BrowserModule,

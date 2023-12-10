@@ -1,17 +1,19 @@
 
-.movie-details-container {
 
+
+.movie-details-container {
   position: relative;
   color: #fff;
+  background: transparent;
 }
 
 .padding-container {
   margin: auto;
+  background: transparent;
   max-width: 1100px;
 }
 
 .background-test {
-  background-image: url("/assets/images/default-background.jpg");
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -19,8 +21,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
   z-index: -1;
   filter: brightness(30%);
 }
@@ -90,30 +90,14 @@ h2 {
   font-size: 14px;
 }
 
-/* Add additional styles here for more movie details like director, duration, PG, year, etc. */
-/* ... */
-.movie-details-container {
-  position: relative;
-  color: #fff;
-  padding: 0 40px; /* Adds lateral margins */
-}
-
-.actors-grid {
+.director {
   display: flex;
-  justify-content: flex-start; /* Aligns to the start and allows wrapping */
-  flex-wrap: wrap;
-  padding: 20px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.actor-card {
-  cursor: pointer; /* Changes cursor to pointer on hover */
-  width: 100px;
-  margin: 10px;
-  text-align: center;
-}
-
-
-/* Styles for related movies */
 .related-movies {
   display: flex;
   justify-content: flex-start;
@@ -130,10 +114,10 @@ h2 {
 
 .related-movie-card img {
   width: 100px;
-  height: 150px; /* Assuming a common movie poster aspect ratio */
+  height: 150px;
   object-fit: cover;
   transition: transform 0.3s ease;
-  border-radius: 5px; /* Adds a slight border radius to images */
+  border-radius: 5px;
 }
 
 .related-movie-card img:hover {
@@ -145,87 +129,69 @@ h2 {
   font-size: 14px;
 }
 
-/* Additional styles for responsiveness and aesthetics */
-/*@media (max-width: 768px) {*/
-/*  .movie-details-container {*/
-/*    padding: 0 20px; !* Smaller lateral margins for smaller screens *!*/
-/*  }*/
-
-/*  .main-details, .actors-grid, .related-movies {*/
-/*    padding: 20px 0; !* Adjusts padding for sections *!*/
-/*  }*/
-
-/*  .main-details img {*/
-/*    max-width: 100%;*/
-/*    margin-bottom: 20px; !* Stacks the image above the details on small screens *!*/
-/*  }*/
-
-/*  .main-details {*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*  }*/
-/*}*/
-
-.director {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Styles for Review Button */
+.btn-review {
+  position: absolute; /* Change from fixed to absolute */
+  top: 100px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1050;
 }
 
-@media (max-width: 768px) {
-  .main-details {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .main-details img {
-    height: auto;
-    width: 100%;
-    max-width: 400px; /* Adjust based on your preference */
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-
-  .text-details {
-    width: 100%;
-  }
+.fixed-top {
+  position: fixed;
+  top: 60px;
+  right: 20px;
 }
 
+.btn-review:hover {
+  background-color: #0056b3;
+}
+
+
 @media (max-width: 768px) {
-  .actors-grid, .related-movies {
-    justify-content: center;
+  .main-details,
+  .actors-grid,
+  .related-movies,
+  .text-details h1,
+  .text-details p {
+    /* Adjust your styles for mobile view */
   }
 
-  .actor-card, .related-movie-card {
-    width: 80px; /* Smaller size on mobile */
+  .btn-review {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .actor-card,
+  .related-movie-card {
+    width: 80px;
     margin: 5px;
   }
 
-  .actor-card img, .related-movie-card img {
+  .actor-card img,
+  .related-movie-card img {
     width: 80px;
-    height: 80px; /* Adjust height to maintain aspect ratio */
-  }
-}
-
-@media (max-width: 768px) {
-  .text-details h1 {
-    font-size: 24px; /* Smaller font size for title */
+    height: 80px;
   }
 
-  .text-details p {
-    font-size: 16px; /* Smaller font size for paragraphs */
-  }
-}
-
-@media (max-width: 768px) {
-  .padding-container {
-    padding: 10px;
-  }
-
+  .padding-container,
   .movie-details-container {
-    padding: 0 20px; /* Smaller lateral margins */
+    padding: 0 20px;
+  }
+
+  .btn-review {
+    position: absolute; /* Ensure position is consistent */
+    top: 10px; /* Adjust this value as needed */
+    right: 10px; /* Adjust for smaller screens */
+    padding: 10px 20px;
+    font-size: 16px;
   }
 }

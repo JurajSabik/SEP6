@@ -1,0 +1,17 @@
+<div class="overlay" (click)="close()">
+  <div class="review-popup" (click)="$event.stopPropagation()">
+    <h2>Make Your Review</h2>
+    <!-- Star rating section -->
+    <div class="rating">
+      <button *ngFor="let star of [1, 2, 3, 4, 5]" (click)="rate(star)">
+        <i [class]="star <= rating ? 'full-star' : 'empty-star'"></i>
+      </button>
+    </div>
+
+    <textarea [(ngModel)]="reviewText" placeholder="Write your review here..."></textarea>
+    <div class="popup-actions">
+      <button (click)="saveReview()">Save</button>
+      <button (click)="close()">Cancel</button>
+    </div>
+  </div>
+</div>
