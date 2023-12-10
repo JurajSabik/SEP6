@@ -9,7 +9,7 @@ import java.util.UUID
 
 
 @RestController
-@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/", "http://20.105.24.162"], allowCredentials = "true")
+@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/", "http://20.67.134.65"], allowCredentials = "true")
 @RequestMapping("api/favorite-item-lists/stats")
 class FavoriteItemListDashboardDataController(private val favoriteItemRepo: FavoriteListPersistenceService) {
   private val favoriteListStatsService: FavoriteListStatsService = FavoriteListStatsService(favoriteItemRepo)

@@ -22,7 +22,7 @@ import java.util.UUID
 
 private val logger = KotlinLogging.logger {}
 @RestController
-@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/", "http://20.105.24.162"], allowCredentials = "true")
+@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/", "http://20.67.134.65"], allowCredentials = "true")
 @RequestMapping("api/favorite-item-lists")
 class FavoriteItemListController (private val favoriteItemRepo: FavoriteListPersistenceService) {
   private val favoriteItemListService: FavoriteListService = FavoriteListService(favoriteItemRepo)

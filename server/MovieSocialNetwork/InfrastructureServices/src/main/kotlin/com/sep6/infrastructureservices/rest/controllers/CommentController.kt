@@ -9,7 +9,7 @@ import services.CommentService
 import java.util.*
 
 @RestController
-@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/", "http://20.105.24.162"], allowCredentials = "true")
+@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/", "http://20.67.134.65"], allowCredentials = "true")
 @RequestMapping("api/comments")
 class CommentController(private val commentRepo: CommentPersistenceService) {
     private val commentService: CommentService = CommentService(commentRepo)
