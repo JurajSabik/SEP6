@@ -1,0 +1,41 @@
+# manifest-backend.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kotlin-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kotlin-backend
+  template:
+    metadata:
+      labels:
+        app: kotlin-backend
+    spec:
+      containers:
+      - name: kotlin-backend
+        image: sep6containerregistry.azurecr.io/server:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://postgres-service:5432/postgres"  # Updated to use PostgreSQL service DNS name
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "sep6"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "12345"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kotlin-backend-service
+spec:
+  selector:
+    app: kotlin-backend
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
