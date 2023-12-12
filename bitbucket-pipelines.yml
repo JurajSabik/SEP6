@@ -53,6 +53,7 @@ pipelines:
           - pwd
           - ls
           - cd server/MovieSocialNetwork
+          - ls
           - docker build -t ${AZURE_ACR_NAME}.azurecr.io/server:latest .
           - docker push ${AZURE_ACR_NAME}.azurecr.io/server:latest
             #frontend
