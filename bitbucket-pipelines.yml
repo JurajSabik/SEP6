@@ -50,16 +50,13 @@ pipelines:
         name: Build Backend Image
         script:
           #backend
-          - pwd
-          - ls
           - cd server/MovieSocialNetwork
-          - ls
-          - docker build -t ${AZURE_ACR_NAME}.azurecr.io/server:latest .
-          - docker push ${AZURE_ACR_NAME}.azurecr.io/server:latest
+          - docker build -t $AZURE_ACR_NAME.azurecr.io/server:latest .
+          - docker push $AZURE_ACR_NAME.azurecr.io/server:latest
             #frontend
           - cd ../../client
-          - docker build -t ${AZURE_ACR_NAME}.azurecr.io/client:latest .
-          - docker push ${AZURE_ACR_NAME}.azurecr.io/client:latest
+          - docker build -t $AZURE_ACR_NAME.azurecr.io/client:latest .
+          - docker push $AZURE_ACR_NAME.azurecr.io/client:latest
 #          #postgres
 #          - docker tag postgres:latest ${AZURE_ACR_NAME}.azurecr.io/postgres:latest
 #          - docker push ${AZURE_ACR_NAME}.azurecr.io/postgres:latest
