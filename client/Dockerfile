@@ -2,7 +2,7 @@ FROM nginx:1.21.1-alpine
 
 WORKDIR /usr/share/nginx/html
 
-COPY ./dist/movies-sep6 .
+COPY ./node_modules .
 
 EXPOSE 80
 
@@ -26,10 +26,10 @@ EXPOSE 80
 # COPY . .
 
 # # Run tests
-# #RUN ./node_modules/.bin/ng test --no-watch --no-progress --browsers=ChromeHeadlessCI 
+# #RUN ./node_modules/.bin/ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
 
 # # Build the Angular project
-# RUN ./node_modules/.bin/ng build 
+# RUN ./node_modules/.bin/ng build
 
 # # Uncomment the following lines to run client in container
 
