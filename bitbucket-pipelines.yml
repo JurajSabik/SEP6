@@ -51,12 +51,12 @@ pipelines:
         script:
           #backend
           - cd server/MovieSocialNetwork
-          - docker build -t $AZURE_ACR_NAME.azurecr.io/server:latest .
-          - docker push $AZURE_ACR_NAME.azurecr.io/server:latest
+          - docker build -t sep6containerregistry2.azurecr.io/server:latest .
+          - docker push sep6containerregistry2.azurecr.io/server:latest
             #frontend
           - cd ../../client
-          - docker build -t $AZURE_ACR_NAME.azurecr.io/client:latest .
-          - docker push $AZURE_ACR_NAME.azurecr.io/client:latest
+          - docker build -t sep6containerregistry2.azurecr.io/client:latest .
+          - docker push sep6containerregistry2.azurecr.io/client:latest
 #          #postgres
 #          - docker tag postgres:latest ${AZURE_ACR_NAME}.azurecr.io/postgres:latest
 #          - docker push ${AZURE_ACR_NAME}.azurecr.io/postgres:latest
