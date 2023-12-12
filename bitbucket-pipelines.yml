@@ -42,7 +42,7 @@ pipelines:
     - step:
         name: Login to Azure
         script:
-          - az login --service-principal --username $AZURE_APP_ID --password $AZURE_PASSWORD --tenant $AZURE_TENANT_ID
+          - az login --service-principal --username $AZURE_SP_ID --password $AZURE_PASSWORD --tenant $AZURE_TENANT_ID
     # 1.build & push docker images for backend and frontend
     - step:
         name: Build Backend Image
@@ -68,8 +68,8 @@ pipelines:
               AZURE_APP_ID: $AZURE_APP_ID
               AZURE_PASSWORD: $AZURE_PASSWORD
               AZURE_TENANT_ID: $AZURE_TENANT_ID
-              AZURE_AKS_NAME: '<string>'
-              AZURE_RESOURCE_GROUP: '<string>'
+              AZURE_AKS_NAME: 'AKSClusterSEP6'
+              AZURE_RESOURCE_GROUP: 'SEP6'
               KUBECTL_COMMAND: 'apply'
               # KUBECTL_ARGUMENTS: '<string>'
               # AZURE_SUBSCRIPTION: '<string>' # Optional.

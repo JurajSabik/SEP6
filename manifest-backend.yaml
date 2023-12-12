@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kotlin-backend
-        image: sep6containerregistry.azurecr.io/server:latest
+        image: sep6containerregistry2.azurecr.io/server:latest
         ports:
         - containerPort: 8080
         env:
