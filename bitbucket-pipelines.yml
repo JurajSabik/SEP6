@@ -50,6 +50,8 @@ pipelines:
         name: Build Backend Image
         script:
           #backend
+          - pwd
+          - ls
           - cd server/MovieSocialNetwork
           - docker build -t ${AZURE_ACR_NAME}.azurecr.io/server:latest .
           - docker push ${AZURE_ACR_NAME}.azurecr.io/server:latest
