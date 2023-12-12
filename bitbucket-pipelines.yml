@@ -49,6 +49,9 @@ pipelines:
     - step:
         name: Build Backend Image
         script:
+          # Ensure Azure login before pushing to ACR
+          - az login --service-principal -u $AZURE_SP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT_ID
+          - az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_AKS_NAME
           #backend
           - cd server/MovieSocialNetwork
           - docker build -t sep6containerregistry2.azurecr.io/server:latest .
