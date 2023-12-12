@@ -11,7 +11,7 @@ import java.util.*
 import services.ReviewService
 
 @RestController
-@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/"], allowCredentials = "true")
+@CrossOrigin(origins = ["http://localhost:4200",  "http://localhost:42185/", "http://20.105.24.162"], allowCredentials = "true")
 @RequestMapping("api/reviews")
 class ReviewController(private val reviewRepo: ReviewPersistenceService) {
   private val reviewService: ReviewService = ReviewService(reviewRepo)

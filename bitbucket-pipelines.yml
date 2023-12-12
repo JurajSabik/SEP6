@@ -36,3 +36,54 @@ pipelines:
         name: Security Scan
         script:
           - pipe: atlassian/git-secrets-scan:0.5.1
+
+    # DEPLOYMENT
+    # 0.login to azure
+    - step:
+        name: Login to Azure
+        script:
+          - az login --service-principal --username $AZURE_APP_ID --password $AZURE_PASSWORD --tenant $AZURE_TENANT_ID
+    # 1.build & push docker images for backend and frontend
+    - step:
+        name: Build Backend Image
+        script:
+          #backend
+          - cd server/MovieSocialNetwork
+          - docker build -t ${AZURE_ACR_NAME}.azurecr.io/server:latest .
+          - docker push ${AZURE_ACR_NAME}.azurecr.io/server:latest
+            #frontend
+          - cd ../../client
+          - docker build -t ${AZURE_ACR_NAME}.azurecr.io/client:latest .
+          - docker push ${AZURE_ACR_NAME}.azurecr.io/client:latest
+#          #postgres
+#          - docker tag postgres:latest ${AZURE_ACR_NAME}.azurecr.io/postgres:latest
+#          - docker push ${AZURE_ACR_NAME}.azurecr.io/postgres:latest
+
+    # 2. deploy to azure kubernetes service using microsoft/azure-aks-deploy kubectl pipe
+    - step:
+        name: Deploy to Azure Kubernetes Service
+        script:
+          - pipe: atlassian/azure-aks-deploy:1.2.0
+            variables:
+              AZURE_APP_ID: $AZURE_APP_ID
+              AZURE_PASSWORD: $AZURE_PASSWORD
+              AZURE_TENANT_ID: $AZURE_TENANT_ID
+              AZURE_AKS_NAME: '<string>'
+              AZURE_RESOURCE_GROUP: '<string>'
+              KUBECTL_COMMAND: 'apply'
+              # KUBECTL_ARGUMENTS: '<string>'
+              # AZURE_SUBSCRIPTION: '<string>' # Optional.
+              # AZURE_LOGIN_NON_INTERACTIVE: '<boolean>' # Optional
+              # KUBERNETES_SPEC_FILE: '<string>' # Optional
+              # KUBERNETES_SPEC_FILE: './manifests/manifest-postgres.yaml', './manifests/manifest-backend.yaml', './manifests/manifest-frontend.yaml' # Optional: Specific manifests and their order to apply can be specified.
+              # DEBUG: '<boolean>' # Optional
+
+#    # 2. deploy to azure kubernetes service
+#    - step:
+#        name: Deploy to Azure Kubernetes Service
+#        deployment: production
+#        script:
+#          - az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_AKS_NAME
+#          - kubectl apply -f ./manifests/manifest-postgres.yaml
+#          - kubectl apply -f ./manifests/manifest-backend.yaml
+#          - kubectl apply -f ./manifests/manifest-frontend.yaml
