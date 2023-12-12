@@ -38,11 +38,13 @@ pipelines:
           - pipe: atlassian/git-secrets-scan:0.5.1
 
     # DEPLOYMENT
-    # 0.login to azure
+    # 0.download azure cli and login
     - step:
-        name: Login to Azure
+        name: Download Azure CLI and Login
         script:
-          - az login --service-principal --username $AZURE_SP_ID --password $AZURE_PASSWORD --tenant $AZURE_TENANT_ID
+          - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          - az login --service-principal -u $AZURE_SP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT_ID
+          - az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_AKS_NAME
     # 1.build & push docker images for backend and frontend
     - step:
         name: Build Backend Image
