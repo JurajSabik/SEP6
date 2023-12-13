@@ -10,7 +10,7 @@ import {GeneralUserData} from "@models/stats-dtos/general-user-data";
 })
 export class UserService {
 
-  private userBaseUrl = 'http://localhost:8080/api/users';
+  private userBaseUrl = 'http://20.67.134.54:8080/api/users';
 
   constructor(private http: HttpClient) {
   }

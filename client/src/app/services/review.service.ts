@@ -9,7 +9,7 @@ import {Vote} from "@models/domain/vote-dto";
 })
 export class ReviewService {
 
-  private reviewBaseUrl = 'http://localhost:8080/api/reviews';
+  private reviewBaseUrl = 'http://20.67.134.54:8080/api/reviews';
 
   constructor(private http: HttpClient) { }
 

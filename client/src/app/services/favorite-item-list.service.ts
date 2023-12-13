@@ -8,7 +8,7 @@ import {FavoriteItemList} from "@models/domain/favorite-item-list";
 })
 export class FavoriteItemListService {
 
-  private apiUrl = 'http://localhost:8080/api/favorite-item-lists'; // Replace with your backend API URL
+  private apiUrl = 'http://20.67.134.54:8080/api/favorite-item-lists'; // Replace with your backend API URL
 
   constructor(private httpClient: HttpClient) {}
 
