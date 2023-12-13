@@ -3,7 +3,6 @@ FROM nginx:1.21.1-alpine
 WORKDIR /usr/share/nginx/html
 
 COPY ./dist/movies-sep6 .
-#COPY ./node_modules .
 
 EXPOSE 80
 
