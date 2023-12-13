@@ -73,10 +73,10 @@ pipelines:
               AZURE_APP_ID: $AZURE_APP_ID
               AZURE_PASSWORD: $AZURE_PASSWORD
               AZURE_TENANT_ID: $AZURE_TENANT_ID
-              AZURE_AKS_NAME: 'AKSClusterSEP6'
-              AZURE_RESOURCE_GROUP: 'SEP6'
+              AZURE_AKS_NAME: $AZURE_AKS_NAME
+              AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
               KUBECTL_COMMAND: 'apply'
-              # KUBECTL_ARGUMENTS: '<string>'
+              KUBECTL_ARGUMENTS: '-f ./manifests/manifest-postgres.yaml -f ./manifests/manifest-backend.yaml -f ./manifests/manifest-frontend.yaml'
               # AZURE_SUBSCRIPTION: '<string>' # Optional.
               # AZURE_LOGIN_NON_INTERACTIVE: '<boolean>' # Optional
               # KUBERNETES_SPEC_FILE: '<string>' # Optional
