@@ -39,7 +39,6 @@ pipelines:
         services:
           - docker
         script:
-          - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
           - az login --service-principal -u $AZURE_SP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT_ID
           - az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_AKS_NAME
     - step:
