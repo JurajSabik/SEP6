@@ -36,4 +36,9 @@ export class DropdownMenuComponent {
     this.snackbarService.open('Signed out')
     await  this.router.navigate(['/home'])
   }
+
+  async goToFavoriteList() {
+    const domainUser = await this.userHelperService.fetchDomainUser()
+    await this.router.navigate([`/favorite-item-list/${domainUser.userId}`])
+  }
 }

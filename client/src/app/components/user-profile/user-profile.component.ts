@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DomainUser, UserRole} from "../../model/domain/domain-user";
-import {UserService} from "../../services/user.service";
-import {UserHelperService} from "../../services/helpers/user-helper.service";
+import {DomainUser, UserRole} from "@models/domain/domain-user";
+import {UserService} from "@services/user.service";
+import {UserHelperService} from "@services/helpers/user-helper.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmDeleteDialogComponent} from "../confirm-delete-dialog-component/confirm-delete-dialog.component";
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "@services/auth.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -57,7 +57,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   async deleteAccount() {
-     await this.authService.getCurrentUser()?.reload();
     await this.authService.getCurrentUser()?.delete();
     this.userService.deleteUser(this.userProfile?.userId as string).subscribe();
     await this.authService.signOut();

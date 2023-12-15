@@ -147,4 +147,18 @@ class ReviewPersistenceService(
       .ifPresentOrElse({ user = it }, { throw ResourceNotFoundException("User with id $userId not found") })
     return@withContext user!!.votes!!.map { vote -> vote.mapToDomain() }
   }
+
+  override suspend fun getRatingForMovie(movieId: String): Double {
+    val reviews: List<Review>? = getReviewsByMovieId(movieId)
+    if(reviews != null) {
+      return if (reviews.isEmpty()) {
+        0.0;
+      } else {
+        var sumOfRatings = 0.0
+        reviews.forEach {review: Review -> sumOfRatings += review.rating }
+        sumOfRatings / reviews.size;
+      }
+    }
+    throw ResourceNotFoundException("Reviews were not found for movie.");
+  }
 }

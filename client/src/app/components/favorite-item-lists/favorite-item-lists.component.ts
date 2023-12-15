@@ -12,7 +12,7 @@ import {UserService} from "@services/user.service";
 @Component({
   selector: 'app-favorite-lists',
   templateUrl: './favorite-item-lists.component.html',
-  styleUrls: ['./favorite-item-lists.component.css']
+  styleUrls: ['./favorite-item-lists.component.css'],
 })
 export class FavoriteListsComponent implements OnInit {
   currentUserId = '';

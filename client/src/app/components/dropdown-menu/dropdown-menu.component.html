@@ -6,13 +6,13 @@
 </button>
 <!-- ... rest of your menu ... -->
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>settings</mat-icon>
-    <span>Settings</span>
-  </button>
   <button mat-menu-item (click) = "goToFriends()">
     <mat-icon>people</mat-icon>
     <span>Friends</span>
+  </button>
+  <button mat-menu-item (click)="goToFavoriteList()" >
+    <mat-icon>list</mat-icon>
+    <span>Favorite Lists</span>
   </button>
   <button mat-menu-item (click)="goToProfile()" >
     <mat-icon>person</mat-icon>

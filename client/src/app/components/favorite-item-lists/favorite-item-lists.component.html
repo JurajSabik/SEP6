@@ -2,8 +2,8 @@
 
   <div class="lists-panel">
     <h2>{{currentUserUsername}}'s Lists</h2>
-    <mat-nav-list>
-      <mat-list-item *ngFor="let list of favoriteLists$ | async" (click)="selectList(list)"
+    <mat-nav-list >
+      <mat-list-item class="list" *ngFor="let list of favoriteLists$ | async" (click)="selectList(list)"
                      (contextmenu)="onContextMenu($event, list)" matTooltip="Click to expand">
 
         <button color="primary" class="custom-button-movie" *ngIf="list.type === ListType.MOVIE" mat-icon-button>

@@ -89,7 +89,7 @@ class UserPersistenceService(
     }
   }
   override suspend fun getGeneralUserData(userId: UUID): GeneralUserData {
-    val user: UserEntity? = getUser(userId)
+    val user: UserEntity? = getUserWithFollowers(userId)
     return GeneralUserData(
       user?.followers!!.size,
       user.following!!.size,

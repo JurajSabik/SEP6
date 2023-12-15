@@ -27,7 +27,7 @@ export class MovieDetailComponent implements OnInit {
   currentUser: DomainUser | undefined;
   private reviews = new BehaviorSubject<DomainReview[]>([]);
   reviewList = this.reviews.asObservable();
-
+  appMovieRating: number | undefined;
   constructor(
     private renderer: Renderer2,
     private route: ActivatedRoute,
@@ -58,6 +58,7 @@ export class MovieDetailComponent implements OnInit {
     this.refreshReviews(id as string);
     if (this.movieId) {
       this.loadMovieDetails();
+      this.getMovieRating()
     }
     this.initScrollEvent();
   }
@@ -155,18 +156,11 @@ export class MovieDetailComponent implements OnInit {
     } else return undefined
   }
 
-  getUsernameById(userId: string | undefined): string | undefined {
-    this.userService.getUserById(userId as string).subscribe({
-      next: user => {
-        return user.username;
-      },
-      error: err => {
-        console.error(err);
-        return undefined;
+  getMovieRating(): void {
+    this.reviewService.getRatingForMovie(this.movieId?.toString()).subscribe({
+      next: rating => {
+        this.appMovieRating = rating
       }
     })
-
-    return undefined;
-
   }
 }

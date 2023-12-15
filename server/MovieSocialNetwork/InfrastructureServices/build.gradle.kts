@@ -34,6 +34,7 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation ("io.github.oshai:kotlin-logging-jvm:5.1.0")
+  implementation("org.springdoc:springdoc-openapi-ui:1.6.3")
   implementation(project(mapOf("path" to ":DomainServices")))
   implementation(project(mapOf("path" to ":DomainCore")))
   implementation(project(mapOf("path" to ":ApplicationServices")))

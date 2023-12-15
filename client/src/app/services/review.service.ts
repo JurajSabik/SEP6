@@ -53,6 +53,9 @@ export class ReviewService {
     return this.http.get<Vote[]>(`${this.reviewBaseUrl}/votes/review/${reviewId}`);
   }
 
+  getRatingForMovie(movieId?: string): Observable<number> {
+    return this.http.get<number>(`${this.reviewBaseUrl}/movie/rating/${movieId}`);
+  }
   getVotesByUserId(userId?: string): Observable<Vote[]> {
     return this.http.get<Vote[]>(`${this.reviewBaseUrl}/votes/user/${userId}`);
   }

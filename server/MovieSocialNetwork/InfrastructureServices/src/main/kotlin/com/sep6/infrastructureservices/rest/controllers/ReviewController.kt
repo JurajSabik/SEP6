@@ -27,7 +27,12 @@ class ReviewController(private val reviewRepo: ReviewPersistenceService) {
     return ResponseEntity(reviewRepo.getReviewsByMovieId(movieId), HttpStatus.OK)
   }
 
-  @GetMapping("/user/{userId}")
+  @GetMapping("/movie/rating/{movieId}")
+  suspend fun getRatingForMovie(@PathVariable movieId: String): ResponseEntity<Double> {
+    return ResponseEntity(reviewRepo.getRatingForMovie(movieId), HttpStatus.OK)
+  }
+
+    @GetMapping("/user/{userId}")
   suspend fun getReviewsByUserId(@PathVariable userId: UUID): ResponseEntity<List<Review>> {
     return ResponseEntity(reviewRepo.getReviewsByUserId(userId), HttpStatus.OK)
   }

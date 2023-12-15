@@ -66,7 +66,7 @@ mat-list-item {
 }
 
 .context-menu div:hover {
-  background-color: #f5f5f5;
+  background-color: #2c1717;
 }
 
 .createButton {
@@ -84,3 +84,6 @@ h2 {
   margin-top: 0;
 }
 
+::ng-deep .mat-list-item {
+  color: white !important;
+}

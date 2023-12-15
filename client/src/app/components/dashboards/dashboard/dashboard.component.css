@@ -6,10 +6,13 @@ mat-tab-group {
     margin-top: 5vh;
     margin-left: 50vh;
 }
-
+::ng-deep body {
+  color: white;
+}
 userDataContainer {
     margin-left: 50vh;
     margin-top: 10vh;
+    color: white !important;
 }
 
 mat-tab {

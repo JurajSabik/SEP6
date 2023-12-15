@@ -35,7 +35,6 @@ import {NavbarMiddleComponent} from '@components/navbar-middle/navbar-middle.com
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {SearchResultComponent} from '@components/search-result/search-result.component';
 import {MovieGridComponent} from '@components/movie-grid/movie-grid.component';
-import {FootComponent} from '@components/foot/foot.component';
 import {SnackbarComponent} from '@components/snackbar/snackbar.component';
 import {FriendsComponent} from '@components/friends/friends.component';
 import {MatTabsModule} from "@angular/material/tabs";
@@ -79,7 +78,6 @@ import { UserProfileReviewsComponent } from '@components/user-profile-reviews/us
     NavbarMiddleComponent,
     SearchResultComponent,
     MovieGridComponent,
-    FootComponent,
     SnackbarComponent,
     FriendsComponent,
     AddFollowerDialogComponent,

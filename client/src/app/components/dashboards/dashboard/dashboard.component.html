@@ -1,6 +1,6 @@
 <h1 class="mat-headline-1" > Random statistics based on your activity</h1>
-<mat-tab-group>
-    <mat-tab label="General">
+<mat-tab-group [color]="'warn'" [backgroundColor]="'primary'">
+    <mat-tab  label="General">
         <div *ngIf="generalUserData" class="userDataContainer">
             <h2>General Statistics</h2>
             <p>Number of Followers: {{ generalUserData.numberOfFollowers }}</p>
@@ -13,7 +13,7 @@
     </mat-tab>
     <mat-tab label="Favorite Lists">
         <app-favorite-item-lists-dashboard [userId]="userId"></app-favorite-item-lists-dashboard>
-    </mat-tab>
+    </mat-tab >
     <mat-tab label="Reviews">
     </mat-tab>
     <mat-tab label="Comments">

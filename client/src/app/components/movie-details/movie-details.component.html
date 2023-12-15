@@ -24,9 +24,10 @@
                 </div>
               </div>
 
-              <p><strong>Duration:</strong> {{ movie.runtime }} minutes</p>
-              <p><strong>Release Date:</strong> {{ movie.release_date | date:'longDate' }}</p>
-              <p><strong>Rating:</strong> {{ movie.vote_average }} / 10</p>
+              <p><strong>Duration:  </strong> {{ movie.runtime }} minutes</p>
+              <p><strong>Release Date:  </strong> {{ movie.release_date | date:'longDate' }}</p>
+              <p><strong>TMDB Rating:  </strong> {{ movie.vote_average }} / 10</p>
+              <p><strong>Rating on app (based on reviews):  </strong> {{ appMovieRating !== undefined && appMovieRating !== 0 ? (appMovieRating.toFixed(1).toString() + '/ 5') : 'No reviews yet'}}</p>
               <!-- Include additional movie information as needed -->
             </div>
           </section>
@@ -64,13 +65,12 @@
           </section>
 
           <h2>Reviews</h2>
-          <div *ngFor="let review of reviewList | async "  class="review-card">
+          <div *ngFor="let review of reviewList | async " class="review-card">
             <div class="review-header">
-              <mat-icon>user</mat-icon>
+              <mat-icon>person</mat-icon>
               <div class="review-content">
                 <p class="review-text">{{ getPreviewText(review.text) }}</p>
                 <div class="user-info">
-                  <span class="user-name">{{ getUsernameById(review.userId) !== undefined ?  getUsernameById(review.userId) : "Anonymous"}}</span>
                   <div class="rating-stars">
                     <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
                       <i [class]="getStarType(review.rating, i + 1)"></i>
@@ -81,19 +81,16 @@
               </div>
             </div>
           </div>
-          <div class="movie-list">
+          <button class="btn btn-review" (click)="openReviewPopup()">Review</button>
 
-            <button class="btn btn-review" (click)="openReviewPopup()">Generate a Review</button>
-
-            <div *ngIf="showReviewPopup" class="overlay">
-              <app-review-popup
-                *ngIf="showReviewPopup"
-                [movieId]="movie.id"
-                [userId]="currentUser?.userId"
-                (submitReview)="handleReviewSubmit()"
-                (closePopup)="closeReviewPopup()">
-              </app-review-popup>
-            </div>
+          <div *ngIf="showReviewPopup" class="overlay">
+            <app-review-popup
+              *ngIf="showReviewPopup"
+              [movieId]="movie.id"
+              [userId]="currentUser?.userId"
+              (submitReview)="handleReviewSubmit()"
+              (closePopup)="closeReviewPopup()">
+            </app-review-popup>
           </div>
         </div>
       </div>

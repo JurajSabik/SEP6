@@ -16,4 +16,5 @@ interface ReviewRepository {
   fun deleteVote(reviewId: UUID, userId: UUID)
   suspend fun getVotesByReviewId(reviewId: UUID): List<Vote>?
   suspend fun getVotesByUserId(userId: UUID): List<Vote>?
+  suspend fun getRatingForMovie(movieId: String): Double
 }
